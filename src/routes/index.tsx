@@ -4,6 +4,10 @@ import { ArrowRight } from "lucide-react";
 import heroVilla from "@/assets/hero-villa.jpg";
 import interior from "@/assets/interior.jpg";
 import palazzo from "@/assets/palazzo.jpg";
+import capannone from "@/assets/capannone.jpg";
+import retail from "@/assets/retail.jpg";
+import commerciale from "@/assets/commerciale.jpg";
+import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/team-michele.jpg";
 import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
@@ -236,10 +240,10 @@ function Index() {
           <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
             Un team, un metodo,
             <br />
-            <span className="font-light italic text-flame">una visione.</span>
+            <span className="font-light italic text-flame">una visione globale.</span>
           </h2>
-          <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
-            ( Chi siamo )
+          <span className="hidden shrink-0 max-w-xs text-right font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+            ( Chi siamo — Seguiamo il cliente dal primo incontro fino ai servizi post rogito o post contratto d'affitto )
           </span>
         </div>
 
@@ -254,18 +258,36 @@ function Index() {
               <p className="mt-6 leading-relaxed text-muted-foreground">
                 Il nome richiama precisione e affidabilità, il termine “Group” ne rappresenta il
                 respiro ampio: una struttura professionale capace di muoversi su ambiti complessi,
-                dal residenziale al business.
+                dal residenziale al business, senza fermarsi a una singola nicchia.
+              </p>
+              <p className="mt-6 leading-relaxed text-muted-foreground">
+                Operiamo nel ramo della mediazione immobiliare da diversi anni, avvalendoci della
+                collaborazione di professionisti esperti e qualificati nel settore. Siamo in grado
+                di offrire consulenza tecnica, fiscale, legale e commerciale per consentire alla
+                nostra clientela di effettuare la compravendita o la locazione del proprio immobile
+                con le massime garanzie di sicurezza e tranquillità.
               </p>
             </div>
-            <div className="mt-10 border-t border-white/10 pt-8">
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-flame">
-                Iscrizione al ruolo
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                Matrice Group, nella persona del titolare Sig. Michele Pone, è iscritta al Ruolo
-                degli Agenti di affari in mediazione presso la C.C.I.A.A. di Napoli al n.{" "}
-                <span className="font-display text-lg text-foreground">424903</span>.
-              </p>
+            <div className="mt-10 flex items-center gap-6 border-t border-white/10 pt-8">
+              <img
+                src={fiaip.url}
+                alt="Badge FIAIP — Michele Pone, Federazione Italiana Agenti Immobiliari Professionali"
+                width={96}
+                height={96}
+                loading="lazy"
+                className="size-24 shrink-0 rounded-full bg-white p-1.5 object-contain"
+              />
+              <div>
+                <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-flame">
+                  Iscrizione al ruolo
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  Matrice Group, nella persona del titolare Sig. Michele Pone, è iscritta al Ruolo
+                  degli Agenti di affari in mediazione presso la C.C.I.A.A. di Napoli al n.{" "}
+                  <span className="font-display text-lg text-foreground">424903</span> e aderisce
+                  alla FIAIP.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -302,7 +324,15 @@ function Index() {
             <p className="mt-4 leading-relaxed text-muted-foreground">
               Offriamo assistenza e consulenza globale a chi desidera acquistare un immobile
               tramite asta giudiziale, da un fallimento o attraverso operazioni di saldo e
-              stralcio.
+              stralcio. Nel campo degli investimenti internazionali lavoriamo in stretta
+              collaborazione con professionisti di comprovata esperienza e capacità.
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-flame p-8 text-flame-foreground lg:col-span-12">
+            <p className="font-display text-2xl font-light leading-snug lg:text-3xl">
+              “La nostra priorità è seguire il cliente in ogni passo, garantendo sicurezza e
+              tranquillità nella trattativa immobiliare.”
             </p>
           </div>
         </div>
@@ -323,9 +353,14 @@ function Index() {
         </div>
         <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
           <div className="mb-14 flex items-end justify-between gap-6">
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-              Cosa <span className="font-light italic text-flame">facciamo</span>
-            </h2>
+            <div>
+              <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+                Cosa <span className="font-light italic text-flame">facciamo</span>
+              </h2>
+              <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
+                Servizi immobiliari costruiti intorno alle tue esigenze.
+              </p>
+            </div>
             <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
               ( 06 servizi )
             </span>
