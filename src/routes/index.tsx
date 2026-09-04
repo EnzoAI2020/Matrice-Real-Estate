@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
-import heroBuilding from "@/assets/hero-building.jpg";
+import heroVilla from "@/assets/hero-villa.jpg";
 import interior from "@/assets/interior.jpg";
+import palazzo from "@/assets/palazzo.jpg";
 import teamMichele from "@/assets/team-michele.jpg";
 import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
@@ -108,22 +110,19 @@ const marqueeWords = [
 
 function Index() {
   return (
-    <div className="bg-background text-foreground">
+    <div className="bg-background text-foreground antialiased">
       {/* NAV */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 lg:px-12">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="grid size-7 -skew-x-12 place-items-center bg-flame">
-              <span className="size-2.5 rotate-12 bg-brand" />
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 lg:px-12">
+          <a href="#top" className="flex flex-col">
+            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.5em] text-foreground/50">
+              Napoli · Italia
             </span>
-            <span className="font-display text-2xl leading-none tracking-tight text-brand">
-              MATRICE
-            </span>
-            <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
-              GROUP
+            <span className="font-display text-2xl font-bold tracking-tight">
+              MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-8 font-mono text-[11px] uppercase tracking-[0.18em] text-muted-foreground md:flex">
+          <nav className="hidden items-center gap-10 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/70 md:flex">
             <a href="#chi-siamo" className="transition-colors hover:text-flame">
               Chi siamo
             </a>
@@ -139,88 +138,74 @@ function Index() {
           </nav>
           <a
             href="#contatti"
-            className="-skew-x-12 bg-brand px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-brand-foreground transition-colors hover:bg-flame hover:text-flame-foreground"
+            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
           >
-            <span className="inline-block skew-x-12">Parla con noi →</span>
+            Parla con noi
           </a>
         </div>
       </header>
 
-      {/* HERO — BENTO */}
-      <section id="top" className="mx-auto max-w-[1600px] px-6 pt-8 pb-6 lg:px-12">
-        <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-flame">
-            // Mediazione immobiliare · Consulenza · Investimenti — Napoli
-        </p>
+      {/* HERO — full-bleed cinematic */}
+      <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={heroVilla}
+            alt="Villa moderna sul golfo di Napoli al tramonto"
+            width={1920}
+            height={1088}
+            className="h-full w-full animate-hero-zoom object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/10 to-background" />
+          <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/5 to-transparent" />
+        </div>
 
-        <div className="grid gap-3 lg:grid-cols-12 lg:grid-rows-[auto_auto]">
-          {/* Titolo */}
-          <div className="border border-border bg-secondary p-8 lg:col-span-8 lg:p-10">
-            <h1 className="font-display leading-[0.84] tracking-tight text-brand">
-              <span className="block text-[14vw] lg:text-[7.5rem]">IL VALORE</span>
-              <span className="block text-[14vw] lg:text-[7.5rem]">DI UN IMMOBILE.</span>
-              <span className="-skew-x-6 block text-[14vw] text-flame lg:text-[7.5rem]">
-                LA SICUREZZA
-              </span>
-              <span className="block text-[14vw] lg:text-[7.5rem]">DI UNA SCELTA.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-lg font-medium text-muted-foreground">
+        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pt-40 pb-14 lg:px-12">
+          <p className="mb-8 flex items-center gap-4 font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-flame animate-reveal">
+            <span className="h-px w-10 bg-flame" />
+            Mediazione immobiliare · Consulenza · Investimenti — Dal 2011
+          </p>
+
+          <h1 className="font-display text-[13vw] leading-[0.92] tracking-tight lg:text-[8.5rem]">
+            <span className="block animate-reveal">Il valore di un immobile.</span>
+            <span className="block animate-reveal font-light italic text-foreground/90 [animation-delay:150ms]">
+              La sicurezza di una scelta.
+            </span>
+          </h1>
+
+          <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between animate-reveal [animation-delay:300ms]">
+            <p className="max-w-md text-lg font-light leading-relaxed text-foreground/75">
               Matrice Group accompagna privati e investitori in ogni fase della trattativa, con
-              professionalità, riservatezza, competenza e una rete di professionisti qualificati.
+              professionalità, riservatezza e una rete di professionisti qualificati.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-4">
               <a
                 href="#contatti"
-                className="-skew-x-12 bg-brand px-7 py-4 font-mono text-[12px] uppercase tracking-[0.18em] text-brand-foreground transition-colors hover:bg-flame hover:text-flame-foreground"
+                className="rounded-full bg-foreground px-9 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
               >
-                <span className="inline-block skew-x-12">Parla con noi →</span>
+                Parla con noi
               </a>
               <a
                 href="#servizi"
-                className="-skew-x-12 border border-input px-7 py-4 font-mono text-[12px] uppercase tracking-[0.18em] text-foreground transition-colors hover:border-flame hover:text-flame"
+                className="rounded-full border border-white/25 px-9 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-foreground backdrop-blur-sm transition-colors hover:border-flame hover:text-flame"
               >
-                <span className="inline-block skew-x-12">Scopri i servizi</span>
+                Scopri i servizi
               </a>
             </div>
           </div>
 
-          {/* Immagine + badge */}
-          <div className="relative border border-border lg:col-span-4">
-            <img
-              src={heroBuilding}
-              alt="Facciata di un edificio residenziale contemporaneo in Italia"
-              width={1216}
-              height={1536}
-              className="h-full min-h-[380px] w-full object-cover"
-            />
-            <div className="absolute bottom-4 left-4 -skew-x-12 bg-flame px-4 py-3">
-              <span className="inline-block skew-x-12 font-display text-2xl text-flame-foreground">
-                DAL 2011
-              </span>
-            </div>
-          </div>
-
-          {/* Credenziale */}
-          <div className="border border-border bg-brand p-8 text-brand-foreground lg:col-span-5">
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-flame">
-              Iscrizione al ruolo
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-brand-foreground/80">
-              Matrice Group, nella persona del titolare Sig. Michele Pone, è iscritta al Ruolo degli
-              Agenti di affari in mediazione presso la C.C.I.A.A. di Napoli al n.{" "}
-              <span className="font-display text-2xl align-middle text-brand-foreground">424903</span>.
-            </p>
-          </div>
-
-          {/* Numeri */}
-          <div className="grid grid-cols-3 border border-border lg:col-span-7">
+          {/* Glass stats */}
+          <div className="mt-14 grid gap-4 md:grid-cols-3 animate-reveal [animation-delay:450ms]">
             {[
               { k: "13+", v: "Anni di attività" },
-              { k: "05", v: "Professionisti" },
-              { k: "08", v: "Partner in rete" },
+              { k: "05", v: "Professionisti in team" },
+              { k: "08", v: "Partner in rete nazionale" },
             ].map((s) => (
-              <div key={s.k} className="border-l border-border p-6 first:border-l-0 lg:p-8">
-                <p className="font-display text-5xl text-brand lg:text-6xl">{s.k}</p>
-                <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
+              <div
+                key={s.v}
+                className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl transition-colors hover:bg-white/10"
+              >
+                <p className="font-display text-4xl">{s.k}</p>
+                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50">
                   {s.v}
                 </p>
               </div>
@@ -230,134 +215,157 @@ function Index() {
       </section>
 
       {/* MARQUEE */}
-      <div className="-skew-y-1 overflow-hidden">
-        <div className="overflow-hidden bg-brand py-3">
-          <div className="flex w-max animate-marquee whitespace-nowrap font-display text-2xl tracking-tight text-brand-foreground/90">
-            {[0, 1].map((rep) => (
-              <div key={rep} className="flex">
-                {marqueeWords.map((w) => (
-                  <span key={w} className="flex items-center">
-                    <span className="px-6">{w}</span>
-                    <span className="text-flame">◆</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
+      <div className="overflow-hidden border-y border-white/10 py-5">
+        <div className="flex w-max animate-marquee whitespace-nowrap font-display text-2xl font-light italic tracking-wide text-foreground/60">
+          {[0, 1].map((rep) => (
+            <div key={rep} className="flex">
+              {marqueeWords.map((w) => (
+                <span key={w} className="flex items-center">
+                  <span className="px-8">{w}</span>
+                  <span className="text-flame not-italic">◆</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* CHI SIAMO — BENTO */}
-      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-20 lg:px-12">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <h2 className="font-display text-[11vw] leading-[0.85] tracking-tight text-brand lg:text-[6rem]">
-            UN TEAM,
+      {/* CHI SIAMO */}
+      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+        <div className="mb-14 flex items-end justify-between gap-6">
+          <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            Un team, un metodo,
             <br />
-            UN METODO,
-            <span className="text-flame"> UNA VISIONE.</span>
+            <span className="font-light italic text-flame">una visione.</span>
           </h2>
-          <span className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.25em] text-muted-foreground md:block">
+          <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
             ( Chi siamo )
           </span>
         </div>
 
-        <div className="grid gap-3 lg:grid-cols-12">
-          <div className="border border-border bg-secondary p-8 lg:col-span-5 lg:p-10">
-            <p className="text-lg leading-relaxed text-foreground/80">
-              Matrice Group nasce come punto di origine solido e strutturato da cui si sviluppano
-              competenze diverse: mediazione immobiliare, consulenza tecnica e legale, aste
-              giudiziarie e investimenti.
-            </p>
-            <p className="mt-5 leading-relaxed text-muted-foreground">
-              Il nome richiama precisione e affidabilità, il termine “Group” ne rappresenta il
-              respiro ampio: una struttura professionale capace di muoversi su ambiti complessi, dal
-              residenziale al business, senza fermarsi a una singola nicchia.
-            </p>
+        <div className="grid gap-6 lg:grid-cols-12">
+          <div className="flex flex-col justify-between rounded-2xl border border-white/10 bg-card p-10 lg:col-span-5 lg:p-12">
+            <div>
+              <p className="text-xl font-light leading-relaxed text-foreground/85">
+                Matrice Group nasce come punto di origine solido e strutturato da cui si
+                sviluppano competenze diverse: mediazione immobiliare, consulenza tecnica e legale,
+                aste giudiziarie e investimenti.
+              </p>
+              <p className="mt-6 leading-relaxed text-muted-foreground">
+                Il nome richiama precisione e affidabilità, il termine “Group” ne rappresenta il
+                respiro ampio: una struttura professionale capace di muoversi su ambiti complessi,
+                dal residenziale al business.
+              </p>
+            </div>
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-flame">
+                Iscrizione al ruolo
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                Matrice Group, nella persona del titolare Sig. Michele Pone, è iscritta al Ruolo
+                degli Agenti di affari in mediazione presso la C.C.I.A.A. di Napoli al n.{" "}
+                <span className="font-display text-lg text-foreground">424903</span>.
+              </p>
+            </div>
           </div>
 
-          <div className="border border-border lg:col-span-7">
+          <div className="group relative overflow-hidden rounded-2xl lg:col-span-7">
             <img
               src={interior}
               alt="Interno di un attico con vista sul golfo al tramonto"
               width={1600}
-              height={1000}
+              height={1008}
               loading="lazy"
-              className="h-full min-h-[280px] w-full object-cover"
+              className="h-full min-h-[360px] w-full object-cover transition-transform duration-[2s] group-hover:scale-105"
             />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-8 pt-20">
+              <p className="font-display text-2xl font-light italic">
+                “Seguire il cliente in ogni passo, dal primo incontro al post rogito.”
+              </p>
+            </div>
           </div>
 
-          <div className="border border-border p-8 lg:col-span-4">
-            <span className="font-mono text-[11px] text-flame">/ Rete nazionale</span>
+          <div className="rounded-2xl border border-white/10 p-8 lg:col-span-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
+              / Rete nazionale
+            </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
               Grazie alla collaborazione con altre agenzie operiamo su tutto il territorio
-              nazionale, conoscendo i valori degli immobili e garantendo valutazioni il più possibile
-              attendibili.
+              nazionale, conoscendo i valori degli immobili e garantendo valutazioni il più
+              possibile attendibili.
             </p>
           </div>
-          <div className="border border-border p-8 lg:col-span-4">
-            <span className="font-mono text-[11px] text-flame">/ Aste e stralci</span>
+          <div className="rounded-2xl border border-white/10 p-8 lg:col-span-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
+              / Aste e stralci
+            </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Offriamo assistenza e consulenza globale a chi desidera acquistare un immobile tramite
-              asta giudiziale, da un fallimento o attraverso operazioni di saldo e stralcio.
-            </p>
-          </div>
-          <div className="border border-border bg-flame p-8 text-flame-foreground lg:col-span-4">
-            <span className="font-mono text-[11px] uppercase tracking-[0.2em]">/ La priorità</span>
-            <p className="mt-4 font-display text-3xl leading-[1.05] tracking-tight">
-              SEGUIRE IL CLIENTE IN OGNI PASSO, DAL PRIMO INCONTRO AL POST ROGITO.
+              Offriamo assistenza e consulenza globale a chi desidera acquistare un immobile
+              tramite asta giudiziale, da un fallimento o attraverso operazioni di saldo e
+              stralcio.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SERVIZI — BENTO */}
-      <section id="servizi" className="bg-brand py-20 text-brand-foreground">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-          <div className="mb-10 flex items-end justify-between gap-6">
-            <h2 className="font-display text-[12vw] leading-[0.85] tracking-tight lg:text-[6.5rem]">
-              COSA
-              <span className="text-flame"> FACCIAMO</span>
+      {/* SERVIZI — over palazzo backdrop */}
+      <section id="servizi" className="relative overflow-hidden py-24 lg:py-32">
+        <div className="absolute inset-0">
+          <img
+            src={palazzo}
+            alt=""
+            width={1200}
+            height={1504}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/88" />
+        </div>
+        <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
+          <div className="mb-14 flex items-end justify-between gap-6">
+            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+              Cosa <span className="font-light italic text-flame">facciamo</span>
             </h2>
-            <span className="hidden shrink-0 font-mono text-[11px] uppercase tracking-[0.25em] text-brand-foreground/50 md:block">
+            <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
               ( 06 servizi )
             </span>
           </div>
 
-          <div className="grid gap-px border border-brand-foreground/15 bg-brand-foreground/15 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
             {servizi.map((s) => (
               <article
                 key={s.n}
-                className="group bg-brand p-8 transition-colors hover:bg-flame lg:p-10"
+                className="group bg-background/85 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-white/5"
               >
-                <span className="font-mono text-[11px] text-flame transition-colors group-hover:text-flame-foreground">
-                  / {s.n}
-                </span>
-                <h3 className="mt-4 font-display text-3xl tracking-tight transition-colors group-hover:text-flame-foreground">
+                <span className="font-mono text-[11px] text-flame">/ {s.n}</span>
+                <h3 className="mt-4 font-display text-3xl tracking-tight transition-colors group-hover:text-flame">
                   {s.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-brand-foreground/60 transition-colors group-hover:text-flame-foreground/80">
-                  {s.text}
-                </p>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{s.text}</p>
+                <ArrowRight className="mt-6 size-5 text-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-flame" />
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* TEAM — BENTO */}
-      <section id="team" className="mx-auto max-w-[1600px] px-6 py-20 lg:px-12">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <h2 className="font-display text-[12vw] leading-[0.85] tracking-tight text-brand lg:text-[6.5rem]">
-            IL <span className="text-flame">TEAM</span>
+      {/* TEAM */}
+      <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+        <div className="mb-14 flex items-end justify-between gap-6">
+          <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            Il <span className="font-light italic text-flame">team</span>
           </h2>
-          <span className="hidden shrink-0 max-w-xs font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground md:block">
+          <span className="hidden shrink-0 max-w-xs text-right font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground md:block">
             Competenze diverse, un unico obiettivo.
           </span>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {team.map((m) => (
-            <figure key={m.name} className="group border border-border">
+            <figure
+              key={m.name}
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-card"
+            >
               <div className="overflow-hidden">
                 <img
                   src={m.img}
@@ -365,12 +373,12 @@ function Index() {
                   width={800}
                   height={1000}
                   loading="lazy"
-                  className="aspect-4/5 w-full object-cover grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+                  className="aspect-4/5 w-full object-cover grayscale transition-all duration-700 group-hover:scale-[1.04] group-hover:grayscale-0"
                 />
               </div>
-              <figcaption className="border-t border-border p-5">
-                <p className="font-display text-xl tracking-tight text-brand">{m.name}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground">
+              <figcaption className="p-6">
+                <p className="font-display text-xl tracking-tight">{m.name}</p>
+                <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
                   {m.role}
                 </p>
               </figcaption>
@@ -380,17 +388,18 @@ function Index() {
       </section>
 
       {/* PARTNER */}
-      <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-20 lg:px-12">
-        <div className="mb-8 flex items-end justify-between gap-6">
-          <h2 className="font-display text-[10vw] leading-[0.85] tracking-tight text-brand lg:text-[4.5rem]">
-            UNA RETE DI COLLABORAZIONI<span className="text-flame"> SPECIALISTICHE</span>
+      <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-12 lg:pb-32">
+        <div className="mb-10">
+          <h2 className="font-display text-[8vw] leading-[0.95] tracking-tight lg:text-[4rem]">
+            Una rete di collaborazioni{" "}
+            <span className="font-light italic text-flame">specialistiche</span>
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-px border border-border bg-border md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
           {partner.map((p) => (
             <div
               key={p}
-              className="flex min-h-28 items-center justify-center bg-background px-6 py-8 text-center font-display text-lg tracking-tight text-brand/70 transition-colors hover:bg-brand hover:text-brand-foreground"
+              className="flex min-h-28 items-center justify-center bg-background px-6 py-8 text-center font-display text-lg font-light tracking-wide text-foreground/60 transition-colors duration-500 hover:bg-white/5 hover:text-flame"
             >
               {p}
             </div>
@@ -399,84 +408,86 @@ function Index() {
       </section>
 
       {/* CONTATTI */}
-      <section id="contatti" className="bg-flame py-20 text-flame-foreground">
-        <div className="mx-auto grid max-w-[1600px] gap-3 px-6 lg:grid-cols-12 lg:px-12">
+      <section id="contatti" className="border-t border-white/10 py-24 lg:py-32">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-6 lg:grid-cols-12 lg:px-12">
           <div className="lg:col-span-6">
-            <h2 className="font-display text-[12vw] leading-[0.85] tracking-tight lg:text-[6rem]">
-              PARLIAMO DEL TUO PROSSIMO PROGETTO.
+            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5rem]">
+              Parliamo del tuo{" "}
+              <span className="font-light italic text-flame">prossimo progetto.</span>
             </h2>
-            <p className="mt-6 max-w-md text-lg font-medium text-flame-foreground/80">
-              Raccontaci l'operazione: un referente del team ti ricontatta con una prima valutazione.
+            <p className="mt-8 max-w-md text-lg font-light leading-relaxed text-muted-foreground">
+              Raccontaci l'operazione: un referente del team ti ricontatta con una prima
+              valutazione.
             </p>
-            <dl className="mt-10 space-y-4 font-mono text-[12px] uppercase tracking-[0.15em]">
-              <div className="flex gap-4 border-t border-flame-foreground/25 pt-4">
-                <dt className="w-24 shrink-0 text-flame-foreground/60">Telefono</dt>
+            <dl className="mt-12 space-y-5 font-mono text-[11px] uppercase tracking-[0.2em]">
+              <div className="flex gap-4 border-t border-white/10 pt-5">
+                <dt className="w-24 shrink-0 text-muted-foreground">Telefono</dt>
                 <dd>Da inserire</dd>
               </div>
-              <div className="flex gap-4 border-t border-flame-foreground/25 pt-4">
-                <dt className="w-24 shrink-0 text-flame-foreground/60">Email</dt>
+              <div className="flex gap-4 border-t border-white/10 pt-5">
+                <dt className="w-24 shrink-0 text-muted-foreground">Email</dt>
                 <dd>Da inserire</dd>
               </div>
-              <div className="flex gap-4 border-t border-flame-foreground/25 pt-4">
-                <dt className="w-24 shrink-0 text-flame-foreground/60">Indirizzo</dt>
+              <div className="flex gap-4 border-t border-white/10 pt-5">
+                <dt className="w-24 shrink-0 text-muted-foreground">Indirizzo</dt>
                 <dd>Da inserire</dd>
               </div>
             </dl>
           </div>
 
           <form
-            className="bg-brand p-8 text-brand-foreground lg:col-span-6 lg:p-10"
+            className="rounded-2xl border border-white/10 bg-card p-10 lg:col-span-6 lg:p-12"
             onSubmit={(e) => e.preventDefault()}
           >
-            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-flame">
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-flame">
               Richiedi informazioni
             </p>
-            <div className="mt-8 space-y-6">
+            <div className="mt-10 space-y-7">
               <label className="block">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-foreground/60">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                   Nome e cognome
                 </span>
                 <input
                   type="text"
                   placeholder="Il tuo nome"
-                  className="mt-2 w-full border-b border-brand-foreground/25 bg-transparent py-3 text-brand-foreground placeholder:text-brand-foreground/35 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-foreground/60">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                   Email
                 </span>
                 <input
                   type="email"
                   placeholder="nome@dominio.it"
-                  className="mt-2 w-full border-b border-brand-foreground/25 bg-transparent py-3 text-brand-foreground placeholder:text-brand-foreground/35 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-foreground/60">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                   Oggetto
                 </span>
                 <input
                   type="text"
                   placeholder="Compravendita, valutazione, aste…"
-                  className="mt-2 w-full border-b border-brand-foreground/25 bg-transparent py-3 text-brand-foreground placeholder:text-brand-foreground/35 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-brand-foreground/60">
+                <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
                   Messaggio
                 </span>
                 <textarea
                   rows={3}
                   placeholder="Come possiamo aiutarti?"
-                  className="mt-2 w-full resize-none border-b border-brand-foreground/25 bg-transparent py-3 text-brand-foreground placeholder:text-brand-foreground/35 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full resize-none border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <button
                 type="submit"
-                className="-skew-x-12 bg-flame px-8 py-4 font-mono text-[12px] uppercase tracking-[0.18em] text-flame-foreground transition-colors hover:bg-brand-foreground hover:text-brand"
+                className="rounded-full bg-foreground px-9 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
               >
-                <span className="inline-block skew-x-12">Invia richiesta →</span>
+                Invia richiesta →
               </button>
             </div>
           </form>
@@ -484,18 +495,18 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-foreground text-background">
+      <footer className="border-t border-white/10">
         <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-6 py-12 md:flex-row md:items-end lg:px-12">
           <div>
-            <span className="font-display text-3xl tracking-tight">
-              MATRICE<span className="text-flame">GROUP</span>
+            <span className="font-display text-3xl font-bold tracking-tight">
+              MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
             </span>
-            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-background/50">
+            <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
               Agenti: Michele Pone e Valentina Infantozzi · Ingegnere: Giuseppe Di Giacomo ·
               Consulente aste: Matteo Leoncini · NPL: Corrado Predellini
             </p>
           </div>
-          <div className="flex flex-col gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-background/50">
+          <div className="flex flex-col gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
             <span>C.C.I.A.A. Napoli · Ruolo Agenti di affari in mediazione n. 424903</span>
             <span>© 2026 Matrice Group. Tutti i diritti riservati.</span>
           </div>
