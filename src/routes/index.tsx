@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import heroVilla from "@/assets/hero-villa.jpg";
@@ -639,7 +639,34 @@ function Index() {
             </p>
           </div>
           <div className="flex flex-col gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
+            <span>Via di Villanova 16, Napoli</span>
+            <span className="normal-case tracking-normal">
+              <a href="tel:+393457603610" className="transition-colors hover:text-flame">
+                345 760 3610
+              </a>{" "}
+              ·{" "}
+              <a
+                href="https://wa.me/393457603610"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-flame"
+              >
+                WhatsApp
+              </a>{" "}
+              ·{" "}
+              <a href="mailto:info@matricegroup.com" className="transition-colors hover:text-flame">
+                info@matricegroup.com
+              </a>
+            </span>
             <span>C.C.I.A.A. Napoli · Ruolo Agenti di affari in mediazione n. 424903</span>
+            <span className="flex gap-3">
+              <Link to="/privacy-policy" className="transition-colors hover:text-flame">
+                Privacy Policy
+              </Link>
+              <Link to="/cookie-policy" className="transition-colors hover:text-flame">
+                Cookie Policy
+              </Link>
+            </span>
             <span>© 2026 Matrice Group. Tutti i diritti riservati.</span>
           </div>
         </div>
