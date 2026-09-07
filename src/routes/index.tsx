@@ -403,9 +403,8 @@ function Index() {
               / Rete nazionale
             </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Grazie alla collaborazione con altre agenzie operiamo su tutto il territorio
-              nazionale, conoscendo i valori degli immobili e garantendo valutazioni il più
-              possibile attendibili.
+              Con la nostra rete di agenzie copriamo tutto il territorio nazionale: valutazioni
+              attendibili, basate su dati reali.
             </p>
           </div>
           <div className="bg-background p-8 lg:col-span-6">
@@ -413,11 +412,10 @@ function Index() {
               / Aste e stralci
             </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Offriamo assistenza e consulenza globale a chi desidera acquistare un immobile
-              tramite asta giudiziale, da un fallimento o attraverso operazioni di saldo e
-              stralcio. Nel campo degli investimenti internazionali lavoriamo in stretta
-              collaborazione con professionisti di comprovata esperienza e capacità.
+              Assistenza completa su aste giudiziarie, fallimenti e saldo e stralcio. Per gli
+              investimenti internazionali lavoriamo con partner selezionati.
             </p>
+
           </div>
 
           <div className="bg-flame p-8 text-flame-foreground lg:col-span-12">
