@@ -625,7 +625,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-5 py-12 sm:px-6 md:flex-row md:items-end lg:px-12">
+        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-5 pt-12 pb-28 sm:px-6 sm:pb-12 md:flex-row md:items-end lg:px-12">
           <div>
             <span className="font-display text-3xl font-bold tracking-tight">
               MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
@@ -643,7 +643,7 @@ function Index() {
             </span>
 
             <span>C.C.I.A.A. Napoli · Ruolo Agenti di affari in mediazione n. 424903</span>
-            <span className="flex gap-3">
+            <span className="flex gap-5 py-1">
               <Link to="/privacy-policy" className="transition-colors hover:text-flame">
                 Privacy Policy
               </Link>
