@@ -347,22 +347,17 @@ function Index() {
           <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
            <div className="lg:col-span-8">
               <p className="text-xl font-light leading-relaxed text-foreground/85">
-                Matrice Group nasce come punto di origine solido e strutturato da cui si
-                sviluppano competenze diverse: mediazione immobiliare, consulenza tecnica e legale,
-                aste giudiziarie e investimenti.
+                Una struttura solida da cui nascono competenze diverse: mediazione immobiliare,
+                consulenza tecnica e legale, aste giudiziarie e investimenti.
               </p>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                Il nome richiama precisione e affidabilità, il termine “Group” ne rappresenta il
-                respiro ampio: una struttura professionale capace di muoversi su ambiti complessi,
-                dal residenziale al business, senza fermarsi a una singola nicchia.
+                Dal residenziale al commerciale, senza fermarci a una singola nicchia.
               </p>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                Operiamo nel ramo della mediazione immobiliare da diversi anni, avvalendoci della
-                collaborazione di professionisti esperti e qualificati nel settore. Siamo in grado
-                di offrire consulenza tecnica, fiscale, legale e commerciale per consentire alla
-                nostra clientela di effettuare la compravendita o la locazione del proprio immobile
-                con le massime garanzie di sicurezza e tranquillità.
+                Consulenza tecnica, fiscale, legale e commerciale: compri, vendi o affitti con le
+                massime garanzie di sicurezza.
               </p>
+
             </div>
             <div className="mt-10 flex items-center gap-6 border-t border-white/10 pt-8">
               <img
