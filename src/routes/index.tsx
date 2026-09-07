@@ -1,12 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
-import heroVilla from "@/assets/hero-villa.jpg";
+import heroCity from "@/assets/hero-city.jpg";
 import interior from "@/assets/interior.jpg";
 import palazzo from "@/assets/palazzo.jpg";
-import capannone from "@/assets/capannone.jpg";
-import retail from "@/assets/retail.jpg";
-import commerciale from "@/assets/commerciale.jpg";
 import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/team-valentina.jpg";
@@ -119,14 +117,23 @@ const partner = [
   "La Contessa Immobiliare Srl",
 ];
 
+const navLinks = [
+  { href: "#chi-siamo", label: "Chi siamo" },
+  { href: "#servizi", label: "Servizi" },
+  { href: "#immobili", label: "Immobili" },
+  { href: "#team", label: "Team" },
+  { href: "#contatti", label: "Contatti" },
+];
+
 function Index() {
   const { oggetto } = Route.useSearch();
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="bg-background text-foreground antialiased">
+    <div className="overflow-x-hidden bg-background text-foreground antialiased">
       {/* NAV */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-12 lg:py-5">
-          <a href="#top" className="flex min-w-0 items-center gap-2.5">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-12 lg:py-5">
+          <a href="#top" className="flex min-w-0 items-center gap-2.5 py-1">
             <img
               src={logo}
               alt="Logo Matrice Group"
@@ -134,48 +141,61 @@ function Index() {
               height={480}
               className="h-8 w-auto shrink-0 sm:h-10"
             />
-            <span className="whitespace-nowrap font-display text-lg font-bold tracking-tight sm:text-2xl">
+            <span className="truncate font-display text-base font-bold tracking-tight sm:text-2xl">
               MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
           <nav className="hidden items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/80 lg:flex">
-            <a href="#chi-siamo" className="px-3 py-2 transition-colors hover:text-flame">
-              Chi siamo
-            </a>
-            <a href="#servizi" className="px-3 py-2 transition-colors hover:text-flame">
-              Servizi
-            </a>
-            <a href="#commerciale" className="px-3 py-2 transition-colors hover:text-flame">
-              Commerciale
-            </a>
-            <a href="#immobili" className="px-3 py-2 transition-colors hover:text-flame">
-              Immobili
-            </a>
-            <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
-              Team
-            </a>
-            <a href="#contatti" className="px-3 py-2 transition-colors hover:text-flame">
-              Contatti
-            </a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="px-3 py-2 transition-colors hover:text-flame">
+                {l.label}
+              </a>
+            ))}
           </nav>
 
-          <a
-            href="https://wa.me/393457603610"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 rounded-full bg-foreground px-5 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
-          >
-            Parla con noi
-          </a>
+          <div className="flex shrink-0 items-center gap-1">
+            <a
+              href="https://wa.me/393457603610"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 shrink-0 items-center rounded-full bg-foreground px-3.5 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
+            >
+              Parla con noi
+            </a>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Chiudi il menu" : "Apri il menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex size-11 items-center justify-center rounded-full border border-white/15 text-foreground transition-colors hover:text-flame lg:hidden"
+            >
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
+
+        {menuOpen ? (
+          <nav className="border-t border-white/10 bg-background/95 px-4 pb-4 backdrop-blur-xl sm:px-6 lg:hidden">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-12 items-center border-b border-white/10 font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-foreground/85 transition-colors last:border-b-0 hover:text-flame"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
       </header>
 
       {/* HERO — full-bleed cinematic */}
       <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={heroVilla}
-            alt="Polo logistico industriale moderno con facciata in vetro al tramonto"
+            src={heroCity}
+            alt="Facciata di un palazzo residenziale elegante illuminata all'ora blu"
             width={1920}
             height={1088}
             className="h-full w-full animate-hero-zoom object-cover"
@@ -184,18 +204,19 @@ function Index() {
           <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/5 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pt-40 pb-14 lg:px-12">
-          <p className="mb-8 flex items-center gap-4 font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-flame animate-reveal">
-            <span className="h-px w-10 bg-flame" />
+        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-32 pb-12 sm:px-6 lg:px-12 lg:pt-40 lg:pb-14">
+          <p className="mb-6 flex items-start gap-3 font-mono text-[9px] font-bold uppercase leading-relaxed tracking-[0.28em] text-flame animate-reveal sm:items-center sm:gap-4 sm:text-[10px] sm:tracking-[0.4em] lg:mb-8">
+            <span className="mt-2 h-px w-8 shrink-0 bg-flame sm:mt-0 sm:w-10" />
             Mediazione immobiliare · Consulenza · Investimenti — Dal 2011
           </p>
 
-          <h1 className="font-display text-[13vw] leading-[0.92] tracking-tight lg:text-[8.5rem]">
+          <h1 className="font-display text-[2.6rem] leading-[1] tracking-tight sm:text-[7vw] sm:leading-[0.95] lg:text-[8.5rem] lg:leading-[0.92]">
             <span className="block animate-reveal">Il valore di un immobile.</span>
             <span className="block animate-reveal font-normal text-foreground/90 [animation-delay:150ms]">
               La sicurezza di una scelta.
             </span>
           </h1>
+
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between animate-reveal [animation-delay:300ms]">
             <p className="max-w-md text-lg font-light leading-relaxed text-foreground/75">
@@ -243,7 +264,7 @@ function Index() {
 
       {/* ANNUNCI AGGIORNATI */}
       <section id="immobili" className="border-b border-white/10 py-16 lg:py-20">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-12">
           <ScrollReveal className="grid gap-8 border-y border-white/15 py-9 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
@@ -268,7 +289,7 @@ function Index() {
       </section>
 
       {/* SERVIZI — over palazzo backdrop */}
-      <section id="servizi" className="relative overflow-hidden py-24 lg:py-32">
+      <section id="servizi" className="relative overflow-hidden py-16 lg:py-32">
         <div className="absolute inset-0">
           <img
             src={palazzo}
@@ -280,13 +301,13 @@ function Index() {
           />
           <div className="absolute inset-0 bg-background/88" />
         </div>
-        <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
+        <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-12">
           <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
                 / 02 · Competenze
               </p>
-              <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+              <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
                 Cosa facciamo
               </h2>
               <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
@@ -301,7 +322,7 @@ function Index() {
           <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
             {servizi.map((s, index) => (
               <ScrollReveal key={s.n} delay={(index % 3) * 80} className="h-full bg-background/90">
-                <article className="group flex h-full min-h-72 flex-col p-9 transition-colors duration-500 hover:bg-card/80 lg:p-10">
+                <article className="group flex h-full flex-col p-7 sm:min-h-72 sm:p-9 transition-colors duration-500 hover:bg-card/80 lg:p-10">
                   <span className="font-mono text-[10px] tracking-[0.2em] text-flame">/ {s.n}</span>
                   <h3 className="mt-8 font-display text-3xl font-medium tracking-tight transition-colors group-hover:text-flame">
                     {s.title}
@@ -328,13 +349,13 @@ function Index() {
 
 
       {/* CHI SIAMO */}
-      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 lg:px-12 lg:py-32">
         <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
               / 03 · Matrice Group
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
             Un team, un metodo,
             <br />
               una visione globale.
@@ -346,7 +367,7 @@ function Index() {
         </ScrollReveal>
 
         <ScrollReveal className="grid gap-px border border-white/10 bg-white/10 lg:grid-cols-12">
-          <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
+          <div className="flex flex-col justify-between bg-card p-6 sm:p-10 lg:col-span-5 lg:p-12">
            <div className="lg:col-span-8">
               <p className="text-xl font-light leading-relaxed text-foreground/85">
                 Una struttura solida da cui nascono competenze diverse: mediazione immobiliare,
@@ -400,7 +421,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-background p-8 lg:col-span-6">
+          <div className="bg-background p-6 sm:p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Rete nazionale
             </span>
@@ -409,7 +430,7 @@ function Index() {
               attendibili, basate su dati reali.
             </p>
           </div>
-          <div className="bg-background p-8 lg:col-span-6">
+          <div className="bg-background p-6 sm:p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Aste e stralci
             </span>
@@ -420,7 +441,7 @@ function Index() {
 
           </div>
 
-          <div className="bg-flame p-8 text-flame-foreground lg:col-span-12">
+          <div className="bg-flame p-6 text-flame-foreground sm:p-8 lg:col-span-12">
             <p className="font-display text-2xl font-light leading-snug lg:text-3xl">
               “La nostra priorità è seguire il cliente in ogni passo, garantendo sicurezza e
               tranquillità nella trattativa immobiliare.”
@@ -429,90 +450,17 @@ function Index() {
         </ScrollReveal>
       </section>
 
-      {/* COMMERCIALE — capannoni, retail, locali */}
-      <section id="commerciale" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
-        <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
-          <div>
-            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 04 · Asset commerciali
-            </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-              Dal residenziale al commerciale
-            </h2>
-            <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
-              Capannoni industriali, grandi superfici di vendita e locali commerciali: mettiamo a
-              reddito ogni tipologia di immobile.
-            </p>
-          </div>
-          <span className="hidden shrink-0 text-right font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:block lg:col-span-4">
-            ( Immobili commerciali )
-          </span>
-        </ScrollReveal>
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            {
-              img: capannone,
-              alt: "Capannone industriale moderno con piazzale al tramonto",
-              tag: "Capannoni e logistica",
-              text: "Vendita e locazione di capannoni industriali e poli logistici su tutto il territorio nazionale.",
-            },
-            {
-              img: retail,
-              alt: "Grande superficie di vendita con parcheggio all'ora blu",
-              tag: "Grande distribuzione",
-              text: "Superfici commerciali per la grande distribuzione organizzata: supermercati, discount e retail park.",
-            },
-            {
-              img: commerciale,
-              alt: "Locale commerciale con vetrine in centro città di sera",
-              tag: "Locali commerciali",
-              text: "Negozi e locali commerciali in posizioni strategiche, valutati con dati di mercato reali.",
-            },
-          ].map((c, index) => (
-            <ScrollReveal key={c.tag} delay={index * 90}>
-            <figure className="group overflow-hidden border-t border-white/15 bg-card">
-              <div className="overflow-hidden">
-                <img
-                  src={c.img}
-                  alt={c.alt}
-                  width={1600}
-                  height={1000}
-                  loading="lazy"
-                  className="aspect-8/5 w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
-                />
-              </div>
-              <figcaption className="p-7">
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
-                  / {c.tag}
-                </p>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{c.text}</p>
-              </figcaption>
-            </figure>
-            </ScrollReveal>
-          ))}
-        </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="https://www.immobiliare.it/pro/382689/pone/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
-          >
-            Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4" />
-          </a>
-        </div>
-      </section>
 
       {/* TEAM */}
-      <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+      <section id="team" className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 lg:px-12 lg:py-32">
         <ScrollReveal className="mb-14 flex items-end justify-between gap-6 border-t border-white/15 pt-8">
           <div>
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 05 · Professionisti
+              / 04 · Professionisti
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
               Il team
             </h2>
           </div>
@@ -521,7 +469,7 @@ function Index() {
           </span>
         </ScrollReveal>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5">
           {team.map((m, index) => (
             <ScrollReveal key={m.name} delay={(index % 5) * 65}>
             <figure className="group overflow-hidden border-t border-white/15 bg-card">
@@ -535,7 +483,7 @@ function Index() {
                   className="aspect-4/5 w-full object-cover grayscale transition-all duration-1000 ease-out group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
               </div>
-              <figcaption className="p-6">
+              <figcaption className="p-4 sm:p-6">
                 <p className="font-display text-xl tracking-tight">{m.name}</p>
                 <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
                   {m.role}
@@ -548,12 +496,12 @@ function Index() {
       </section>
 
       {/* PARTNER */}
-      <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-12 lg:pb-32">
+      <section id="partner" className="mx-auto max-w-[1600px] px-5 pb-16 sm:px-6 lg:px-12 lg:pb-32">
         <ScrollReveal className="mb-10 border-t border-white/15 pt-8">
           <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-            / 06 · Rete professionale
+            / 05 · Rete professionale
           </p>
-          <h2 className="font-display text-[8vw] leading-[0.95] tracking-tight lg:text-[4rem]">
+          <h2 className="font-display text-[2rem] leading-[1.05] sm:text-[6vw] sm:leading-[0.95] tracking-tight lg:text-[4rem]">
             Una rete di collaborazioni specialistiche
           </h2>
           <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
@@ -573,13 +521,13 @@ function Index() {
       </section>
 
       {/* CONTATTI */}
-      <section id="contatti" className="border-t border-white/10 py-24 lg:py-32">
-        <div className="mx-auto grid max-w-[1600px] gap-12 px-6 lg:grid-cols-12 lg:px-12">
+      <section id="contatti" className="border-t border-white/10 py-16 lg:py-32">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-5 sm:px-6 lg:grid-cols-12 lg:px-12">
           <ScrollReveal className="lg:col-span-6">
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 07 · Contatti
+              / 06 · Contatti
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5rem]">
               Parliamo del tuo prossimo progetto.
             </h2>
             <p className="mt-8 max-w-md text-lg font-light leading-relaxed text-muted-foreground">
@@ -614,7 +562,7 @@ function Index() {
 
           <ScrollReveal className="lg:col-span-6" delay={100}>
           <form
-            className="border-t border-white/15 bg-card p-10 lg:p-12"
+            className="border-t border-white/15 bg-card p-6 sm:p-10 lg:p-12"
             onSubmit={(e) => e.preventDefault()}
           >
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-flame">
@@ -628,7 +576,7 @@ function Index() {
                 <input
                   type="text"
                   placeholder="Il tuo nome"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -638,7 +586,7 @@ function Index() {
                 <input
                   type="email"
                   placeholder="nome@dominio.it"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -650,7 +598,7 @@ function Index() {
                   name="oggetto"
                   defaultValue={oggetto ?? ""}
                   placeholder="Compravendita, valutazione, aste…"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -660,7 +608,7 @@ function Index() {
                 <textarea
                   rows={3}
                   placeholder="Come possiamo aiutarti?"
-                  className="mt-2 w-full resize-none border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full resize-none border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <button
@@ -677,7 +625,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-6 py-12 md:flex-row md:items-end lg:px-12">
+        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-5 pt-12 pb-28 sm:px-6 sm:pb-12 md:flex-row md:items-end lg:px-12">
           <div>
             <span className="font-display text-3xl font-bold tracking-tight">
               MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
@@ -695,7 +643,7 @@ function Index() {
             </span>
 
             <span>C.C.I.A.A. Napoli · Ruolo Agenti di affari in mediazione n. 424903</span>
-            <span className="flex gap-3">
+            <span className="flex gap-5 py-1">
               <Link to="/privacy-policy" className="transition-colors hover:text-flame">
                 Privacy Policy
               </Link>
