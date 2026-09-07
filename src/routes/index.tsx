@@ -15,6 +15,8 @@ import teamMatteo from "@/assets/team-matteo.jpg";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ContactMenu } from "@/components/ContactMenu";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
