@@ -45,13 +45,10 @@ export function LegalPage({ title }: { title: string }) {
             sede in Via di Villanova 16, Napoli. Email:{" "}
             <a href="mailto:info@matricegroup.com" className="text-flame">
               info@matricegroup.com
-            </a>{" "}
-            — Telefono:{" "}
-            <a href="tel:+393457603610" className="text-flame">
-              345 760 3610
             </a>
             .
           </p>
+
         </section>
         <section>
           <h2 className="font-display text-2xl text-foreground">Dati raccolti</h2>
