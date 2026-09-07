@@ -139,13 +139,8 @@ function Index() {
               height={480}
               className="h-10 w-auto"
             />
-            <span className="flex flex-col">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.5em] text-foreground/50">
-                Napoli · Italia
-              </span>
-              <span className="font-display text-2xl font-bold tracking-tight">
-                MATRICE<span className="font-light italic opacity-70">GROUP</span>
-              </span>
+            <span className="font-display text-2xl font-bold tracking-tight">
+              MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
           <nav className="hidden items-center gap-6 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-foreground/70 lg:flex">
