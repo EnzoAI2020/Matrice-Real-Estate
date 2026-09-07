@@ -109,6 +109,15 @@ function ImmobiliPage() {
           è seguito dal nostro team dalla valutazione al rogito.
         </p>
 
+        <a
+          href="https://www.immobiliare.it/pro/382689/pone/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+        >
+          Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+        </a>
+
         {/* FILTRI */}
         <div className="mt-12 flex flex-col gap-6 rounded-2xl border border-white/10 bg-card/60 p-6 backdrop-blur-xl lg:flex-row lg:items-center lg:justify-between lg:p-8">
           <div className="flex flex-wrap items-center gap-2">
