@@ -10,7 +10,7 @@ import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/valentina-infantozzi.png.asset.json";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.asset.json";
-import teamCorrado from "@/assets/team-corrado.jpg";
+import teamCorrado from "@/assets/corrado-predellini.png.asset.json";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { ContactMenu } from "@/components/ContactMenu";
@@ -102,7 +102,7 @@ const team = [
   { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina.url },
   { name: "Giuseppe Di Giacomo", role: "Ingegnere", img: teamGiuseppe },
   { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo.url },
-  { name: "Corrado Predellini", role: "NPL Specialist", img: teamCorrado },
+  { name: "Corrado Predellini", role: "NPL Specialist", img: teamCorrado.url },
 ];
 
 const partner = [
