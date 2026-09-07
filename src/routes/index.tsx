@@ -133,6 +133,9 @@ function Index() {
             <a href="#servizi" className="transition-colors hover:text-flame">
               Servizi
             </a>
+            <a href="#commerciale" className="transition-colors hover:text-flame">
+              Commerciale
+            </a>
             <a href="#team" className="transition-colors hover:text-flame">
               Team
             </a>
