@@ -8,7 +8,7 @@ import capannone from "@/assets/capannone.jpg";
 import retail from "@/assets/retail.jpg";
 import commerciale from "@/assets/commerciale.jpg";
 import fiaip from "@/assets/fiaip.png.asset.json";
-import teamMichele from "@/assets/team-michele.jpg";
+import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.jpg";
@@ -98,7 +98,7 @@ const servizi = [
 ];
 
 const team = [
-  { name: "Michele Pone", role: "Agente immobiliare · Titolare", img: teamMichele },
+  { name: "Michele Pone", role: "Agente immobiliare · Titolare", img: teamMichele.url },
   { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina },
   { name: "Giuseppe Di Giacomo", role: "Ingegnere", img: teamGiuseppe },
   { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo },
