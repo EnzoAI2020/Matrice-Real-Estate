@@ -429,81 +429,8 @@ function Index() {
         </ScrollReveal>
       </section>
 
-      {/* COMMERCIALE — capannoni, retail, locali */}
-      <section id="commerciale" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
-        <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
-          <div>
-            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 04 · Asset commerciali
-            </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-              Dal residenziale al commerciale
-            </h2>
-            <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
-              Capannoni industriali, grandi superfici di vendita e locali commerciali: mettiamo a
-              reddito ogni tipologia di immobile.
-            </p>
-          </div>
-          <span className="hidden shrink-0 text-right font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:block lg:col-span-4">
-            ( Immobili commerciali )
-          </span>
-        </ScrollReveal>
 
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            {
-              img: capannone,
-              alt: "Capannone industriale moderno con piazzale al tramonto",
-              tag: "Capannoni e logistica",
-              text: "Vendita e locazione di capannoni industriali e poli logistici su tutto il territorio nazionale.",
-            },
-            {
-              img: retail,
-              alt: "Grande superficie di vendita con parcheggio all'ora blu",
-              tag: "Grande distribuzione",
-              text: "Superfici commerciali per la grande distribuzione organizzata: supermercati, discount e retail park.",
-            },
-            {
-              img: commerciale,
-              alt: "Locale commerciale con vetrine in centro città di sera",
-              tag: "Locali commerciali",
-              text: "Negozi e locali commerciali in posizioni strategiche, valutati con dati di mercato reali.",
-            },
-          ].map((c, index) => (
-            <ScrollReveal key={c.tag} delay={index * 90}>
-            <figure className="group overflow-hidden border-t border-white/15 bg-card">
-              <div className="overflow-hidden">
-                <img
-                  src={c.img}
-                  alt={c.alt}
-                  width={1600}
-                  height={1000}
-                  loading="lazy"
-                  className="aspect-8/5 w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
-                />
-              </div>
-              <figcaption className="p-7">
-                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
-                  / {c.tag}
-                </p>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{c.text}</p>
-              </figcaption>
-            </figure>
-            </ScrollReveal>
-          ))}
-        </div>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
-          <a
-            href="https://www.immobiliare.it/pro/382689/pone/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
-          >
-            Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4" />
-          </a>
-        </div>
-      </section>
 
       {/* TEAM */}
       <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
