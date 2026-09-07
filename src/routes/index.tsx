@@ -140,28 +140,23 @@ function Index() {
             <a href="#chi-siamo" className="px-3 py-2 transition-colors hover:text-flame">
               Chi siamo
             </a>
-            <Link to="/compravendita" className="px-3 py-2 transition-colors hover:text-flame">
-              Compravendita
-            </Link>
-            <Link to="/locazioni" className="px-3 py-2 transition-colors hover:text-flame">
-              Locazioni
-            </Link>
-            <Link to="/aste-e-npl" className="px-3 py-2 transition-colors hover:text-flame">
-              Aste e NPL
-            </Link>
-            <Link to="/investimenti" className="px-3 py-2 transition-colors hover:text-flame">
-              Investimenti
-            </Link>
-            <a
-              href="#immobili"
-              className="px-3 py-2 transition-colors hover:text-flame"
-            >
+            <a href="#servizi" className="px-3 py-2 transition-colors hover:text-flame">
+              Servizi
+            </a>
+            <a href="#commerciale" className="px-3 py-2 transition-colors hover:text-flame">
+              Commerciale
+            </a>
+            <a href="#immobili" className="px-3 py-2 transition-colors hover:text-flame">
               Immobili
             </a>
             <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
               Team
             </a>
+            <a href="#contatti" className="px-3 py-2 transition-colors hover:text-flame">
+              Contatti
+            </a>
           </nav>
+
           <a
             href="https://wa.me/393457603610"
             target="_blank"
