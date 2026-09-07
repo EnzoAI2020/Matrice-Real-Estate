@@ -6,3 +6,6 @@
 - [x] Verifica finale con screenshot
 
 - [x] MCP server pubblico (3 tools) + manifest
+- [x] Contatti reali (tel/WhatsApp/email/indirizzo) + JSON-LD
+- [x] Cookie banner + /privacy-policy + /cookie-policy
+- [ ] Form contatti funzionante via email (richiede dominio email)
