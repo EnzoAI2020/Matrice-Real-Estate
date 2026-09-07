@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 import heroCity from "@/assets/hero-city.jpg";
 import interior from "@/assets/interior.jpg";
