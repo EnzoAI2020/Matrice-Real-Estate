@@ -9,7 +9,7 @@ import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
-import teamMatteo from "@/assets/team-matteo.jpg";
+import teamMatteo from "@/assets/team-matteo.asset.json";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
