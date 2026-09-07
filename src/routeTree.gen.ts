@@ -18,8 +18,6 @@ import { Route as LocazioniRouteImport } from './routes/locazioni'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
-import { Route as ImmobiliIndexRouteImport } from './routes/immobili.index'
-import { Route as ImmobiliSlugRouteImport } from './routes/immobili.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -67,16 +65,6 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ImmobiliIndexRoute = ImmobiliIndexRouteImport.update({
-  id: '/immobili/',
-  path: '/immobili/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImmobiliSlugRoute = ImmobiliSlugRouteImport.update({
-  id: '/immobili/$slug',
-  path: '/immobili/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,8 +76,6 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/immobili/$slug': typeof ImmobiliSlugRoute
-  '/immobili/': typeof ImmobiliIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -101,8 +87,6 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/immobili/$slug': typeof ImmobiliSlugRoute
-  '/immobili': typeof ImmobiliIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -115,8 +99,6 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  '/immobili/$slug': typeof ImmobiliSlugRoute
-  '/immobili/': typeof ImmobiliIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -130,8 +112,6 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
-    | '/immobili/$slug'
-    | '/immobili/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -143,8 +123,6 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
-    | '/immobili/$slug'
-    | '/immobili'
   id:
     | '__root__'
     | '/'
@@ -156,8 +134,6 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
-    | '/immobili/$slug'
-    | '/immobili/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -170,8 +146,6 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
-  ImmobiliSlugRoute: typeof ImmobiliSlugRoute
-  ImmobiliIndexRoute: typeof ImmobiliIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -239,20 +213,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/immobili/': {
-      id: '/immobili/'
-      path: '/immobili'
-      fullPath: '/immobili/'
-      preLoaderRoute: typeof ImmobiliIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/immobili/$slug': {
-      id: '/immobili/$slug'
-      path: '/immobili/$slug'
-      fullPath: '/immobili/$slug'
-      preLoaderRoute: typeof ImmobiliSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -267,8 +227,6 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
-  ImmobiliSlugRoute: ImmobiliSlugRoute,
-  ImmobiliIndexRoute: ImmobiliIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
