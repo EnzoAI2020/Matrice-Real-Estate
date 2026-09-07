@@ -469,7 +469,7 @@ function Index() {
           </span>
         </ScrollReveal>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5">
           {team.map((m, index) => (
             <ScrollReveal key={m.name} delay={(index % 5) * 65}>
             <figure className="group overflow-hidden border-t border-white/15 bg-card">
@@ -483,7 +483,7 @@ function Index() {
                   className="aspect-4/5 w-full object-cover grayscale transition-all duration-1000 ease-out group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
               </div>
-              <figcaption className="p-6">
+              <figcaption className="p-4 sm:p-6">
                 <p className="font-display text-xl tracking-tight">{m.name}</p>
                 <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
                   {m.role}
