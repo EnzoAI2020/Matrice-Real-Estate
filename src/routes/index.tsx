@@ -141,7 +141,7 @@ function Index() {
               height={480}
               className="h-8 w-auto shrink-0 sm:h-10"
             />
-            <span className="whitespace-nowrap font-display text-lg font-bold tracking-tight sm:text-2xl">
+            <span className="truncate font-display text-base font-bold tracking-tight sm:text-2xl">
               MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
@@ -158,7 +158,7 @@ function Index() {
               href="https://wa.me/393457603610"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex min-h-11 items-center rounded-full bg-foreground px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
+              className="flex min-h-11 shrink-0 items-center rounded-full bg-foreground px-3.5 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.12em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
             >
               Parla con noi
             </a>
