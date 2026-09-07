@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "sdk_version": "2.0.2",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "matrice-group-elevated-real-estate",
+      "version": "0.1.0",
+      "title": "Matrice Group: Elevated Real Estate"
+    },
+    "tools": [
+      {
+        "name": "company_info",
+        "title": "Informazioni aziendali",
+        "description": "Restituisce le informazioni pubbliche di Matrice Group: profilo, credenziali e recapiti.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_services",
+        "title": "Elenco servizi",
+        "description": "Elenca i servizi immobiliari di Matrice Group e le tipologie di immobili commerciali trattate (capannoni, retail, locali).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_team_and_partners",
+        "title": "Team e partner",
+        "description": "Elenca i professionisti del team Matrice Group e la rete di partner specializzati.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
