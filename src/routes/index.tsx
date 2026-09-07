@@ -124,16 +124,16 @@ function Index() {
     <div className="bg-background text-foreground antialiased">
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 lg:px-12">
-          <a href="#top" className="flex items-center gap-3">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-12 lg:py-5">
+          <a href="#top" className="flex min-w-0 items-center gap-2.5">
             <img
               src={logo}
               alt="Logo Matrice Group"
               width={452}
               height={480}
-              className="h-10 w-auto"
+              className="h-8 w-auto shrink-0 sm:h-10"
             />
-            <span className="font-display text-2xl font-bold tracking-tight">
+            <span className="whitespace-nowrap font-display text-lg font-bold tracking-tight sm:text-2xl">
               MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
@@ -164,7 +164,7 @@ function Index() {
             href="https://wa.me/393457603610"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
+            className="shrink-0 rounded-full bg-foreground px-5 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
           >
             Parla con noi
           </a>
@@ -298,7 +298,7 @@ function Index() {
                     <ArrowUpRight className="mt-1 size-5 text-muted-foreground transition-colors group-hover:text-flame" />
                   </div>
                   <div className="flex justify-between border-t border-white/10 pt-4 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/65">
-                    <span>{im.mq.toLocaleString("it-IT")} mq</span>
+                    <span>{String(im.mq).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} mq</span>
                     <span>{formatPrezzo(im.prezzo)}</span>
                   </div>
                 </Link>
@@ -340,7 +340,7 @@ function Index() {
         </div>
         <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
           <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
-            <div>
+            <div className="lg:col-span-8">
               <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
                 / 02 · Competenze
               </p>
@@ -411,7 +411,7 @@ function Index() {
 
         <ScrollReveal className="grid gap-px border border-white/10 bg-white/10 lg:grid-cols-12">
           <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
-            <div>
+           <div className="lg:col-span-8">
               <p className="text-xl font-light leading-relaxed text-foreground/85">
                 Matrice Group nasce come punto di origine solido e strutturato da cui si
                 sviluppano competenze diverse: mediazione immobiliare, consulenza tecnica e legale,
@@ -585,9 +585,14 @@ function Index() {
       {/* TEAM */}
       <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
         <ScrollReveal className="mb-14 flex items-end justify-between gap-6 border-t border-white/15 pt-8">
-          <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-            Il team
-          </h2>
+          <div>
+            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+              / 05 · Professionisti
+            </p>
+            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+              Il team
+            </h2>
+          </div>
           <span className="hidden shrink-0 max-w-xs text-right font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground md:block">
             Competenze diverse, un unico obiettivo.
           </span>
