@@ -686,10 +686,6 @@ function Index() {
             <span className="font-display text-3xl font-bold tracking-tight">
               MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
             </span>
-            <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
-              Agenti: Michele Pone e Valentina Infantozzi · Ingegnere: Giuseppe Di Giacomo ·
-              Consulente aste: Matteo Leoncini · NPL: Corrado Predellini
-            </p>
           </div>
           <div className="flex flex-col gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
             <span>Via di Villanova 16, Napoli</span>
