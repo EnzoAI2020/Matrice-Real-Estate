@@ -4,3 +4,5 @@
 - [x] Badge FIAIP in Chi siamo
 - [x] Focus visivo su capannoni/commerciali: nuove hero + immagini (sostituire villa/attico)
 - [x] Verifica finale con screenshot
+
+- [ ] MCP server: scegliere accesso (pubblico/OAuth), installare, tools, manifest
