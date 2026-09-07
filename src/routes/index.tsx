@@ -325,6 +325,70 @@ function Index() {
         </div>
       </section>
 
+      {/* SERVIZI — over palazzo backdrop */}
+      <section id="servizi" className="relative overflow-hidden py-24 lg:py-32">
+        <div className="absolute inset-0">
+          <img
+            src={palazzo}
+            alt=""
+            width={1200}
+            height={1504}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/88" />
+        </div>
+        <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
+          <div className="mb-14 flex items-end justify-between gap-6">
+            <div>
+              <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+                Cosa <span className="font-light italic text-flame">facciamo</span>
+              </h2>
+              <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
+                Servizi immobiliari costruiti intorno alle tue esigenze.
+              </p>
+            </div>
+            <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+              ( 06 servizi )
+            </span>
+          </div>
+
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+            {servizi.map((s) => (
+              <article
+                key={s.n}
+                className="group bg-background/85 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-white/5"
+              >
+                <span className="font-mono text-[11px] text-flame">/ {s.n}</span>
+                <h3 className="mt-4 font-display text-3xl tracking-tight transition-colors group-hover:text-flame">
+                  {s.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{s.text}</p>
+                <ArrowRight className="mt-6 size-5 text-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-flame" />
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              to="/immobili"
+              className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
+            >
+              Vedi il listino <ArrowRight className="size-4" />
+            </Link>
+            <a
+              href="https://www.immobiliare.it/pro/382689/pone/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+            >
+              Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+
       {/* CHI SIAMO */}
       <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
         <div className="mb-14 flex items-end justify-between gap-6">
@@ -425,69 +489,6 @@ function Index() {
               “La nostra priorità è seguire il cliente in ogni passo, garantendo sicurezza e
               tranquillità nella trattativa immobiliare.”
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVIZI — over palazzo backdrop */}
-      <section id="servizi" className="relative overflow-hidden py-24 lg:py-32">
-        <div className="absolute inset-0">
-          <img
-            src={palazzo}
-            alt=""
-            width={1200}
-            height={1504}
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-background/88" />
-        </div>
-        <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
-          <div className="mb-14 flex items-end justify-between gap-6">
-            <div>
-              <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-                Cosa <span className="font-light italic text-flame">facciamo</span>
-              </h2>
-              <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
-                Servizi immobiliari costruiti intorno alle tue esigenze.
-              </p>
-            </div>
-            <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
-              ( 06 servizi )
-            </span>
-          </div>
-
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-            {servizi.map((s) => (
-              <article
-                key={s.n}
-                className="group bg-background/85 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-white/5"
-              >
-                <span className="font-mono text-[11px] text-flame">/ {s.n}</span>
-                <h3 className="mt-4 font-display text-3xl tracking-tight transition-colors group-hover:text-flame">
-                  {s.title}
-                </h3>
-                <p className="mt-4 leading-relaxed text-muted-foreground">{s.text}</p>
-                <ArrowRight className="mt-6 size-5 text-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-flame" />
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/immobili"
-              className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
-            >
-              Vedi il listino <ArrowRight className="size-4" />
-            </Link>
-            <a
-              href="https://www.immobiliare.it/pro/382689/pone/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
-            >
-              Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
-            </a>
           </div>
         </div>
       </section>
