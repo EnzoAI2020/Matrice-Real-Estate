@@ -15,6 +15,8 @@ import teamMatteo from "@/assets/team-matteo.jpg";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ContactMenu } from "@/components/ContactMenu";
+
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -140,28 +142,23 @@ function Index() {
             <a href="#chi-siamo" className="px-3 py-2 transition-colors hover:text-flame">
               Chi siamo
             </a>
-            <Link to="/compravendita" className="px-3 py-2 transition-colors hover:text-flame">
-              Compravendita
-            </Link>
-            <Link to="/locazioni" className="px-3 py-2 transition-colors hover:text-flame">
-              Locazioni
-            </Link>
-            <Link to="/aste-e-npl" className="px-3 py-2 transition-colors hover:text-flame">
-              Aste e NPL
-            </Link>
-            <Link to="/investimenti" className="px-3 py-2 transition-colors hover:text-flame">
-              Investimenti
-            </Link>
-            <a
-              href="#immobili"
-              className="px-3 py-2 transition-colors hover:text-flame"
-            >
+            <a href="#servizi" className="px-3 py-2 transition-colors hover:text-flame">
+              Servizi
+            </a>
+            <a href="#commerciale" className="px-3 py-2 transition-colors hover:text-flame">
+              Commerciale
+            </a>
+            <a href="#immobili" className="px-3 py-2 transition-colors hover:text-flame">
               Immobili
             </a>
             <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
               Team
             </a>
+            <a href="#contatti" className="px-3 py-2 transition-colors hover:text-flame">
+              Contatti
+            </a>
           </nav>
+
           <a
             href="https://wa.me/393457603610"
             target="_blank"
@@ -352,22 +349,17 @@ function Index() {
           <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
            <div className="lg:col-span-8">
               <p className="text-xl font-light leading-relaxed text-foreground/85">
-                Matrice Group nasce come punto di origine solido e strutturato da cui si
-                sviluppano competenze diverse: mediazione immobiliare, consulenza tecnica e legale,
-                aste giudiziarie e investimenti.
+                Una struttura solida da cui nascono competenze diverse: mediazione immobiliare,
+                consulenza tecnica e legale, aste giudiziarie e investimenti.
               </p>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                Il nome richiama precisione e affidabilità, il termine “Group” ne rappresenta il
-                respiro ampio: una struttura professionale capace di muoversi su ambiti complessi,
-                dal residenziale al business, senza fermarsi a una singola nicchia.
+                Dal residenziale al commerciale, senza fermarci a una singola nicchia.
               </p>
               <p className="mt-6 leading-relaxed text-muted-foreground">
-                Operiamo nel ramo della mediazione immobiliare da diversi anni, avvalendoci della
-                collaborazione di professionisti esperti e qualificati nel settore. Siamo in grado
-                di offrire consulenza tecnica, fiscale, legale e commerciale per consentire alla
-                nostra clientela di effettuare la compravendita o la locazione del proprio immobile
-                con le massime garanzie di sicurezza e tranquillità.
+                Consulenza tecnica, fiscale, legale e commerciale: compri, vendi o affitti con le
+                massime garanzie di sicurezza.
               </p>
+
             </div>
             <div className="mt-10 flex items-center gap-6 border-t border-white/10 pt-8">
               <img
@@ -413,9 +405,8 @@ function Index() {
               / Rete nazionale
             </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Grazie alla collaborazione con altre agenzie operiamo su tutto il territorio
-              nazionale, conoscendo i valori degli immobili e garantendo valutazioni il più
-              possibile attendibili.
+              Con la nostra rete di agenzie copriamo tutto il territorio nazionale: valutazioni
+              attendibili, basate su dati reali.
             </p>
           </div>
           <div className="bg-background p-8 lg:col-span-6">
@@ -423,11 +414,10 @@ function Index() {
               / Aste e stralci
             </span>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              Offriamo assistenza e consulenza globale a chi desidera acquistare un immobile
-              tramite asta giudiziale, da un fallimento o attraverso operazioni di saldo e
-              stralcio. Nel campo degli investimenti internazionali lavoriamo in stretta
-              collaborazione con professionisti di comprovata esperienza e capacità.
+              Assistenza completa su aste giudiziarie, fallimenti e saldo e stralcio. Per gli
+              investimenti internazionali lavoriamo con partner selezionati.
             </p>
+
           </div>
 
           <div className="bg-flame p-8 text-flame-foreground lg:col-span-12">
@@ -598,21 +588,12 @@ function Index() {
             </p>
             <dl className="mt-12 space-y-5 font-mono text-[11px] uppercase tracking-[0.2em]">
               <div className="flex gap-4 border-t border-white/10 pt-5">
-                <dt className="w-24 shrink-0 text-muted-foreground">Telefono</dt>
-                <dd className="flex flex-wrap items-center gap-3">
-                  <a href="tel:+393457603610" className="transition-colors hover:text-flame">
-                    345 760 3610
-                  </a>
-                  <a
-                    href="https://wa.me/393457603610"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full border border-flame/50 px-3 py-1 text-[9px] text-flame transition-colors hover:bg-flame hover:text-flame-foreground"
-                  >
-                    WhatsApp
-                  </a>
+                <dt className="w-24 shrink-0 pt-2 text-muted-foreground">Contatto</dt>
+                <dd>
+                  <ContactMenu />
                 </dd>
               </div>
+
               <div className="flex gap-4 border-t border-white/10 pt-5">
                 <dt className="w-24 shrink-0 text-muted-foreground">Email</dt>
                 <dd>
@@ -705,23 +686,14 @@ function Index() {
           <div className="flex flex-col gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
             <span>Via di Villanova 16, Napoli</span>
             <span className="normal-case tracking-normal">
-              <a href="tel:+393457603610" className="transition-colors hover:text-flame">
-                345 760 3610
-              </a>{" "}
-              ·{" "}
-              <a
-                href="https://wa.me/393457603610"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-colors hover:text-flame"
-              >
-                WhatsApp
-              </a>{" "}
-              ·{" "}
               <a href="mailto:info@matricegroup.com" className="transition-colors hover:text-flame">
                 info@matricegroup.com
               </a>
             </span>
+            <span className="py-2">
+              <ContactMenu className="px-5 py-2.5 text-[9px]" />
+            </span>
+
             <span>C.C.I.A.A. Napoli · Ruolo Agenti di affari in mediazione n. 424903</span>
             <span className="flex gap-3">
               <Link to="/privacy-policy" className="transition-colors hover:text-flame">
