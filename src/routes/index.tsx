@@ -148,24 +148,27 @@ function Index() {
               </span>
             </span>
           </a>
-          <nav className="hidden items-center gap-9 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/70 md:flex">
+          <nav className="hidden items-center gap-6 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-foreground/70 lg:flex">
             <a href="#chi-siamo" className="transition-colors hover:text-flame">
               Chi siamo
             </a>
+            <Link to="/compravendita" className="transition-colors hover:text-flame">
+              Compravendita
+            </Link>
+            <Link to="/locazioni" className="transition-colors hover:text-flame">
+              Locazioni
+            </Link>
+            <Link to="/aste-e-npl" className="transition-colors hover:text-flame">
+              Aste e NPL
+            </Link>
+            <Link to="/investimenti" className="transition-colors hover:text-flame">
+              Investimenti
+            </Link>
             <Link to="/immobili" className="transition-colors hover:text-flame">
               Immobili
             </Link>
-            <a href="#servizi" className="transition-colors hover:text-flame">
-              Servizi
-            </a>
-            <a href="#commerciale" className="transition-colors hover:text-flame">
-              Commerciale
-            </a>
             <a href="#team" className="transition-colors hover:text-flame">
               Team
-            </a>
-            <a href="#partner" className="transition-colors hover:text-flame">
-              Partner
             </a>
           </nav>
           <a
