@@ -193,7 +193,7 @@ function Index() {
 
           <h1 className="font-display text-[13vw] leading-[0.92] tracking-tight lg:text-[8.5rem]">
             <span className="block animate-reveal">Il valore di un immobile.</span>
-            <span className="block animate-reveal font-light italic text-foreground/90 [animation-delay:150ms]">
+            <span className="block animate-reveal font-normal text-foreground/90 [animation-delay:150ms]">
               La sicurezza di una scelta.
             </span>
           </h1>
@@ -339,33 +339,35 @@ function Index() {
           <div className="absolute inset-0 bg-background/88" />
         </div>
         <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
-          <div className="mb-14 flex items-end justify-between gap-6">
+          <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
             <div>
+              <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+                / 02 · Competenze
+              </p>
               <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-                Cosa <span className="font-light italic text-flame">facciamo</span>
+                Cosa facciamo
               </h2>
               <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
                 Servizi immobiliari costruiti intorno alle tue esigenze.
               </p>
             </div>
-            <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+            <span className="hidden shrink-0 text-right font-mono text-[9px] uppercase tracking-[0.24em] text-muted-foreground md:block lg:col-span-4">
               ( 06 servizi )
             </span>
-          </div>
+          </ScrollReveal>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-            {servizi.map((s) => (
-              <article
-                key={s.n}
-                className="group bg-background/85 p-10 backdrop-blur-sm transition-colors duration-500 hover:bg-white/5"
-              >
-                <span className="font-mono text-[11px] text-flame">/ {s.n}</span>
-                <h3 className="mt-4 font-display text-3xl tracking-tight transition-colors group-hover:text-flame">
-                  {s.title}
-                </h3>
-                <p className="mt-4 leading-relaxed text-muted-foreground">{s.text}</p>
-                <ArrowRight className="mt-6 size-5 text-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-flame" />
-              </article>
+          <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+            {servizi.map((s, index) => (
+              <ScrollReveal key={s.n} delay={(index % 3) * 80} className="h-full bg-background/90">
+                <article className="group flex h-full min-h-72 flex-col p-9 transition-colors duration-500 hover:bg-card/80 lg:p-10">
+                  <span className="font-mono text-[10px] tracking-[0.2em] text-flame">/ {s.n}</span>
+                  <h3 className="mt-8 font-display text-3xl font-medium tracking-tight transition-colors group-hover:text-flame">
+                    {s.title}
+                  </h3>
+                  <p className="mt-4 flex-1 leading-relaxed text-muted-foreground">{s.text}</p>
+                  <ArrowRight className="mt-7 size-5 text-foreground/30 transition-all group-hover:translate-x-1 group-hover:text-flame" />
+                </article>
+              </ScrollReveal>
             ))}
           </div>
 
@@ -391,19 +393,24 @@ function Index() {
 
       {/* CHI SIAMO */}
       <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
-        <div className="mb-14 flex items-end justify-between gap-6">
-          <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+        <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-8">
+            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+              / 03 · Matrice Group
+            </p>
+            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
             Un team, un metodo,
             <br />
-            <span className="font-light italic text-flame">una visione globale.</span>
-          </h2>
-          <span className="hidden shrink-0 max-w-xs text-right font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+              una visione globale.
+            </h2>
+          </div>
+          <span className="hidden shrink-0 max-w-xs text-right font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:block lg:col-span-4">
             ( Chi siamo — Seguiamo il cliente dal primo incontro fino ai servizi post rogito o post contratto d'affitto )
           </span>
-        </div>
+        </ScrollReveal>
 
-        <div className="grid gap-6 lg:grid-cols-12">
-          <div className="flex flex-col justify-between rounded-2xl border border-white/10 bg-card p-10 lg:col-span-5 lg:p-12">
+        <ScrollReveal className="grid gap-px border border-white/10 bg-white/10 lg:grid-cols-12">
+          <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
             <div>
               <p className="text-xl font-light leading-relaxed text-foreground/85">
                 Matrice Group nasce come punto di origine solido e strutturato da cui si
@@ -446,23 +453,23 @@ function Index() {
             </div>
           </div>
 
-          <div className="group relative overflow-hidden rounded-2xl lg:col-span-7">
+          <div className="group relative overflow-hidden lg:col-span-7">
             <img
               src={interior}
               alt="Interno di un capannone industriale moderno con struttura in acciaio"
               width={1600}
               height={1008}
               loading="lazy"
-              className="h-full min-h-[360px] w-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+               className="h-full min-h-[360px] w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/80 to-transparent p-8 pt-20">
-              <p className="font-display text-2xl font-light italic">
+              <p className="font-display text-2xl font-light">
                 “Seguire il cliente in ogni passo, dal primo incontro al post rogito.”
               </p>
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 p-8 lg:col-span-6">
+          <div className="bg-background p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Rete nazionale
             </span>
@@ -472,7 +479,7 @@ function Index() {
               possibile attendibili.
             </p>
           </div>
-          <div className="rounded-2xl border border-white/10 p-8 lg:col-span-6">
+          <div className="bg-background p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Aste e stralci
             </span>
@@ -484,32 +491,34 @@ function Index() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-flame p-8 text-flame-foreground lg:col-span-12">
+          <div className="bg-flame p-8 text-flame-foreground lg:col-span-12">
             <p className="font-display text-2xl font-light leading-snug lg:text-3xl">
               “La nostra priorità è seguire il cliente in ogni passo, garantendo sicurezza e
               tranquillità nella trattativa immobiliare.”
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* COMMERCIALE — capannoni, retail, locali */}
       <section id="commerciale" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
-        <div className="mb-14 flex items-end justify-between gap-6">
+        <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
           <div>
+            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+              / 04 · Asset commerciali
+            </p>
             <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-              Dal residenziale{" "}
-              <span className="font-light italic text-flame">al commerciale</span>
+              Dal residenziale al commerciale
             </h2>
             <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
               Capannoni industriali, grandi superfici di vendita e locali commerciali: mettiamo a
               reddito ogni tipologia di immobile.
             </p>
           </div>
-          <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+          <span className="hidden shrink-0 text-right font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground md:block lg:col-span-4">
             ( Immobili commerciali )
           </span>
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-5 md:grid-cols-3">
           {[
@@ -531,11 +540,9 @@ function Index() {
               tag: "Locali commerciali",
               text: "Negozi e locali commerciali in posizioni strategiche, valutati con dati di mercato reali.",
             },
-          ].map((c) => (
-            <figure
-              key={c.tag}
-              className="group overflow-hidden rounded-2xl border border-white/10 bg-card"
-            >
+          ].map((c, index) => (
+            <ScrollReveal key={c.tag} delay={index * 90}>
+            <figure className="group overflow-hidden border-t border-white/15 bg-card">
               <div className="overflow-hidden">
                 <img
                   src={c.img}
@@ -543,7 +550,7 @@ function Index() {
                   width={1600}
                   height={1000}
                   loading="lazy"
-                  className="aspect-8/5 w-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                  className="aspect-8/5 w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
                 />
               </div>
               <figcaption className="p-7">
@@ -553,6 +560,7 @@ function Index() {
                 <p className="mt-3 leading-relaxed text-muted-foreground">{c.text}</p>
               </figcaption>
             </figure>
+            </ScrollReveal>
           ))}
         </div>
 
@@ -576,21 +584,19 @@ function Index() {
 
       {/* TEAM */}
       <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
-        <div className="mb-14 flex items-end justify-between gap-6">
+        <ScrollReveal className="mb-14 flex items-end justify-between gap-6 border-t border-white/15 pt-8">
           <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
-            Il <span className="font-light italic text-flame">team</span>
+            Il team
           </h2>
           <span className="hidden shrink-0 max-w-xs text-right font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground md:block">
             Competenze diverse, un unico obiettivo.
           </span>
-        </div>
+        </ScrollReveal>
 
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-          {team.map((m) => (
-            <figure
-              key={m.name}
-              className="group overflow-hidden rounded-2xl border border-white/10 bg-card"
-            >
+          {team.map((m, index) => (
+            <ScrollReveal key={m.name} delay={(index % 5) * 65}>
+            <figure className="group overflow-hidden border-t border-white/15 bg-card">
               <div className="overflow-hidden">
                 <img
                   src={m.img}
@@ -598,7 +604,7 @@ function Index() {
                   width={800}
                   height={1000}
                   loading="lazy"
-                  className="aspect-4/5 w-full object-cover grayscale transition-all duration-700 group-hover:scale-[1.04] group-hover:grayscale-0"
+                  className="aspect-4/5 w-full object-cover grayscale transition-all duration-1000 ease-out group-hover:scale-[1.025] group-hover:grayscale-0"
                 />
               </div>
               <figcaption className="p-6">
@@ -608,30 +614,32 @@ function Index() {
                 </p>
               </figcaption>
             </figure>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* PARTNER */}
       <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-12 lg:pb-32">
-        <div className="mb-10">
+        <ScrollReveal className="mb-10 border-t border-white/15 pt-8">
+          <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+            / 06 · Rete professionale
+          </p>
           <h2 className="font-display text-[8vw] leading-[0.95] tracking-tight lg:text-[4rem]">
-            Una rete di collaborazioni{" "}
-            <span className="font-light italic text-flame">specialistiche</span>
+            Una rete di collaborazioni specialistiche
           </h2>
           <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
             Collaboriamo con realtà e professionisti che ampliano le competenze disponibili per i
             nostri clienti.
           </p>
-        </div>
-        <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
-          {partner.map((p) => (
-            <div
-              key={p}
-              className="flex min-h-28 items-center justify-center bg-background px-6 py-8 text-center font-display text-lg font-light tracking-wide text-foreground/60 transition-colors duration-500 hover:bg-white/5 hover:text-flame"
-            >
-              {p}
-            </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-2 gap-px border border-white/10 bg-white/10 md:grid-cols-4">
+          {partner.map((p, index) => (
+            <ScrollReveal key={p} delay={(index % 4) * 55} className="h-full bg-background">
+              <div className="flex min-h-28 h-full items-center justify-center px-6 py-8 text-center font-display text-lg font-light text-foreground/60 transition-colors duration-500 hover:bg-card hover:text-flame">
+                {p}
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
@@ -639,10 +647,12 @@ function Index() {
       {/* CONTATTI */}
       <section id="contatti" className="border-t border-white/10 py-24 lg:py-32">
         <div className="mx-auto grid max-w-[1600px] gap-12 px-6 lg:grid-cols-12 lg:px-12">
-          <div className="lg:col-span-6">
+          <ScrollReveal className="lg:col-span-6">
+            <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+              / 07 · Contatti
+            </p>
             <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5rem]">
-              Parliamo del tuo{" "}
-              <span className="font-light italic text-flame">prossimo progetto.</span>
+              Parliamo del tuo prossimo progetto.
             </h2>
             <p className="mt-8 max-w-md text-lg font-light leading-relaxed text-muted-foreground">
               Raccontaci l'operazione: un referente del team ti ricontatta con una prima
@@ -681,10 +691,11 @@ function Index() {
                 <dd>Via di Villanova 16, Napoli</dd>
               </div>
             </dl>
-          </div>
+          </ScrollReveal>
 
+          <ScrollReveal className="lg:col-span-6" delay={100}>
           <form
-            className="rounded-2xl border border-white/10 bg-card p-10 lg:col-span-6 lg:p-12"
+            className="border-t border-white/15 bg-card p-10 lg:p-12"
             onSubmit={(e) => e.preventDefault()}
           >
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-flame">
@@ -741,6 +752,7 @@ function Index() {
               </button>
             </div>
           </form>
+          </ScrollReveal>
         </div>
       </section>
 
