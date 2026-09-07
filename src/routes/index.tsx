@@ -133,6 +133,9 @@ function Index() {
             <a href="#servizi" className="transition-colors hover:text-flame">
               Servizi
             </a>
+            <a href="#commerciale" className="transition-colors hover:text-flame">
+              Commerciale
+            </a>
             <a href="#team" className="transition-colors hover:text-flame">
               Team
             </a>
@@ -154,7 +157,7 @@ function Index() {
         <div className="absolute inset-0">
           <img
             src={heroVilla}
-            alt="Villa moderna sul golfo di Napoli al tramonto"
+            alt="Polo logistico industriale moderno con facciata in vetro al tramonto"
             width={1920}
             height={1088}
             className="h-full w-full animate-hero-zoom object-cover"
@@ -294,7 +297,7 @@ function Index() {
           <div className="group relative overflow-hidden rounded-2xl lg:col-span-7">
             <img
               src={interior}
-              alt="Interno di un attico con vista sul golfo al tramonto"
+              alt="Interno di un capannone industriale moderno con struttura in acciaio"
               width={1600}
               height={1008}
               loading="lazy"
@@ -384,6 +387,70 @@ function Index() {
         </div>
       </section>
 
+      {/* COMMERCIALE — capannoni, retail, locali */}
+      <section id="commerciale" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+        <div className="mb-14 flex items-end justify-between gap-6">
+          <div>
+            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+              Dal residenziale{" "}
+              <span className="font-light italic text-flame">al commerciale</span>
+            </h2>
+            <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
+              Capannoni industriali, grandi superfici di vendita e locali commerciali: mettiamo a
+              reddito ogni tipologia di immobile.
+            </p>
+          </div>
+          <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:block">
+            ( Immobili commerciali )
+          </span>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            {
+              img: capannone,
+              alt: "Capannone industriale moderno con piazzale al tramonto",
+              tag: "Capannoni e logistica",
+              text: "Vendita e locazione di capannoni industriali e poli logistici su tutto il territorio nazionale.",
+            },
+            {
+              img: retail,
+              alt: "Grande superficie di vendita con parcheggio all'ora blu",
+              tag: "Grande distribuzione",
+              text: "Superfici commerciali per la grande distribuzione organizzata: supermercati, discount e retail park.",
+            },
+            {
+              img: commerciale,
+              alt: "Locale commerciale con vetrine in centro città di sera",
+              tag: "Locali commerciali",
+              text: "Negozi e locali commerciali in posizioni strategiche, valutati con dati di mercato reali.",
+            },
+          ].map((c) => (
+            <figure
+              key={c.tag}
+              className="group overflow-hidden rounded-2xl border border-white/10 bg-card"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={c.img}
+                  alt={c.alt}
+                  width={1600}
+                  height={1000}
+                  loading="lazy"
+                  className="aspect-8/5 w-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                />
+              </div>
+              <figcaption className="p-7">
+                <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
+                  / {c.tag}
+                </p>
+                <p className="mt-3 leading-relaxed text-muted-foreground">{c.text}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
       {/* TEAM */}
       <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
         <div className="mb-14 flex items-end justify-between gap-6">
@@ -429,6 +496,10 @@ function Index() {
             Una rete di collaborazioni{" "}
             <span className="font-light italic text-flame">specialistiche</span>
           </h2>
+          <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
+            Collaboriamo con realtà e professionisti che ampliano le competenze disponibili per i
+            nostri clienti.
+          </p>
         </div>
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-4">
           {partner.map((p) => (
