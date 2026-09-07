@@ -228,7 +228,7 @@ function Index() {
             {[
               { k: "13+", v: "Anni di attività" },
               { k: "05", v: "Professionisti in team" },
-              { k: "08", v: "Partner in rete nazionale" },
+              { k: "09", v: "Partner in rete nazionale" },
             ].map((s) => (
               <div
                 key={s.v}
