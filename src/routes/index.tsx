@@ -264,7 +264,7 @@ function Index() {
 
       {/* ANNUNCI AGGIORNATI */}
       <section id="immobili" className="border-b border-white/10 py-16 lg:py-20">
-        <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+        <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-12">
           <ScrollReveal className="grid gap-8 border-y border-white/15 py-9 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
@@ -289,7 +289,7 @@ function Index() {
       </section>
 
       {/* SERVIZI — over palazzo backdrop */}
-      <section id="servizi" className="relative overflow-hidden py-24 lg:py-32">
+      <section id="servizi" className="relative overflow-hidden py-16 lg:py-32">
         <div className="absolute inset-0">
           <img
             src={palazzo}
@@ -301,13 +301,13 @@ function Index() {
           />
           <div className="absolute inset-0 bg-background/88" />
         </div>
-        <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
+        <div className="relative mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-12">
           <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-8">
               <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
                 / 02 · Competenze
               </p>
-              <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+              <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
                 Cosa facciamo
               </h2>
               <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
@@ -322,7 +322,7 @@ function Index() {
           <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
             {servizi.map((s, index) => (
               <ScrollReveal key={s.n} delay={(index % 3) * 80} className="h-full bg-background/90">
-                <article className="group flex h-full min-h-72 flex-col p-9 transition-colors duration-500 hover:bg-card/80 lg:p-10">
+                <article className="group flex h-full flex-col p-7 sm:min-h-72 sm:p-9 transition-colors duration-500 hover:bg-card/80 lg:p-10">
                   <span className="font-mono text-[10px] tracking-[0.2em] text-flame">/ {s.n}</span>
                   <h3 className="mt-8 font-display text-3xl font-medium tracking-tight transition-colors group-hover:text-flame">
                     {s.title}
@@ -349,13 +349,13 @@ function Index() {
 
 
       {/* CHI SIAMO */}
-      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+      <section id="chi-siamo" className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 lg:px-12 lg:py-32">
         <ScrollReveal className="mb-14 grid gap-6 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
           <div className="lg:col-span-8">
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
               / 03 · Matrice Group
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
             Un team, un metodo,
             <br />
               una visione globale.
@@ -454,13 +454,13 @@ function Index() {
 
 
       {/* TEAM */}
-      <section id="team" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
+      <section id="team" className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 lg:px-12 lg:py-32">
         <ScrollReveal className="mb-14 flex items-end justify-between gap-6 border-t border-white/15 pt-8">
           <div>
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
               / 04 · Professionisti
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5.5rem]">
               Il team
             </h2>
           </div>
@@ -496,12 +496,12 @@ function Index() {
       </section>
 
       {/* PARTNER */}
-      <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-12 lg:pb-32">
+      <section id="partner" className="mx-auto max-w-[1600px] px-5 pb-16 sm:px-6 lg:px-12 lg:pb-32">
         <ScrollReveal className="mb-10 border-t border-white/15 pt-8">
           <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
             / 05 · Rete professionale
           </p>
-          <h2 className="font-display text-[8vw] leading-[0.95] tracking-tight lg:text-[4rem]">
+          <h2 className="font-display text-[2rem] leading-[1.05] sm:text-[6vw] sm:leading-[0.95] tracking-tight lg:text-[4rem]">
             Una rete di collaborazioni specialistiche
           </h2>
           <p className="mt-4 max-w-lg text-lg font-light text-foreground/70">
@@ -521,13 +521,13 @@ function Index() {
       </section>
 
       {/* CONTATTI */}
-      <section id="contatti" className="border-t border-white/10 py-24 lg:py-32">
-        <div className="mx-auto grid max-w-[1600px] gap-12 px-6 lg:grid-cols-12 lg:px-12">
+      <section id="contatti" className="border-t border-white/10 py-16 lg:py-32">
+        <div className="mx-auto grid max-w-[1600px] gap-12 px-5 sm:px-6 lg:grid-cols-12 lg:px-12">
           <ScrollReveal className="lg:col-span-6">
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
               / 06 · Contatti
             </p>
-            <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5rem]">
+            <h2 className="font-display text-[2.4rem] leading-[1.02] sm:text-[8vw] sm:leading-[0.95] tracking-tight lg:text-[5rem]">
               Parliamo del tuo prossimo progetto.
             </h2>
             <p className="mt-8 max-w-md text-lg font-light leading-relaxed text-muted-foreground">
@@ -562,7 +562,7 @@ function Index() {
 
           <ScrollReveal className="lg:col-span-6" delay={100}>
           <form
-            className="border-t border-white/15 bg-card p-10 lg:p-12"
+            className="border-t border-white/15 bg-card p-6 sm:p-10 lg:p-12"
             onSubmit={(e) => e.preventDefault()}
           >
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-flame">
@@ -576,7 +576,7 @@ function Index() {
                 <input
                   type="text"
                   placeholder="Il tuo nome"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -586,7 +586,7 @@ function Index() {
                 <input
                   type="email"
                   placeholder="nome@dominio.it"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -598,7 +598,7 @@ function Index() {
                   name="oggetto"
                   defaultValue={oggetto ?? ""}
                   placeholder="Compravendita, valutazione, aste…"
-                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <label className="block">
@@ -608,7 +608,7 @@ function Index() {
                 <textarea
                   rows={3}
                   placeholder="Come possiamo aiutarti?"
-                  className="mt-2 w-full resize-none border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
+                  className="mt-2 w-full resize-none border-b border-white/15 bg-transparent py-3 text-base text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
               </label>
               <button
@@ -625,7 +625,7 @@ function Index() {
 
       {/* FOOTER */}
       <footer className="border-t border-white/10">
-        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-6 py-12 md:flex-row md:items-end lg:px-12">
+        <div className="mx-auto flex max-w-[1600px] flex-col justify-between gap-6 px-5 py-12 sm:px-6 md:flex-row md:items-end lg:px-12">
           <div>
             <span className="font-display text-3xl font-bold tracking-tight">
               MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
