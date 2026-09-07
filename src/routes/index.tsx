@@ -7,7 +7,7 @@ import interior from "@/assets/interior.jpg";
 import palazzo from "@/assets/palazzo.jpg";
 import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
-import teamValentina from "@/assets/team-valentina.jpg";
+import teamValentina from "@/assets/valentina-infantozzi.png.asset.json";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.asset.json";
 import teamCorrado from "@/assets/team-corrado.jpg";
