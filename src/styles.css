@@ -38,22 +38,12 @@
   --font-display: "Playfair Display", Georgia, serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --font-mono: "Space Mono", ui-monospace, monospace;
-  --animate-marquee: marquee 28s linear infinite;
-  --animate-hero-zoom: hero-zoom 14s ease-out forwards;
+  --animate-hero-zoom: hero-zoom 32s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   --animate-reveal: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
-
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
 
   @keyframes hero-zoom {
     from {
-      transform: scale(1.08);
+      transform: scale(1.035);
     }
     to {
       transform: scale(1);
@@ -118,5 +108,36 @@
   ::selection {
     background-color: var(--color-flame);
     color: var(--color-background);
+  }
+}
+
+@utility scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+
+  &[data-visible="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .animate-hero-zoom,
+  .animate-reveal {
+    animation: none;
   }
 }

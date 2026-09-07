@@ -11,3 +11,4 @@
 - [ ] Form contatti funzionante via email (richiede dominio email)
 - [x] Listino immobili (/immobili + dettaglio /immobili/$slug, filtri, JSON-LD)
 - [x] Logo Matrice Group nel menu + favicon
+- [ ] Rifinitura premium homepage: struttura, immobili in evidenza, reveal e verifica responsive
