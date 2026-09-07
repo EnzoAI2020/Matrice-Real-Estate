@@ -7,7 +7,7 @@ import interior from "@/assets/interior.jpg";
 import palazzo from "@/assets/palazzo.jpg";
 import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
-import teamValentina from "@/assets/team-valentina.jpg";
+import teamValentina from "@/assets/valentina-infantozzi.png.asset.json";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.asset.json";
 import teamCorrado from "@/assets/team-corrado.jpg";
@@ -99,7 +99,7 @@ const servizi = [
 
 const team = [
   { name: "Michele Pone", role: "Agente immobiliare · Titolare", img: teamMichele.url },
-  { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina },
+  { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina.url },
   { name: "Giuseppe Di Giacomo", role: "Ingegnere", img: teamGiuseppe },
   { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo.url },
   { name: "Corrado Predellini", role: "NPL Specialist", img: teamCorrado },
