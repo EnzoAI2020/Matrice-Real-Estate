@@ -26,8 +26,8 @@ export function CookieBanner() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 px-4 pb-4 sm:px-6 sm:pb-6">
-      <div className="mx-auto flex max-w-4xl flex-col gap-5 rounded-2xl border border-white/10 bg-card/95 p-6 shadow-2xl backdrop-blur md:flex-row md:items-center md:justify-between">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 sm:px-6 sm:pb-6">
+      <div className="pointer-events-auto mx-auto flex max-w-4xl flex-col gap-5 rounded-2xl border border-white/10 bg-card/95 p-6 shadow-2xl backdrop-blur md:flex-row md:items-center md:justify-between">
         <p className="max-w-2xl text-sm font-light leading-relaxed text-muted-foreground">
           Utilizziamo cookie tecnici necessari al funzionamento del sito e servizi di terze parti
           (Google Fonts) che possono trattare il tuo indirizzo IP. Puoi accettare o rifiutare i

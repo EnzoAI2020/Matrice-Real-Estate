@@ -55,13 +55,14 @@ export function ServicePage({
               Immobili
             </Link>
           </nav>
-          <Link
-            to="/"
-            hash="contatti"
+          <a
+            href="https://wa.me/393457603610"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
           >
             Parla con noi
-          </Link>
+          </a>
         </div>
       </header>
 
