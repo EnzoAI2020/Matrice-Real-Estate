@@ -12,3 +12,6 @@
 - [x] Annunci immobiliari collegati al profilo ufficiale Immobiliare.it
 - [x] Logo Matrice Group nel menu + favicon
 - [x] Rifinitura premium homepage: struttura, reveal e verifica responsive
+- [x] Sito su unica pagina (rimosse le 4 pagine servizio) + testi più brevi
+- [x] Numero di telefono non visibile: bottone "Scrivici ora" (WhatsApp/Email/SMS)
+
