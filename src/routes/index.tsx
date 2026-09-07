@@ -168,7 +168,9 @@ function Index() {
             </a>
           </nav>
           <a
-            href="#contatti"
+            href="https://wa.me/393457603610"
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
           >
             Parla con noi
@@ -210,7 +212,9 @@ function Index() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="#contatti"
+                href="https://wa.me/393457603610"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-foreground px-9 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
               >
                 Parla con noi
