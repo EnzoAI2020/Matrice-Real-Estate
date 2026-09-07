@@ -9,7 +9,7 @@ import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
-import teamMatteo from "@/assets/team-matteo.jpg";
+import teamMatteo from "@/assets/team-matteo.asset.json";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -101,7 +101,7 @@ const team = [
   { name: "Michele Pone", role: "Agente immobiliare · Titolare", img: teamMichele.url },
   { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina },
   { name: "Giuseppe Di Giacomo", role: "Ingegnere", img: teamGiuseppe },
-  { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo },
+  { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo.url },
   { name: "Corrado Predellini", role: "NPL Specialist", img: teamCorrado },
 ];
 
