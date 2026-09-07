@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import heroVilla from "@/assets/hero-villa.jpg";
 import interior from "@/assets/interior.jpg";
