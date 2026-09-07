@@ -116,14 +116,23 @@ const partner = [
   "La Contessa Immobiliare Srl",
 ];
 
+const navLinks = [
+  { href: "#chi-siamo", label: "Chi siamo" },
+  { href: "#servizi", label: "Servizi" },
+  { href: "#immobili", label: "Immobili" },
+  { href: "#team", label: "Team" },
+  { href: "#contatti", label: "Contatti" },
+];
+
 function Index() {
   const { oggetto } = Route.useSearch();
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <div className="bg-background text-foreground antialiased">
+    <div className="overflow-x-hidden bg-background text-foreground antialiased">
       {/* NAV */}
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-4 sm:px-6 lg:px-12 lg:py-5">
-          <a href="#top" className="flex min-w-0 items-center gap-2.5">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-12 lg:py-5">
+          <a href="#top" className="flex min-w-0 items-center gap-2.5 py-1">
             <img
               src={logo}
               alt="Logo Matrice Group"
@@ -136,35 +145,48 @@ function Index() {
             </span>
           </a>
           <nav className="hidden items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/80 lg:flex">
-            <a href="#chi-siamo" className="px-3 py-2 transition-colors hover:text-flame">
-              Chi siamo
-            </a>
-            <a href="#servizi" className="px-3 py-2 transition-colors hover:text-flame">
-              Servizi
-            </a>
-            <a href="#commerciale" className="px-3 py-2 transition-colors hover:text-flame">
-              Commerciale
-            </a>
-            <a href="#immobili" className="px-3 py-2 transition-colors hover:text-flame">
-              Immobili
-            </a>
-            <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
-              Team
-            </a>
-            <a href="#contatti" className="px-3 py-2 transition-colors hover:text-flame">
-              Contatti
-            </a>
+            {navLinks.map((l) => (
+              <a key={l.href} href={l.href} className="px-3 py-2 transition-colors hover:text-flame">
+                {l.label}
+              </a>
+            ))}
           </nav>
 
-          <a
-            href="https://wa.me/393457603610"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 rounded-full bg-foreground px-5 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
-          >
-            Parla con noi
-          </a>
+          <div className="flex shrink-0 items-center gap-1">
+            <a
+              href="https://wa.me/393457603610"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 items-center rounded-full bg-foreground px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
+            >
+              Parla con noi
+            </a>
+            <button
+              type="button"
+              aria-label={menuOpen ? "Chiudi il menu" : "Apri il menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+              className="flex size-11 items-center justify-center rounded-full border border-white/15 text-foreground transition-colors hover:text-flame lg:hidden"
+            >
+              {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            </button>
+          </div>
         </div>
+
+        {menuOpen ? (
+          <nav className="border-t border-white/10 bg-background/95 px-4 pb-4 backdrop-blur-xl sm:px-6 lg:hidden">
+            {navLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMenuOpen(false)}
+                className="flex min-h-12 items-center border-b border-white/10 font-mono text-[12px] font-bold uppercase tracking-[0.18em] text-foreground/85 transition-colors last:border-b-0 hover:text-flame"
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
       </header>
 
       {/* HERO — full-bleed cinematic */}
@@ -181,18 +203,19 @@ function Index() {
           <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/5 to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-6 pt-40 pb-14 lg:px-12">
-          <p className="mb-8 flex items-center gap-4 font-mono text-[10px] font-bold uppercase tracking-[0.4em] text-flame animate-reveal">
-            <span className="h-px w-10 bg-flame" />
+        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-32 pb-12 sm:px-6 lg:px-12 lg:pt-40 lg:pb-14">
+          <p className="mb-6 flex items-start gap-3 font-mono text-[9px] font-bold uppercase leading-relaxed tracking-[0.28em] text-flame animate-reveal sm:items-center sm:gap-4 sm:text-[10px] sm:tracking-[0.4em] lg:mb-8">
+            <span className="mt-2 h-px w-8 shrink-0 bg-flame sm:mt-0 sm:w-10" />
             Mediazione immobiliare · Consulenza · Investimenti — Dal 2011
           </p>
 
-          <h1 className="font-display text-[13vw] leading-[0.92] tracking-tight lg:text-[8.5rem]">
+          <h1 className="font-display text-[2.6rem] leading-[1] tracking-tight sm:text-[7vw] sm:leading-[0.95] lg:text-[8.5rem] lg:leading-[0.92]">
             <span className="block animate-reveal">Il valore di un immobile.</span>
             <span className="block animate-reveal font-normal text-foreground/90 [animation-delay:150ms]">
               La sicurezza di una scelta.
             </span>
           </h1>
+
 
           <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between animate-reveal [animation-delay:300ms]">
             <p className="max-w-md text-lg font-light leading-relaxed text-foreground/75">
