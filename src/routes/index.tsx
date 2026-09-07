@@ -168,7 +168,7 @@ function Index() {
           </nav>
           <a
             href="#contatti"
-            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
           >
             Parla con noi
           </a>
