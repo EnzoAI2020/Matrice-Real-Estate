@@ -14,6 +14,8 @@ import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.jpg";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { formatPrezzo, immobili } from "@/data/immobili";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -114,15 +116,6 @@ const partner = [
   "Project & Construction Srl",
   "Nova Service Srl",
   "La Contessa Immobiliare Srl",
-];
-
-const marqueeWords = [
-  "MEDIAZIONE",
-  "CONSULENZA",
-  "INVESTIMENTI",
-  "ASTE E NPL",
-  "VALUTAZIONI",
-  "LOCAZIONI",
 ];
 
 function Index() {
@@ -228,8 +221,8 @@ function Index() {
             </div>
           </div>
 
-          {/* Glass stats */}
-          <div className="mt-14 grid gap-4 md:grid-cols-3 animate-reveal [animation-delay:450ms]">
+          {/* Dati chiave */}
+          <div className="mt-14 grid border-y border-white/15 md:grid-cols-3 animate-reveal [animation-delay:450ms]">
             {[
               { k: "13+", v: "Anni di attività" },
               { k: "05", v: "Professionisti in team" },
@@ -237,10 +230,10 @@ function Index() {
             ].map((s) => (
               <div
                 key={s.v}
-                className="rounded-2xl border border-white/10 bg-white/5 p-7 backdrop-blur-xl transition-colors hover:bg-white/10"
+                className="border-b border-white/15 py-6 last:border-b-0 md:border-r md:border-b-0 md:px-7 md:first:pl-0 md:last:border-r-0"
               >
-                <p className="font-display text-4xl">{s.k}</p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50">
+                <p className="font-display text-4xl font-medium tabular-nums">{s.k}</p>
+                <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55">
                   {s.v}
                 </p>
               </div>
@@ -249,21 +242,88 @@ function Index() {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="overflow-hidden border-y border-white/10 py-5">
-        <div className="flex w-max animate-marquee whitespace-nowrap font-display text-2xl font-light italic tracking-wide text-foreground/60">
-          {[0, 1].map((rep) => (
-            <div key={rep} className="flex">
-              {marqueeWords.map((w) => (
-                <span key={w} className="flex items-center">
-                  <span className="px-8">{w}</span>
-                  <span className="text-flame not-italic">◆</span>
-                </span>
-              ))}
+      {/* IMMOBILI IN EVIDENZA */}
+      <section className="border-b border-white/10 py-24 lg:py-32">
+        <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+          <ScrollReveal className="grid gap-8 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <p className="font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
+                / 01 · Selezione attuale
+              </p>
+              <h2 className="mt-5 font-display text-[10vw] leading-[0.95] lg:text-[5.5rem]">
+                Immobili in evidenza
+              </h2>
             </div>
-          ))}
+            <p className="max-w-md text-base font-light leading-relaxed text-muted-foreground lg:col-span-4">
+              Opportunità residenziali, commerciali e operazioni riservate selezionate a Napoli e
+              provincia.
+            </p>
+          </ScrollReveal>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-12">
+            {immobili.slice(0, 3).map((im, index) => (
+              <ScrollReveal
+                key={im.slug}
+                delay={index * 90}
+                className={index === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+              >
+                <Link
+                  to="/immobili/$slug"
+                  params={{ slug: im.slug }}
+                  className="group block h-full border-t border-white/15 pt-4"
+                >
+                  <div className="relative overflow-hidden bg-card">
+                    <img
+                      src={im.copertina}
+                      alt={im.titolo}
+                      width={1600}
+                      height={1000}
+                      loading="lazy"
+                      className={`w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025] ${index === 0 ? "aspect-[16/10]" : "aspect-[4/5]"}`}
+                    />
+                    <span className="absolute left-4 top-4 border border-white/20 bg-background/80 px-3 py-2 font-mono text-[8px] font-bold uppercase tracking-[0.2em] backdrop-blur-md">
+                      {im.stato}
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-[1fr_auto] gap-5 py-6">
+                    <div>
+                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-flame">
+                        / {String(index + 1).padStart(2, "0")} · {im.tipologia}
+                      </p>
+                      <h3 className="mt-3 font-display text-2xl leading-tight transition-colors group-hover:text-flame">
+                        {im.titolo}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">{im.zona}</p>
+                    </div>
+                    <ArrowUpRight className="mt-1 size-5 text-muted-foreground transition-colors group-hover:text-flame" />
+                  </div>
+                  <div className="flex justify-between border-t border-white/10 pt-4 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/65">
+                    <span>{im.mq.toLocaleString("it-IT")} mq</span>
+                    <span>{formatPrezzo(im.prezzo)}</span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal className="mt-12 flex flex-wrap gap-4">
+            <Link
+              to="/immobili"
+              className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+            >
+              Esplora il listino <ArrowRight className="size-4" />
+            </Link>
+            <a
+              href="https://www.immobiliare.it/pro/382689/pone/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+            >
+              Tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+            </a>
+          </ScrollReveal>
         </div>
-      </div>
+      </section>
 
       {/* CHI SIAMO */}
       <section id="chi-siamo" className="mx-auto max-w-[1600px] px-6 py-24 lg:px-12 lg:py-32">
