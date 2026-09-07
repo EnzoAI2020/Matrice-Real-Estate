@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import heroVilla from "@/assets/hero-villa.jpg";
 import interior from "@/assets/interior.jpg";
@@ -108,7 +108,8 @@ const partner = [
   "Premaca Srl",
   "Milgauss RE Srl",
   "Reattivo NPL",
-  "Studio 081 Architects & Partners",
+  "Avv. Salvatore Arciuolo",
+  "Studio Notarile Cante",
   "Caliendo Group",
   "Project & Construction Srl",
   "Nova Service Srl",
@@ -139,41 +140,36 @@ function Index() {
               height={480}
               className="h-10 w-auto"
             />
-            <span className="flex flex-col">
-              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.5em] text-foreground/50">
-                Napoli · Italia
-              </span>
-              <span className="font-display text-2xl font-bold tracking-tight">
-                MATRICE<span className="font-light italic opacity-70">GROUP</span>
-              </span>
+            <span className="font-display text-2xl font-bold tracking-tight">
+              MATRICE<span className="font-light italic opacity-70">GROUP</span>
             </span>
           </a>
-          <nav className="hidden items-center gap-6 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-foreground/70 lg:flex">
-            <a href="#chi-siamo" className="transition-colors hover:text-flame">
+          <nav className="hidden items-center gap-1 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-foreground/80 lg:flex">
+            <a href="#chi-siamo" className="px-3 py-2 transition-colors hover:text-flame">
               Chi siamo
             </a>
-            <Link to="/compravendita" className="transition-colors hover:text-flame">
+            <Link to="/compravendita" className="px-3 py-2 transition-colors hover:text-flame">
               Compravendita
             </Link>
-            <Link to="/locazioni" className="transition-colors hover:text-flame">
+            <Link to="/locazioni" className="px-3 py-2 transition-colors hover:text-flame">
               Locazioni
             </Link>
-            <Link to="/aste-e-npl" className="transition-colors hover:text-flame">
+            <Link to="/aste-e-npl" className="px-3 py-2 transition-colors hover:text-flame">
               Aste e NPL
             </Link>
-            <Link to="/investimenti" className="transition-colors hover:text-flame">
+            <Link to="/investimenti" className="px-3 py-2 transition-colors hover:text-flame">
               Investimenti
             </Link>
-            <Link to="/immobili" className="transition-colors hover:text-flame">
+            <Link to="/immobili" className="px-3 py-2 transition-colors hover:text-flame">
               Immobili
             </Link>
-            <a href="#team" className="transition-colors hover:text-flame">
+            <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
               Team
             </a>
           </nav>
           <a
             href="#contatti"
-            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+            className="rounded-full bg-foreground px-6 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground lg:px-8 lg:py-4 lg:text-[11px]"
           >
             Parla con noi
           </a>
@@ -233,7 +229,7 @@ function Index() {
             {[
               { k: "13+", v: "Anni di attività" },
               { k: "05", v: "Professionisti in team" },
-              { k: "08", v: "Partner in rete nazionale" },
+              { k: "09", v: "Partner in rete nazionale" },
             ].map((s) => (
               <div
                 key={s.v}
@@ -413,13 +409,21 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/immobili"
               className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
             >
               Vedi il listino <ArrowRight className="size-4" />
             </Link>
+            <a
+              href="https://www.immobiliare.it/pro/382689/pone/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+            >
+              Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+            </a>
           </div>
         </div>
       </section>
@@ -487,13 +491,21 @@ function Index() {
           ))}
         </div>
 
-        <div className="mt-10">
+        <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             to="/immobili"
             className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
           >
             Vedi il listino <ArrowRight className="size-4" />
           </Link>
+          <a
+            href="https://www.immobiliare.it/pro/382689/pone/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+          >
+            Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+          </a>
         </div>
       </section>
 
@@ -674,10 +686,6 @@ function Index() {
             <span className="font-display text-3xl font-bold tracking-tight">
               MATRICE<span className="font-light italic text-foreground/60">GROUP</span>
             </span>
-            <p className="mt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
-              Agenti: Michele Pone e Valentina Infantozzi · Ingegnere: Giuseppe Di Giacomo ·
-              Consulente aste: Matteo Leoncini · NPL: Corrado Predellini
-            </p>
           </div>
           <div className="flex flex-col gap-1 font-mono text-[9px] uppercase tracking-[0.2em] text-muted-foreground">
             <span>Via di Villanova 16, Napoli</span>
