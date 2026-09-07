@@ -1,12 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import heroVilla from "@/assets/hero-villa.jpg";
+import heroCity from "@/assets/hero-city.jpg";
 import interior from "@/assets/interior.jpg";
 import palazzo from "@/assets/palazzo.jpg";
-import capannone from "@/assets/capannone.jpg";
-import retail from "@/assets/retail.jpg";
-import commerciale from "@/assets/commerciale.jpg";
 import fiaip from "@/assets/fiaip.png.asset.json";
 import teamMichele from "@/assets/michele-pone.png.asset.json";
 import teamValentina from "@/assets/team-valentina.jpg";
@@ -174,8 +171,8 @@ function Index() {
       <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={heroVilla}
-            alt="Polo logistico industriale moderno con facciata in vetro al tramonto"
+            src={heroCity}
+            alt="Facciata di un palazzo residenziale elegante illuminata all'ora blu"
             width={1920}
             height={1088}
             className="h-full w-full animate-hero-zoom object-cover"
@@ -437,7 +434,7 @@ function Index() {
         <ScrollReveal className="mb-14 flex items-end justify-between gap-6 border-t border-white/15 pt-8">
           <div>
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 05 · Professionisti
+              / 04 · Professionisti
             </p>
             <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5.5rem]">
               Il team
@@ -478,7 +475,7 @@ function Index() {
       <section id="partner" className="mx-auto max-w-[1600px] px-6 pb-24 lg:px-12 lg:pb-32">
         <ScrollReveal className="mb-10 border-t border-white/15 pt-8">
           <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-            / 06 · Rete professionale
+            / 05 · Rete professionale
           </p>
           <h2 className="font-display text-[8vw] leading-[0.95] tracking-tight lg:text-[4rem]">
             Una rete di collaborazioni specialistiche
@@ -504,7 +501,7 @@ function Index() {
         <div className="mx-auto grid max-w-[1600px] gap-12 px-6 lg:grid-cols-12 lg:px-12">
           <ScrollReveal className="lg:col-span-6">
             <p className="mb-5 font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-              / 07 · Contatti
+              / 06 · Contatti
             </p>
             <h2 className="font-display text-[10vw] leading-[0.95] tracking-tight lg:text-[5rem]">
               Parliamo del tuo prossimo progetto.
