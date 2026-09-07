@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AsteENplRouteImport } from './routes/aste-e-npl'
+import { Route as CompravenditaRouteImport } from './routes/compravendita'
 import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
+import { Route as InvestimentiRouteImport } from './routes/investimenti'
+import { Route as LocazioniRouteImport } from './routes/locazioni'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
@@ -22,9 +26,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AsteENplRoute = AsteENplRouteImport.update({
+  id: '/aste-e-npl',
+  path: '/aste-e-npl',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CompravenditaRoute = CompravenditaRouteImport.update({
+  id: '/compravendita',
+  path: '/compravendita',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CookiePolicyRoute = CookiePolicyRouteImport.update({
   id: '/cookie-policy',
   path: '/cookie-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestimentiRoute = InvestimentiRouteImport.update({
+  id: '/investimenti',
+  path: '/investimenti',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocazioniRoute = LocazioniRouteImport.update({
+  id: '/locazioni',
+  path: '/locazioni',
   getParentRoute: () => rootRouteImport,
 } as any)
 const McpRoute = McpRouteImport.update({
@@ -56,7 +80,11 @@ const ImmobiliSlugRoute = ImmobiliSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aste-e-npl': typeof AsteENplRoute
+  '/compravendita': typeof CompravenditaRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/investimenti': typeof InvestimentiRoute
+  '/locazioni': typeof LocazioniRoute
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -65,7 +93,11 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/aste-e-npl': typeof AsteENplRoute
+  '/compravendita': typeof CompravenditaRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/investimenti': typeof InvestimentiRoute
+  '/locazioni': typeof LocazioniRoute
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -75,7 +107,11 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aste-e-npl': typeof AsteENplRoute
+  '/compravendita': typeof CompravenditaRoute
   '/cookie-policy': typeof CookiePolicyRoute
+  '/investimenti': typeof InvestimentiRoute
+  '/locazioni': typeof LocazioniRoute
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -86,7 +122,11 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/aste-e-npl'
+    | '/compravendita'
     | '/cookie-policy'
+    | '/investimenti'
+    | '/locazioni'
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
@@ -95,7 +135,11 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/aste-e-npl'
+    | '/compravendita'
     | '/cookie-policy'
+    | '/investimenti'
+    | '/locazioni'
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
@@ -104,7 +148,11 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/aste-e-npl'
+    | '/compravendita'
     | '/cookie-policy'
+    | '/investimenti'
+    | '/locazioni'
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
@@ -114,7 +162,11 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AsteENplRoute: typeof AsteENplRoute
+  CompravenditaRoute: typeof CompravenditaRoute
   CookiePolicyRoute: typeof CookiePolicyRoute
+  InvestimentiRoute: typeof InvestimentiRoute
+  LocazioniRoute: typeof LocazioniRoute
   McpRoute: typeof McpRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -131,11 +183,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aste-e-npl': {
+      id: '/aste-e-npl'
+      path: '/aste-e-npl'
+      fullPath: '/aste-e-npl'
+      preLoaderRoute: typeof AsteENplRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compravendita': {
+      id: '/compravendita'
+      path: '/compravendita'
+      fullPath: '/compravendita'
+      preLoaderRoute: typeof CompravenditaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/cookie-policy': {
       id: '/cookie-policy'
       path: '/cookie-policy'
       fullPath: '/cookie-policy'
       preLoaderRoute: typeof CookiePolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investimenti': {
+      id: '/investimenti'
+      path: '/investimenti'
+      fullPath: '/investimenti'
+      preLoaderRoute: typeof InvestimentiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locazioni': {
+      id: '/locazioni'
+      path: '/locazioni'
+      fullPath: '/locazioni'
+      preLoaderRoute: typeof LocazioniRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mcp': {
@@ -178,7 +258,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AsteENplRoute: AsteENplRoute,
+  CompravenditaRoute: CompravenditaRoute,
   CookiePolicyRoute: CookiePolicyRoute,
+  InvestimentiRoute: InvestimentiRoute,
+  LocazioniRoute: LocazioniRoute,
   McpRoute: McpRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
