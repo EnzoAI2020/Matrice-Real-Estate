@@ -99,7 +99,7 @@ const servizi = [
 
 const team = [
   { name: "Michele Pone", role: "Agente immobiliare · Titolare", img: teamMichele.url },
-  { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina },
+  { name: "Valentina Infantozzi", role: "Agente immobiliare · Architetto", img: teamValentina.url },
   { name: "Giuseppe Di Giacomo", role: "Ingegnere", img: teamGiuseppe },
   { name: "Matteo Leoncini", role: "Consulente aste immobiliari", img: teamMatteo.url },
   { name: "Corrado Predellini", role: "NPL Specialist", img: teamCorrado },
