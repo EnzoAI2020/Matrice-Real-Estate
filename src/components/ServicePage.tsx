@@ -51,9 +51,14 @@ export function ServicePage({
             <Link to="/investimenti" className="transition-colors hover:text-flame">
               Investimenti
             </Link>
-            <Link to="/immobili" className="transition-colors hover:text-flame">
+            <a
+              href="https://www.immobiliare.it/pro/382689/pone/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-flame"
+            >
               Immobili
-            </Link>
+            </a>
           </nav>
           <a
             href="https://wa.me/393457603610"

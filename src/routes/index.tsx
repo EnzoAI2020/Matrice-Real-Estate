@@ -15,7 +15,6 @@ import teamMatteo from "@/assets/team-matteo.jpg";
 import teamCorrado from "@/assets/team-corrado.jpg";
 import logo from "@/assets/logo-matrice.png";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { formatPrezzo, immobili } from "@/data/immobili";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -153,9 +152,12 @@ function Index() {
             <Link to="/investimenti" className="px-3 py-2 transition-colors hover:text-flame">
               Investimenti
             </Link>
-            <Link to="/immobili" className="px-3 py-2 transition-colors hover:text-flame">
+            <a
+              href="#immobili"
+              className="px-3 py-2 transition-colors hover:text-flame"
+            >
               Immobili
-            </Link>
+            </a>
             <a href="#team" className="px-3 py-2 transition-colors hover:text-flame">
               Team
             </a>
@@ -242,85 +244,28 @@ function Index() {
         </div>
       </section>
 
-      {/* IMMOBILI IN EVIDENZA */}
-      <section className="border-b border-white/10 py-24 lg:py-32">
+      {/* ANNUNCI AGGIORNATI */}
+      <section id="immobili" className="border-b border-white/10 py-16 lg:py-20">
         <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-          <ScrollReveal className="grid gap-8 border-t border-white/15 pt-8 lg:grid-cols-12 lg:items-end">
-            <div className="lg:col-span-8">
+          <ScrollReveal className="grid gap-8 border-y border-white/15 py-9 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
               <p className="font-mono text-[9px] font-bold uppercase tracking-[0.28em] text-flame">
-                / 01 · Selezione attuale
+                / 01 · Annunci aggiornati
               </p>
-              <h2 className="mt-5 font-display text-[10vw] leading-[0.95] lg:text-[5.5rem]">
-                Immobili in evidenza
+              <h2 className="mt-4 font-display text-4xl leading-tight lg:text-5xl">
+                Scopri le proprietà disponibili
               </h2>
             </div>
-            <p className="max-w-md text-base font-light leading-relaxed text-muted-foreground lg:col-span-4">
-              Opportunità residenziali, commerciali e operazioni riservate selezionate a Napoli e
-              provincia.
-            </p>
-          </ScrollReveal>
-
-          <div className="mt-14 grid gap-6 lg:grid-cols-12">
-            {immobili.slice(0, 3).map((im, index) => (
-              <ScrollReveal
-                key={im.slug}
-                delay={index * 90}
-                className={index === 0 ? "lg:col-span-6" : "lg:col-span-3"}
+            <div className="lg:col-span-5 lg:text-right">
+              <a
+                href="https://www.immobiliare.it/pro/382689/pone/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
               >
-                <Link
-                  to="/immobili/$slug"
-                  params={{ slug: im.slug }}
-                  className="group block h-full border-t border-white/15 pt-4"
-                >
-                  <div className="relative overflow-hidden bg-card">
-                    <img
-                      src={im.copertina}
-                      alt={im.titolo}
-                      width={1600}
-                      height={1000}
-                      loading="lazy"
-                      className={`w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.025] ${index === 0 ? "aspect-[16/10]" : "aspect-[4/5]"}`}
-                    />
-                    <span className="absolute left-4 top-4 border border-white/20 bg-background/80 px-3 py-2 font-mono text-[8px] font-bold uppercase tracking-[0.2em] backdrop-blur-md">
-                      {im.stato}
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-[1fr_auto] gap-5 py-6">
-                    <div>
-                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-flame">
-                        / {String(index + 1).padStart(2, "0")} · {im.tipologia}
-                      </p>
-                      <h3 className="mt-3 font-display text-2xl leading-tight transition-colors group-hover:text-flame">
-                        {im.titolo}
-                      </h3>
-                      <p className="mt-2 text-sm text-muted-foreground">{im.zona}</p>
-                    </div>
-                    <ArrowUpRight className="mt-1 size-5 text-muted-foreground transition-colors group-hover:text-flame" />
-                  </div>
-                  <div className="flex justify-between border-t border-white/10 pt-4 font-mono text-[9px] uppercase tracking-[0.18em] text-foreground/65">
-                    <span>{String(im.mq).replace(/\B(?=(\d{3})+(?!\d))/g, ".")} mq</span>
-                    <span>{formatPrezzo(im.prezzo)}</span>
-                  </div>
-                </Link>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          <ScrollReveal className="mt-12 flex flex-wrap gap-4">
-            <Link
-              to="/immobili"
-              className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
-            >
-              Esplora il listino <ArrowRight className="size-4" />
-            </Link>
-            <a
-              href="https://www.immobiliare.it/pro/382689/pone/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-4 font-mono text-[10px] uppercase tracking-[0.16em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
-            >
-              Tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
-            </a>
+                Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4" />
+              </a>
+            </div>
           </ScrollReveal>
         </div>
       </section>
@@ -372,19 +317,13 @@ function Index() {
           </div>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/immobili"
-              className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
-            >
-              Vedi il listino <ArrowRight className="size-4" />
-            </Link>
             <a
               href="https://www.immobiliare.it/pro/382689/pone/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+              className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
             >
-              Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+              Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4" />
             </a>
           </div>
         </div>
@@ -565,19 +504,13 @@ function Index() {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-4">
-          <Link
-            to="/immobili"
-            className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
-          >
-            Vedi il listino <ArrowRight className="size-4" />
-          </Link>
           <a
             href="https://www.immobiliare.it/pro/382689/pone/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+            className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
           >
-            Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+            Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4" />
           </a>
         </div>
       </section>

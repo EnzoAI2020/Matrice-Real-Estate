@@ -9,6 +9,6 @@
 - [x] Contatti reali (tel/WhatsApp/email/indirizzo) + JSON-LD
 - [x] Cookie banner + /privacy-policy + /cookie-policy
 - [ ] Form contatti funzionante via email (richiede dominio email)
-- [x] Listino immobili (/immobili + dettaglio /immobili/$slug, filtri, JSON-LD)
+- [x] Annunci immobiliari collegati al profilo ufficiale Immobiliare.it
 - [x] Logo Matrice Group nel menu + favicon
-- [x] Rifinitura premium homepage: struttura, immobili in evidenza, reveal e verifica responsive
+- [x] Rifinitura premium homepage: struttura, reveal e verifica responsive
