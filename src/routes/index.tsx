@@ -409,13 +409,21 @@ function Index() {
             ))}
           </div>
 
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Link
               to="/immobili"
               className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
             >
               Vedi il listino <ArrowRight className="size-4" />
             </Link>
+            <a
+              href="https://www.immobiliare.it/pro/382689/pone/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 font-mono text-[11px] uppercase tracking-[0.15em] text-foreground/80 transition-colors hover:border-flame hover:text-flame"
+            >
+              Guarda tutti gli annunci su Immobiliare.it <ArrowUpRight className="size-4" />
+            </a>
           </div>
         </div>
       </section>
