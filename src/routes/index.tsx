@@ -13,9 +13,14 @@ import teamValentina from "@/assets/team-valentina.jpg";
 import teamGiuseppe from "@/assets/team-giuseppe.jpg";
 import teamMatteo from "@/assets/team-matteo.jpg";
 import teamCorrado from "@/assets/team-corrado.jpg";
+import logo from "@/assets/logo-matrice.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  validateSearch: (search: Record<string, unknown>): { oggetto?: string } => {
+    const oggetto = search["oggetto"];
+    return typeof oggetto === "string" ? { oggetto } : {};
+  },
   head: () => ({
     meta: [
       { title: "Matrice Group — Mediazione Immobiliare, Consulenza e Investimenti" },
@@ -120,23 +125,36 @@ const marqueeWords = [
 ];
 
 function Index() {
+  const { oggetto } = Route.useSearch();
   return (
     <div className="bg-background text-foreground antialiased">
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/60 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-5 lg:px-12">
-          <a href="#top" className="flex flex-col">
-            <span className="font-mono text-[9px] font-bold uppercase tracking-[0.5em] text-foreground/50">
-              Napoli · Italia
-            </span>
-            <span className="font-display text-2xl font-bold tracking-tight">
-              MATRICE<span className="font-light italic opacity-70">GROUP</span>
+          <a href="#top" className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="Logo Matrice Group"
+              width={452}
+              height={480}
+              className="h-10 w-auto"
+            />
+            <span className="flex flex-col">
+              <span className="font-mono text-[9px] font-bold uppercase tracking-[0.5em] text-foreground/50">
+                Napoli · Italia
+              </span>
+              <span className="font-display text-2xl font-bold tracking-tight">
+                MATRICE<span className="font-light italic opacity-70">GROUP</span>
+              </span>
             </span>
           </a>
-          <nav className="hidden items-center gap-10 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/70 md:flex">
+          <nav className="hidden items-center gap-9 font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/70 md:flex">
             <a href="#chi-siamo" className="transition-colors hover:text-flame">
               Chi siamo
             </a>
+            <Link to="/immobili" className="transition-colors hover:text-flame">
+              Immobili
+            </Link>
             <a href="#servizi" className="transition-colors hover:text-flame">
               Servizi
             </a>
@@ -391,6 +409,15 @@ function Index() {
               </article>
             ))}
           </div>
+
+          <div className="mt-10">
+            <Link
+              to="/immobili"
+              className="inline-flex items-center gap-3 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors hover:border-flame hover:text-flame"
+            >
+              Vedi il listino <ArrowRight className="size-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -455,6 +482,15 @@ function Index() {
               </figcaption>
             </figure>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <Link
+            to="/immobili"
+            className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+          >
+            Vedi il listino <ArrowRight className="size-4" />
+          </Link>
         </div>
       </section>
 
@@ -601,6 +637,8 @@ function Index() {
                 </span>
                 <input
                   type="text"
+                  name="oggetto"
+                  defaultValue={oggetto ?? ""}
                   placeholder="Compravendita, valutazione, aste…"
                   className="mt-2 w-full border-b border-white/15 bg-transparent py-3 text-foreground placeholder:text-foreground/30 focus:border-flame focus:outline-none"
                 />
