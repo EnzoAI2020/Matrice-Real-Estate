@@ -367,7 +367,7 @@ function Index() {
         </ScrollReveal>
 
         <ScrollReveal className="grid gap-px border border-white/10 bg-white/10 lg:grid-cols-12">
-          <div className="flex flex-col justify-between bg-card p-10 lg:col-span-5 lg:p-12">
+          <div className="flex flex-col justify-between bg-card p-6 sm:p-10 lg:col-span-5 lg:p-12">
            <div className="lg:col-span-8">
               <p className="text-xl font-light leading-relaxed text-foreground/85">
                 Una struttura solida da cui nascono competenze diverse: mediazione immobiliare,
@@ -421,7 +421,7 @@ function Index() {
             </div>
           </div>
 
-          <div className="bg-background p-8 lg:col-span-6">
+          <div className="bg-background p-6 sm:p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Rete nazionale
             </span>
@@ -430,7 +430,7 @@ function Index() {
               attendibili, basate su dati reali.
             </p>
           </div>
-          <div className="bg-background p-8 lg:col-span-6">
+          <div className="bg-background p-6 sm:p-8 lg:col-span-6">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-flame">
               / Aste e stralci
             </span>
@@ -441,7 +441,7 @@ function Index() {
 
           </div>
 
-          <div className="bg-flame p-8 text-flame-foreground lg:col-span-12">
+          <div className="bg-flame p-6 text-flame-foreground sm:p-8 lg:col-span-12">
             <p className="font-display text-2xl font-light leading-snug lg:text-3xl">
               “La nostra priorità è seguire il cliente in ogni passo, garantendo sicurezza e
               tranquillità nella trattativa immobiliare.”

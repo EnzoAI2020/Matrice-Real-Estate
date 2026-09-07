@@ -43,7 +43,8 @@ export function ContactMenu({
       </PopoverTrigger>
       <PopoverContent
         align="start"
-        className="w-56 rounded-none border border-white/15 bg-card p-2"
+        collisionPadding={16}
+        className="w-[min(15rem,calc(100vw-2rem))] rounded-none border border-white/15 bg-card p-2"
       >
         <div className="flex flex-col">
           {opzioni.map(({ label: l, href, external, Icon }) => (
