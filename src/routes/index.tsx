@@ -205,11 +205,6 @@ function Index() {
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 pt-32 pb-12 sm:px-6 lg:px-12 lg:pt-40 lg:pb-14">
-          <p className="mb-6 flex items-start gap-3 font-mono text-[9px] font-bold uppercase leading-relaxed tracking-[0.28em] text-flame animate-reveal sm:items-center sm:gap-4 sm:text-[10px] sm:tracking-[0.4em] lg:mb-8">
-            <span className="mt-2 h-px w-8 shrink-0 bg-flame sm:mt-0 sm:w-10" />
-            Mediazione immobiliare · Consulenza · Investimenti — Dal 2011
-          </p>
-
           <h1 className="font-display text-[2.6rem] leading-[1] tracking-tight sm:text-[7vw] sm:leading-[0.95] lg:text-[8.5rem] lg:leading-[0.92]">
             <span className="block animate-reveal">Il valore di un immobile.</span>
             <span className="block animate-reveal font-normal text-foreground/90 [animation-delay:150ms]">
@@ -241,24 +236,6 @@ function Index() {
             </div>
           </div>
 
-          {/* Dati chiave */}
-          <div className="mt-14 grid border-y border-white/15 md:grid-cols-3 animate-reveal [animation-delay:450ms]">
-            {[
-              { k: "13+", v: "Anni di attività" },
-              { k: "05", v: "Professionisti in team" },
-              { k: "09", v: "Partner in rete nazionale" },
-            ].map((s) => (
-              <div
-                key={s.v}
-                className="border-b border-white/15 py-6 last:border-b-0 md:border-r md:border-b-0 md:px-7 md:first:pl-0 md:last:border-r-0"
-              >
-                <p className="font-display text-4xl font-medium tabular-nums">{s.k}</p>
-                <p className="mt-2 font-mono text-[9px] uppercase tracking-[0.24em] text-foreground/55">
-                  {s.v}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
