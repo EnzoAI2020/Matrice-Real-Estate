@@ -4,7 +4,7 @@ export default defineTool({
   name: "company_info",
   title: "Informazioni aziendali",
   description:
-    "Restituisce le informazioni pubbliche di Matrice Group: profilo, credenziali e recapiti.",
+    "Restituisce le informazioni pubbliche di Matrice Real Estate: profilo, credenziali e recapiti.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({
@@ -12,7 +12,7 @@ export default defineTool({
       {
         type: "text",
         text: JSON.stringify({
-          nome: "Matrice Group",
+          nome: "Matrice Real Estate",
           settore: "Real Estate & Consulting",
           payoff: "Il valore di un immobile. La sicurezza di una scelta.",
           descrizione:

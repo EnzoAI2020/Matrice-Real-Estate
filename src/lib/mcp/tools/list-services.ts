@@ -52,7 +52,7 @@ export default defineTool({
   name: "list_services",
   title: "Elenco servizi",
   description:
-    "Elenca i servizi immobiliari di Matrice Group e le tipologie di immobili commerciali trattate (capannoni, retail, locali).",
+    "Elenca i servizi immobiliari di Matrice Real Estate e le tipologie di immobili commerciali trattate (capannoni, retail, locali).",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({

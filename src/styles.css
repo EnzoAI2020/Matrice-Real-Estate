@@ -35,9 +35,9 @@
 }
 
 @theme {
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "Space Mono", ui-monospace, monospace;
+  --font-display: Arial, sans-serif;
+  --font-sans: Arial, sans-serif;
+  --font-mono: Arial, sans-serif;
   --animate-hero-zoom: hero-zoom 32s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
   --animate-reveal: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 
@@ -83,10 +83,10 @@
   --destructive-foreground: oklch(0.984 0.003 247.858);
   --border: oklch(0.95 0.01 90 / 10%);
   --input: oklch(0.95 0.01 90 / 18%);
-  --ring: oklch(0.72 0.15 55);
+  --ring: oklch(0.664 0.095 243.1);
   --brand: oklch(0.95 0.01 90);
   --brand-foreground: oklch(0.14 0.008 265);
-  --flame: oklch(0.75 0.14 65);
+  --flame: oklch(0.664 0.095 243.1);
   --flame-foreground: oklch(0.14 0.008 265);
 }
 
@@ -144,4 +144,28 @@
 
 section[id] {
   scroll-margin-top: 5.5rem;
+}
+
+/* Schizzo del palazzo (BuildingSketch) */
+.sk-root {
+  --sk-ink: var(--foreground);
+  --sk-dim: var(--muted-foreground);
+  --sk-band: #e6e4de;
+  --sk-glass: #5c5c5c;
+  --sk-lamp: #f5e3a8;
+}
+.sk-stroke {
+  fill: none;
+  stroke: var(--sk-ink);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.sk-thin {
+  stroke-width: 0.8;
+  stroke: var(--sk-dim);
+}
+.sk-fill {
+  opacity: 0;
 }

@@ -4,17 +4,17 @@ export const Route = createFileRoute("/privacy-policy")({
   component: PrivacyPolicy,
   head: () => ({
     meta: [
-      { title: "Privacy Policy — Matrice Group" },
+      { title: "Privacy Policy — Matrice Real Estate" },
       {
         name: "description",
         content:
-          "Informativa sul trattamento dei dati personali di Matrice Group, agenzia di mediazione immobiliare con sede in Via di Villanova 16, Napoli.",
+          "Informativa sul trattamento dei dati personali di Matrice Real Estate, agenzia di mediazione immobiliare con sede in Via Toledo 265, Napoli.",
       },
-      { property: "og:title", content: "Privacy Policy — Matrice Group" },
+      { property: "og:title", content: "Privacy Policy — Matrice Real Estate" },
       {
         property: "og:description",
         content:
-          "Come Matrice Group raccoglie e tratta i dati personali degli utenti del sito e dei clienti.",
+          "Come Matrice Real Estate raccoglie e tratta i dati personali degli utenti del sito e dei clienti.",
       },
     ],
   }),
@@ -40,11 +40,11 @@ export function LegalPage({ title }: { title: string }) {
         <section>
           <h2 className="font-display text-2xl text-foreground">Titolare del trattamento</h2>
           <p className="mt-3">
-            Titolare del trattamento è Matrice Group, agenzia di mediazione immobiliare iscritta al
+            Titolare del trattamento è Matrice Real Estate, agenzia di mediazione immobiliare iscritta al
             Ruolo Agenti di affari in mediazione presso la C.C.I.A.A. di Napoli al n. 424903, con
-            sede in Via di Villanova 16, Napoli. Email:{" "}
-            <a href="mailto:info@matricegroup.com" className="text-flame">
-              info@matricegroup.com
+            sede in Via Toledo 265, Napoli. Email:{" "}
+            <a href="mailto:info@matricerealestate.it" className="text-flame">
+              info@matricerealestate.it
             </a>
             .
           </p>
@@ -106,8 +106,8 @@ export function LegalPage({ title }: { title: string }) {
             L'interessato può esercitare in ogni momento i diritti previsti dagli artt. 15-22 del
             Regolamento UE 2016/679: accesso, rettifica, cancellazione, limitazione, portabilità,
             opposizione e revoca del consenso, scrivendo a{" "}
-            <a href="mailto:info@matricegroup.com" className="text-flame">
-              info@matricegroup.com
+            <a href="mailto:info@matricerealestate.it" className="text-flame">
+              info@matricerealestate.it
             </a>
             . È inoltre possibile proporre reclamo al Garante per la protezione dei dati personali.
           </p>

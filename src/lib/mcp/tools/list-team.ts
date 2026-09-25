@@ -23,7 +23,7 @@ export default defineTool({
   name: "list_team_and_partners",
   title: "Team e partner",
   description:
-    "Elenca i professionisti del team Matrice Group e la rete di partner specializzati.",
+    "Elenca i professionisti del team Matrice Real Estate e la rete di partner specializzati.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
   handler: () => ({

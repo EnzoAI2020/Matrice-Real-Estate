@@ -12,7 +12,7 @@ const opzioni = [
   },
   {
     label: "Email",
-    href: "mailto:info@matricegroup.com",
+    href: "mailto:info@matricerealestate.it",
     external: false,
     Icon: Mail,
   },

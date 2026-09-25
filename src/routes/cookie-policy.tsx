@@ -4,17 +4,17 @@ export const Route = createFileRoute("/cookie-policy")({
   component: CookiePolicy,
   head: () => ({
     meta: [
-      { title: "Cookie Policy — Matrice Group" },
+      { title: "Cookie Policy — Matrice Real Estate" },
       {
         name: "description",
         content:
-          "Informativa sui cookie e sui servizi di terze parti utilizzati dal sito di Matrice Group, agenzia immobiliare di Napoli.",
+          "Informativa sui cookie e sui servizi di terze parti utilizzati dal sito di Matrice Real Estate, agenzia immobiliare di Napoli.",
       },
-      { property: "og:title", content: "Cookie Policy — Matrice Group" },
+      { property: "og:title", content: "Cookie Policy — Matrice Real Estate" },
       {
         property: "og:description",
         content:
-          "Cookie tecnici, Google Fonts e gestione del consenso sul sito di Matrice Group.",
+          "Cookie tecnici, Google Fonts e gestione del consenso sul sito di Matrice Real Estate.",
       },
     ],
   }),
@@ -73,10 +73,10 @@ function CookiePolicy() {
         <section>
           <h2 className="font-display text-2xl text-foreground">Titolare del trattamento</h2>
           <p className="mt-3">
-            Matrice Group, Via di Villanova 16, Napoli — iscritta al Ruolo Agenti di affari in
+            Matrice Real Estate, Via Toledo 265, Napoli — iscritta al Ruolo Agenti di affari in
             mediazione presso la C.C.I.A.A. di Napoli al n. 424903. Email:{" "}
-            <a href="mailto:info@matricegroup.com" className="text-flame">
-              info@matricegroup.com
+            <a href="mailto:info@matricerealestate.it" className="text-flame">
+              info@matricerealestate.it
             </a>
             . Per il trattamento dei dati personali si rimanda alla{" "}
             <Link to="/privacy-policy" className="text-flame">

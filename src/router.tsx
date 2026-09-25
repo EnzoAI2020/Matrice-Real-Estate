@@ -8,7 +8,8 @@ export const getRouter = () => {
   const router = createRouter({
     routeTree,
     context: { queryClient },
-    scrollRestoration: true,
+    // La home e una pagina sola: al reload si riparte dall alto.
+    scrollRestoration: false,
     defaultPreloadStaleTime: 0,
   });
 
