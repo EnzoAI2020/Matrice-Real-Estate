@@ -1,0 +1,9 @@
+{
+  "d1_databases": [
+    {
+      "binding": "IDEALISTA_DB",
+      "database_name": "matrice-properties-prod",
+      "database_id": "d06d173f-a3df-49ba-aed3-4d00797b04cc"
+    }
+  ]
+}

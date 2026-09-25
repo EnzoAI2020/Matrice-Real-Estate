@@ -30,3 +30,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variabili d'ambiente (endpoint form, chiavi): mai nel repo
+.env
+.env.*
+!.env.example
+
+# Database e feed locali della sincronizzazione idealista
+.data/

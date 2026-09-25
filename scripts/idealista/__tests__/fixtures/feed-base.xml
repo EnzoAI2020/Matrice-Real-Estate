@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--
+  Fixture di prova per l'importatore idealista.
+
+  Costruita a mano sulla struttura del feed reale. Nessun dato personale:
+  indirizzi, nomi e riferimenti sono inventati. Copre di proposito i casi
+  limite che l'importatore deve sopportare.
+
+  1001 residenziale in vendita, descrizione IT+EN, 3 foto fuori ordine
+  1002 residenziale in affitto, solo descrizione EN (ripiego)
+  1003 villa/chalet, nessuna descrizione, nessuna foto
+  1004 capannone industriale, dati sotto trading/warehouse
+  1005 indirizzo nascosto (HIDDEN_ADDRESS) con coordinate presenti
+  1006 nessun prezzo: <SALE /> e <RENT /> entrambi vuoti
+  1007 scope 2, non pubblicabile: va sempre scartato
+  1008 ufficio, dati sotto trading/office, solo via senza civico
+-->
+<ads>
+
+  <ad>
+    <id>1001</id>
+    <comments>
+      <adComments>
+        <propertyComment>Trilocale ristrutturato in palazzo d'epoca, doppia esposizione.</propertyComment>
+        <language>5</language>
+      </adComments>
+      <adComments>
+        <propertyComment>Refurbished three-room flat in a period building.</propertyComment>
+        <language>1</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <pictures>
+        <id>90003</id>
+        <multimediaTag>KITCHEN</multimediaTag>
+        <position>3</position>
+        <widthPixels>1200</widthPixels>
+        <heightPixels>800</heightPixels>
+        <multimediaPath>https://img4.idealista.it/blur/x/90003.jpg</multimediaPath>
+      </pictures>
+      <pictures>
+        <id>90001</id>
+        <multimediaTag>VIEWS</multimediaTag>
+        <position>1</position>
+        <widthPixels>1500</widthPixels>
+        <heightPixels>1000</heightPixels>
+        <multimediaPath>https://img4.idealista.it/blur/x/90001.jpg</multimediaPath>
+      </pictures>
+      <pictures>
+        <id>90002</id>
+        <multimediaTag>LIVING</multimediaTag>
+        <position>2</position>
+        <widthPixels>1500</widthPixels>
+        <heightPixels>1000</heightPixels>
+        <multimediaPath>https://img4.idealista.it/blur/x/90002.jpg</multimediaPath>
+      </pictures>
+      <CountPictures>3</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE><price>285000</price></SALE>
+        <RENT />
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0001</externalReference>
+    <property>
+      <typology>0</typology>
+      <propertyType>0</propertyType>
+      <communityCosts>90</communityCosts>
+      <address>
+        <streetTypeId>12</streetTypeId>
+        <streetName>Toledo</streetName>
+        <streetNumber>265</streetNumber>
+        <floorNumber>3</floorNumber>
+        <postalCode>80134</postalCode>
+        <addressVisible>0</addressVisible>
+        <coordinates>
+          <longitude>14.2487</longitude>
+          <latitude>40.8419</latitude>
+        </coordinates>
+        <location>
+          <name>Montecalvario</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Centro Storico</name></LEVEL7>
+              <LEVEL8><level>8</level><name>Montecalvario</name></LEVEL8>
+            </zones>
+            <zoneDeepLevel>8</zoneDeepLevel>
+          </zones>
+        </location>
+      </address>
+      <energy>
+        <certification>8</certification>
+      </energy>
+      <housing>
+        <propertyArea>95</propertyArea>
+        <usableArea>88</usableArea>
+        <roomNumber>3</roomNumber>
+        <bathNumber>2</bathNumber>
+        <hasLift>true</hasLift>
+        <hasTerrace>true</hasTerrace>
+        <hasBalcony>true</hasBalcony>
+        <hasAirConditioning>true</hasAirConditioning>
+        <hasGarden>false</hasGarden>
+        <hasSwimmingPool>false</hasSwimmingPool>
+        <constructionYear>1920</constructionYear>
+        <parkingSpace>
+          <hasParkingSpace>true</hasParkingSpace>
+          <isIncludedInPrice>false</isIncludedInPrice>
+          <parkingSpacePrice>25000</parkingSpacePrice>
+        </parkingSpace>
+      </housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1750000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1002</id>
+    <comments>
+      <adComments>
+        <propertyComment>Bright two-room flat available for long term rent.</propertyComment>
+        <language>1</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <pictures>
+        <id>91001</id>
+        <multimediaTag>VIEWS</multimediaTag>
+        <position>1</position>
+        <multimediaPath>https://img4.idealista.it/blur/x/91001.jpg</multimediaPath>
+      </pictures>
+      <CountPictures>1</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE />
+        <RENT><price>1250</price></RENT>
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0002</externalReference>
+    <property>
+      <typology>0</typology>
+      <deposit>2</deposit>
+      <address>
+        <streetTypeId>12</streetTypeId>
+        <streetName>Chiaia</streetName>
+        <streetNumber>0</streetNumber>
+        <postalCode>80121</postalCode>
+        <addressVisible>1</addressVisible>
+        <coordinates>
+          <longitude>14.2350</longitude>
+          <latitude>40.8330</latitude>
+        </coordinates>
+        <location>
+          <name>Chiaia</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Chiaia</name></LEVEL7>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <energy><certification>10</certification></energy>
+      <housing>
+        <propertyArea>62</propertyArea>
+        <roomNumber>2</roomNumber>
+        <bathNumber>1</bathNumber>
+        <hasLift>true</hasLift>
+      </housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1752000000000</creation>
+    <operations>1</operations>
+  </ad>
+
+  <ad>
+    <id>1003</id>
+    <comments />
+    <multimedias>
+      <CountPictures>0</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE><price>890000</price></SALE>
+        <RENT />
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0003</externalReference>
+    <property>
+      <typology>1</typology>
+      <address>
+        <streetTypeId>12</streetTypeId>
+        <streetName>Posillipo</streetName>
+        <streetNumber>12</streetNumber>
+        <postalCode>80123</postalCode>
+        <addressVisible>0</addressVisible>
+        <coordinates>
+          <longitude>14.2100</longitude>
+          <latitude>40.8100</latitude>
+        </coordinates>
+        <location>
+          <name>Posillipo</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Posillipo</name></LEVEL7>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <energy><certification>5</certification></energy>
+      <housing>
+        <propertyArea>240</propertyArea>
+        <plotOfLand>800</plotOfLand>
+        <roomNumber>6</roomNumber>
+        <bathNumber>3</bathNumber>
+        <hasGarden>true</hasGarden>
+        <hasSwimmingPool>true</hasSwimmingPool>
+        <chaletType>1</chaletType>
+        <constructionYear>1998</constructionYear>
+      </housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1740000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1004</id>
+    <comments>
+      <adComments>
+        <propertyComment>Capannone industriale con banchina di carico e ampio piazzale.</propertyComment>
+        <language>5</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <pictures>
+        <id>93001</id>
+        <multimediaTag>GENERAL</multimediaTag>
+        <position>1</position>
+        <multimediaPath>https://img4.idealista.it/blur/x/93001.jpg</multimediaPath>
+      </pictures>
+      <CountPictures>1</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE><price>1250000</price></SALE>
+        <RENT />
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0004</externalReference>
+    <property>
+      <typology>5</typology>
+      <address>
+        <streetTypeId>18</streetTypeId>
+        <streetName>Provinciale Est</streetName>
+        <streetNumber>40</streetNumber>
+        <postalCode>80147</postalCode>
+        <addressVisible>0</addressVisible>
+        <coordinates>
+          <longitude>14.3100</longitude>
+          <latitude>40.8700</latitude>
+        </coordinates>
+        <location>
+          <name>Zona Industriale</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Zona Industriale</name></LEVEL7>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <energy><certification>13</certification></energy>
+      <housing />
+      <trading>
+        <propertyArea>1800</propertyArea>
+        <usableArea>1650</usableArea>
+        <bathNumber>4</bathNumber>
+        <constructionYear>2010</constructionYear>
+        <hasHeating>true</hasHeating>
+        <warehouse>
+          <hasLoadingDock>true</hasLoadingDock>
+          <hasParkingSpace>true</hasParkingSpace>
+          <hasOutDoorParkingSpace>true</hasOutDoorParkingSpace>
+          <outDoorParkingSpaceNumber>20</outDoorParkingSpaceNumber>
+          <IsCommercial>false</IsCommercial>
+          <IsIndustrial>true</IsIndustrial>
+        </warehouse>
+      </trading>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1745000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1005</id>
+    <comments>
+      <adComments>
+        <propertyComment>Appartamento riservato, indirizzo non divulgabile.</propertyComment>
+        <language>5</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <pictures>
+        <id>94001</id>
+        <position>1</position>
+        <multimediaPath>https://img4.idealista.it/blur/x/94001.jpg</multimediaPath>
+      </pictures>
+      <CountPictures>1</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE><price>640000</price></SALE>
+        <RENT />
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0005</externalReference>
+    <property>
+      <typology>0</typology>
+      <address>
+        <streetTypeId>12</streetTypeId>
+        <streetName>Riservata</streetName>
+        <streetNumber>7</streetNumber>
+        <postalCode>80122</postalCode>
+        <addressVisible>2</addressVisible>
+        <coordinates>
+          <longitude>14.2280</longitude>
+          <latitude>40.8290</latitude>
+        </coordinates>
+        <location>
+          <name>Vomero</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Vomero</name></LEVEL7>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <energy><certification>6</certification></energy>
+      <housing>
+        <propertyArea>130</propertyArea>
+        <roomNumber>4</roomNumber>
+        <bathNumber>2</bathNumber>
+      </housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1749000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1006</id>
+    <comments>
+      <adComments>
+        <propertyComment>Prezzo su richiesta.</propertyComment>
+        <language>5</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <CountPictures>0</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE />
+        <RENT />
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0006</externalReference>
+    <property>
+      <typology>0</typology>
+      <address>
+        <streetName>Santa Lucia</streetName>
+        <streetNumber>0</streetNumber>
+        <addressVisible>1</addressVisible>
+        <location>
+          <name>Santa Lucia</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <housing>
+        <propertyArea>110</propertyArea>
+      </housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1748000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1007</id>
+    <comments>
+      <adComments>
+        <propertyComment>Non deve mai comparire sul sito.</propertyComment>
+        <language>5</language>
+      </adComments>
+    </comments>
+    <multimedias><CountPictures>0</CountPictures></multimedias>
+    <prices><byOperation><SALE><price>1</price></SALE></byOperation></prices>
+    <scope>2</scope>
+    <externalReference>MTR-0007</externalReference>
+    <property>
+      <typology>0</typology>
+      <address>
+        <streetName>Segreta</streetName>
+        <addressVisible>0</addressVisible>
+        <location><name>Napoli</name></location>
+      </address>
+      <housing><propertyArea>50</propertyArea></housing>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1748000000000</creation>
+    <operations>0</operations>
+  </ad>
+
+  <ad>
+    <id>1008</id>
+    <comments>
+      <adComments>
+        <propertyComment>Ufficio open space in palazzo direzionale.</propertyComment>
+        <language>5</language>
+      </adComments>
+    </comments>
+    <multimedias>
+      <pictures>
+        <id>96001</id>
+        <position>1</position>
+        <multimediaPath>https://img4.idealista.it/blur/x/96001.jpg</multimediaPath>
+      </pictures>
+      <CountPictures>1</CountPictures>
+    </multimedias>
+    <prices>
+      <byOperation>
+        <SALE />
+        <RENT><price>3200</price></RENT>
+      </byOperation>
+    </prices>
+    <scope>0</scope>
+    <externalReference>MTR-0008</externalReference>
+    <property>
+      <typology>4</typology>
+      <address>
+        <streetTypeId>12</streetTypeId>
+        <streetName>Medina</streetName>
+        <streetNumber>15</streetNumber>
+        <postalCode>80133</postalCode>
+        <addressVisible>1</addressVisible>
+        <coordinates>
+          <longitude>14.2530</longitude>
+          <latitude>40.8400</latitude>
+        </coordinates>
+        <location>
+          <name>Medina</name>
+          <zones>
+            <zones>
+              <LEVEL2><level>2</level><name>Italia</name></LEVEL2>
+              <LEVEL3><level>3</level><name>Napoli</name></LEVEL3>
+              <LEVEL6><level>6</level><name>Napoli</name></LEVEL6>
+              <LEVEL7><level>7</level><name>Centro Direzionale</name></LEVEL7>
+            </zones>
+          </zones>
+        </location>
+      </address>
+      <energy><certification>9</certification></energy>
+      <housing />
+      <trading>
+        <propertyArea>320</propertyArea>
+        <bathNumber>2</bathNumber>
+        <constructionYear>2005</constructionYear>
+        <office>
+          <isOnlyOfficeBuilding>true</isOnlyOfficeBuilding>
+          <buildingFloors>8</buildingFloors>
+          <distribution>1</distribution>
+        </office>
+      </trading>
+    </property>
+    <modification>1758700000000</modification>
+    <creation>1747000000000</creation>
+    <operations>1</operations>
+  </ad>
+
+</ads>

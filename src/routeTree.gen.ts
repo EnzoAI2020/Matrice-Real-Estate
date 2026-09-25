@@ -14,6 +14,10 @@ import { Route as CookiePolicyRouteImport } from './routes/cookie-policy'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as ApiPropertiesRouteImport } from './routes/api.properties'
+import { Route as ImmobiliIndexRouteImport } from './routes/immobili.index'
+import { Route as ImmobiliSlugRouteImport } from './routes/immobili.$slug'
+import { Route as ApiPropertiesSlugRouteImport } from './routes/api.properties.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,6 +45,26 @@ const Char91DotwellKnownChar93OauthProtectedResourceRoute =
     path: '/.well-known/oauth-protected-resource',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiPropertiesRoute = ApiPropertiesRouteImport.update({
+  id: '/api/properties',
+  path: '/api/properties',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImmobiliIndexRoute = ImmobiliIndexRouteImport.update({
+  id: '/immobili/',
+  path: '/immobili/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImmobiliSlugRoute = ImmobiliSlugRouteImport.update({
+  id: '/immobili/$slug',
+  path: '/immobili/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPropertiesSlugRoute = ApiPropertiesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ApiPropertiesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -48,6 +72,10 @@ export interface FileRoutesByFullPath {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/properties': typeof ApiPropertiesRouteWithChildren
+  '/immobili/$slug': typeof ImmobiliSlugRoute
+  '/immobili/': typeof ImmobiliIndexRoute
+  '/api/properties/$slug': typeof ApiPropertiesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -55,6 +83,10 @@ export interface FileRoutesByTo {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/properties': typeof ApiPropertiesRouteWithChildren
+  '/immobili/$slug': typeof ImmobiliSlugRoute
+  '/immobili': typeof ImmobiliIndexRoute
+  '/api/properties/$slug': typeof ApiPropertiesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -63,6 +95,10 @@ export interface FileRoutesById {
   '/mcp': typeof McpRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/api/properties': typeof ApiPropertiesRouteWithChildren
+  '/immobili/$slug': typeof ImmobiliSlugRoute
+  '/immobili/': typeof ImmobiliIndexRoute
+  '/api/properties/$slug': typeof ApiPropertiesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -72,6 +108,10 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
+    | '/api/properties'
+    | '/immobili/$slug'
+    | '/immobili/'
+    | '/api/properties/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -79,6 +119,10 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
+    | '/api/properties'
+    | '/immobili/$slug'
+    | '/immobili'
+    | '/api/properties/$slug'
   id:
     | '__root__'
     | '/'
@@ -86,6 +130,10 @@ export interface FileRouteTypes {
     | '/mcp'
     | '/privacy-policy'
     | '/.well-known/oauth-protected-resource'
+    | '/api/properties'
+    | '/immobili/$slug'
+    | '/immobili/'
+    | '/api/properties/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +142,9 @@ export interface RootRouteChildren {
   McpRoute: typeof McpRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  ApiPropertiesRoute: typeof ApiPropertiesRouteWithChildren
+  ImmobiliSlugRoute: typeof ImmobiliSlugRoute
+  ImmobiliIndexRoute: typeof ImmobiliIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -133,8 +184,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/properties': {
+      id: '/api/properties'
+      path: '/api/properties'
+      fullPath: '/api/properties'
+      preLoaderRoute: typeof ApiPropertiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/immobili/': {
+      id: '/immobili/'
+      path: '/immobili'
+      fullPath: '/immobili/'
+      preLoaderRoute: typeof ImmobiliIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/immobili/$slug': {
+      id: '/immobili/$slug'
+      path: '/immobili/$slug'
+      fullPath: '/immobili/$slug'
+      preLoaderRoute: typeof ImmobiliSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/properties/$slug': {
+      id: '/api/properties/$slug'
+      path: '/$slug'
+      fullPath: '/api/properties/$slug'
+      preLoaderRoute: typeof ApiPropertiesSlugRouteImport
+      parentRoute: typeof ApiPropertiesRoute
+    }
   }
 }
+
+interface ApiPropertiesRouteChildren {
+  ApiPropertiesSlugRoute: typeof ApiPropertiesSlugRoute
+}
+
+const ApiPropertiesRouteChildren: ApiPropertiesRouteChildren = {
+  ApiPropertiesSlugRoute: ApiPropertiesSlugRoute,
+}
+
+const ApiPropertiesRouteWithChildren = ApiPropertiesRoute._addFileChildren(
+  ApiPropertiesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -143,6 +234,9 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  ApiPropertiesRoute: ApiPropertiesRouteWithChildren,
+  ImmobiliSlugRoute: ImmobiliSlugRoute,
+  ImmobiliIndexRoute: ImmobiliIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

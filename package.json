@@ -9,7 +9,13 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "idealista:migrate": "node scripts/idealista/cli.mjs migrate",
+    "idealista:sync": "node scripts/idealista/cli.mjs sync --ftp",
+    "idealista:sync:local": "node scripts/idealista/cli.mjs sync --local",
+    "idealista:status": "node scripts/idealista/cli.mjs status",
+    "idealista:test": "node --test scripts/idealista/__tests__/*.test.mjs"
   },
   "overrides": {
     "rolldown": "1.2.1"
