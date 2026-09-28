@@ -157,21 +157,33 @@ function RipristinaPosizione() {
     window.addEventListener("scroll", salva, { passive: true });
     window.addEventListener("pagehide", salva);
 
-    /* --- ripristino --- */
+    /* --- ripristino ---
+     *
+     * Precedenza alla posizione salvata, non all'ancora.
+     *
+     * L'ancora resta nella barra degli indirizzi anche molto dopo che si e'
+     * usato il menu: se vincesse lei, ogni ricaricamento riporterebbe alla
+     * sezione cliccata mezz'ora prima invece che dove si stava leggendo.
+     *
+     * L'ancora serve a chi arriva da fuori con un link a una sezione: in
+     * quel caso non c'e' nessuna posizione salvata e viene usata lei. */
     const ancora = window.location.hash;
-    const id = ancora.length > 1 ? decodeURIComponent(ancora.slice(1)) : null;
+    const idAncora = ancora.length > 1 ? decodeURIComponent(ancora.slice(1)) : null;
 
     let obiettivo: number | null = null;
-    if (!id) {
-      try {
-        const salvata = sessionStorage.getItem(chiave);
-        if (salvata !== null) obiettivo = Number(salvata);
-      } catch {
-        obiettivo = null;
-      }
+    try {
+      const salvata = sessionStorage.getItem(chiave);
+      if (salvata !== null) obiettivo = Number(salvata);
+    } catch {
+      obiettivo = null;
     }
+    const posizioneValida =
+      obiettivo !== null && Number.isFinite(obiettivo) && obiettivo > 0;
+
+    // L'ancora si usa solo se non sappiamo gia' dove si era.
+    const id = posizioneValida ? null : idAncora;
     // Niente da ripristinare: si resta in cima, come e' giusto.
-    if (!id && (obiettivo === null || !Number.isFinite(obiettivo) || obiettivo <= 0)) {
+    if (!id && !posizioneValida) {
       return () => {
         window.removeEventListener("scroll", salva);
         window.removeEventListener("pagehide", salva);
