@@ -1,0 +1,123 @@
+# Pubblica il sito su GitHub Pages.
+#
+#   idealista (FTP)  ->  Cloudflare D1  ->  dump SQLite  ->  build  ->  Pages
+#
+# Il sito pubblicato e' statico: le pagine degli immobili contengono gia' i
+# dati, quindi non serve ne' un server ne' il database a runtime. D1 resta
+# la fonte di verita' fra un build e l'altro (storico dei sync, stato
+# attivo/inattivo), il dump serve solo a passare i dati alla generazione.
+#
+# La sincronizzazione FTP e' facoltativa: senza credenziali il job salta
+# quel passo e pubblica i dati gia' presenti in D1.
+
+name: Deploy sito
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      sincronizza:
+        description: "Scaricare prima il feed da idealista?"
+        type: boolean
+        default: true
+
+# Un solo deploy alla volta; le esecuzioni in coda vengono sostituite
+# dalla piu' recente, ma quella in corso non viene interrotta a meta'.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # Node serve al runner: gli script della sincronizzazione usano
+      # node:sqlite e node:test, disponibili da Node 22 in poi.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Installa le dipendenze
+        run: bun install --frozen-lockfile
+
+      - name: Verifica tipi
+        run: bun run typecheck
+
+      - name: Test
+        run: bun run idealista:test
+
+      # --- dati -------------------------------------------------------
+      # Se mancano le credenziali FTP il passo viene saltato senza far
+      # fallire il deploy: si pubblica quello che c'e' gia' in D1.
+      - name: Sincronizza il feed idealista
+        if: >-
+          github.event_name != 'workflow_dispatch' ||
+          inputs.sincronizza
+        env:
+          IDEALISTA_FTP_HOST: ${{ secrets.IDEALISTA_FTP_HOST }}
+          IDEALISTA_FTP_PORT: ${{ secrets.IDEALISTA_FTP_PORT }}
+          IDEALISTA_FTP_USER: ${{ secrets.IDEALISTA_FTP_USER }}
+          IDEALISTA_FTP_PASSWORD: ${{ secrets.IDEALISTA_FTP_PASSWORD }}
+          IDEALISTA_FTP_PATH: ${{ secrets.IDEALISTA_FTP_PATH }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$IDEALISTA_FTP_USER" ]; then
+            echo "::warning::Credenziali FTP assenti: si pubblica quanto gia' presente in D1."
+            exit 0
+          fi
+          # --no-deactivate finche' la disattivazione per assenza non e'
+          # stata approvata: un feed parziale non deve svuotare il sito.
+          node scripts/idealista/cli.mjs sync --ftp --no-deactivate --trigger=scheduled
+
+      - name: Copia D1 in un file locale per il build
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_D1_DATABASE_ID: ${{ secrets.CLOUDFLARE_D1_DATABASE_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: node scripts/idealista/cli.mjs dump --to=.data/build.sqlite
+
+      # --- costruzione ------------------------------------------------
+      - name: Costruisci il server
+        env:
+          NITRO_PRESET: node-server
+          VITE_CONTACT_ENDPOINT: ${{ secrets.VITE_CONTACT_ENDPOINT }}
+        run: bun run build
+
+      - name: Genera il sito statico
+        env:
+          IDEALISTA_DB_FILE: ${{ github.workspace }}/.data/build.sqlite
+        run: node scripts/static/export.mjs --out=dist --base-url=${{ vars.SITE_URL }}
+
+      # Il dominio personalizzato: GitHub Pages legge questo file.
+      - name: Imposta il dominio
+        if: vars.SITE_DOMAIN != ''
+        run: echo "${{ vars.SITE_DOMAIN }}" > dist/CNAME
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -25,6 +25,24 @@ const eseguiFile = promisify(execFile);
 const ESTENSIONI_FEED = /\.(xml|json)$/i;
 
 /**
+ * Esportazioni di contorno presenti sullo stesso FTP accanto al feed degli
+ * annunci. Non contengono immobili e non vanno mai importate.
+ *
+ * La convenzione osservata su ftp.habitania.com e':
+ *   <id>.xml                 -> feed degli annunci
+ *   <id>_Activities.xml      -> attivita'
+ *   <id>_Agents.xml          -> agenti
+ *   <id>_Clients.xml         -> clienti
+ *   <id>_Enquiries_2.xml     -> richieste
+ *   <id>_Groups.xml          -> gruppi
+ *   <id>_Operations.xml      -> operazioni
+ *
+ * Il discriminante e' il suffisso "_Parola", non la dimensione del file:
+ * scegliere il piu' grande sarebbe una scorciatoia fragile.
+ */
+const SUFFISSO_AUSILIARIO = /_[A-Za-z][A-Za-z0-9]*(_\d+)?\.(xml|json)$/i;
+
+/**
  * Rimuove qualunque credenziale da un testo destinato a log o errori.
  * Rete di sicurezza: le credenziali non dovrebbero mai arrivarci.
  */
@@ -140,29 +158,50 @@ export class IdealistaFtpClient {
       return file[0];
     }
 
-    // Piu' file: si tenta una data YYYYMMDD o YYYY-MM-DD nel nome.
-    const conData = file
+    // 1. Via le esportazioni di contorno (_Agents, _Clients, ...): non
+    //    contengono annunci. Resta il feed "base" <id>.xml.
+    const ausiliari = file.filter((n) => SUFFISSO_AUSILIARIO.test(n));
+    const principali = file.filter((n) => !SUFFISSO_AUSILIARIO.test(n));
+
+    if (principali.length === 1) {
+      this.log("info", "FTP: file selezionato", {
+        file: principali[0],
+        fra: file.length,
+        scartatiAusiliari: ausiliari.length,
+      });
+      return principali[0];
+    }
+
+    if (principali.length === 0) {
+      throw new Error(
+        `Nessun feed degli annunci trovato: tutti i ${file.length} file hanno un ` +
+          `suffisso di esportazione ausiliaria. File: ${file.join(", ")}`,
+      );
+    }
+
+    // 2. Restano piu' candidati "base": si tenta una data nel nome.
+    const conData = principali
       .map((nome) => {
         const m = nome.match(/(20\d{2})-?(\d{2})-?(\d{2})/);
         return m ? { nome, data: `${m[1]}${m[2]}${m[3]}` } : null;
       })
       .filter(Boolean);
 
-    if (conData.length === file.length) {
+    if (conData.length === principali.length) {
       conData.sort((a, b) => b.data.localeCompare(a.data));
       const scelto = conData[0].nome;
-      this.log("warn", "FTP: piu' file presenti, scelto il piu' recente per data nel nome", {
+      this.log("warn", "FTP: piu' feed presenti, scelto il piu' recente per data nel nome", {
         file: scelto,
-        fra: file.length,
-        disponibili: file,
+        fra: principali.length,
+        disponibili: principali,
       });
       return scelto;
     }
 
     // Ambiguo: meglio fermarsi che importare il feed sbagliato.
     throw new Error(
-      `Selezione del feed ambigua: ${file.length} file candidati e nessuna ` +
-        `data riconoscibile nei nomi. File disponibili: ${file.join(", ")}. ` +
+      `Selezione del feed ambigua: ${principali.length} candidati e nessuna ` +
+        `data riconoscibile nei nomi. Candidati: ${principali.join(", ")}. ` +
         `Impostare IDEALISTA_FTP_FILE per forzare il nome corretto.`,
     );
   }

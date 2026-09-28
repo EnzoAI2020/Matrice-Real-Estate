@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, Check, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import heroResidenza from "@/assets/hero-immobile-commerciale-tramonto.webp";
@@ -157,7 +157,15 @@ const partner = [
 const CONTACT_ENDPOINT =
   import.meta.env["VITE_CONTACT_ENDPOINT"] ?? "INCOLLA_QUI_URL_APPS_SCRIPT";
 
-type StatoInvio = "idle" | "invio" | "ok" | "errore";
+type StatoInvio = "idle" | "invio" | "ok" | "errore" | "non-configurato";
+
+/**
+ * L'endpoint e' utilizzabile solo se e' un URL assoluto. Finche' resta il
+ * segnaposto, fetch() lo tratterebbe come percorso relativo del sito e
+ * fallirebbe con un 404: un errore fuorviante, che sembra un guasto
+ * dell'invio invece di una configurazione mancante.
+ */
+const ENDPOINT_CONFIGURATO = /^https?:\/\//i.test(CONTACT_ENDPOINT);
 
 const navLinks = [
   { href: "#chi-siamo", label: "Chi siamo" },
@@ -173,6 +181,8 @@ function Index() {
   // Header trasparente sull hero, solido appena si scorre.
   const [scrolled, setScrolled] = useState(false);
   const [stato, setStato] = useState<StatoInvio>("idle");
+  // Serve a personalizzare la conferma dopo l'invio.
+  const [inviato, setInviato] = useState<{ nome: string; oggetto: string } | null>(null);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -309,12 +319,12 @@ function Index() {
               >
                 Parla con noi
               </a>
-              <a
-                href="#servizi"
+              <Link
+                to="/immobili"
                 className="rounded-full border border-white/25 px-9 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-foreground backdrop-blur-sm transition-colors hover:border-flame hover:text-flame"
               >
-                Scopri i servizi
-              </a>
+                Scopri gli immobili
+              </Link>
             </div>
           </div>
         </div>
@@ -334,21 +344,35 @@ function Index() {
                   Scopri le proprietà disponibili
                 </h2>
                 <p className="mt-5 max-w-lg text-base font-light leading-relaxed text-foreground/70">
-                  Il portafoglio completo è pubblicato e sempre aggiornato sulla vetrina
+                  Gli immobili che seguiamo sono consultabili qui sul sito, con schede
+                  aggiornate ogni giorno. Il portafoglio e pubblicato anche sulla vetrina
                   Immobiliare.it di Matrice Real Estate.
                 </p>
               </div>
-              <div className="lg:col-span-5 lg:flex lg:justify-end">
+              {/* Due destinazioni diverse: la prima resta sul sito, la seconda
+                  porta sul portale esterno. I nomi lo devono dire. */}
+              <div className="flex flex-col gap-3 lg:col-span-5 lg:items-end lg:justify-end">
+                <Link
+                  to="/immobili"
+                  className="group inline-flex items-center gap-4 rounded-full bg-foreground py-2.5 pl-7 pr-2.5 text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                >
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
+                    Scopri gli immobili
+                  </span>
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground">
+                    <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
+                  </span>
+                </Link>
                 <a
                   href="https://www.immobiliare.it/pro/382689/pone/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-4 rounded-full bg-foreground py-2.5 pl-7 pr-2.5 text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                  className="group inline-flex items-center gap-4 rounded-full border border-white/25 py-2.5 pl-7 pr-2.5 text-foreground transition-colors hover:border-flame hover:text-flame"
                 >
                   <span className="font-mono text-[10px] font-bold uppercase tracking-[0.16em]">
-                    Guarda tutti gli immobili
+                    Vetrina su Immobiliare.it
                   </span>
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-background text-foreground">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/25 text-foreground transition-colors group-hover:border-flame">
                     <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:rotate-45" />
                   </span>
                 </a>
@@ -396,16 +420,23 @@ function Index() {
               </ScrollReveal>
             ))}
 
-            {/* Sesta cella: il bottone originale, centrato nello spazio vuoto */}
+            {/* Sesta cella: le due destinazioni, centrate nello spazio vuoto.
+                La prima resta sul sito, la seconda porta al portale esterno. */}
             <ScrollReveal delay={160} className="h-full">
-              <div className="flex h-full items-center justify-center py-4">
+              <div className="flex h-full flex-col items-center justify-center gap-3 py-4">
+                <Link
+                  to="/immobili"
+                  className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                >
+                  Scopri gli immobili <ArrowUpRight className="size-4 shrink-0" />
+                </Link>
                 <a
                   href="https://www.immobiliare.it/pro/382689/pone/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 rounded-full bg-foreground px-8 py-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                  className="inline-flex items-center gap-3 rounded-full border border-white/25 px-8 py-4 text-center font-mono text-[10px] font-bold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-flame hover:text-flame"
                 >
-                  Guarda tutti gli immobili su Immobiliare.it <ArrowUpRight className="size-4 shrink-0" />
+                  Guarda su Immobiliare.it <ArrowUpRight className="size-4 shrink-0" />
                 </a>
               </div>
             </ScrollReveal>
@@ -516,13 +547,16 @@ function Index() {
               </ul>
 
               <div className="mt-10 flex flex-col items-center rounded-2xl border border-white/12 bg-white/[0.04] p-8 text-center">
+                {/* Il monogramma non e' una foto: va contenuto e non ritagliato,
+                    quindi object-contain. Nessun cerchio dietro: il marchio
+                    sta direttamente sul fondo della scheda. */}
                 <img
-                  src={fotoMichele}
-                  alt="Michele Pone, titolare di Matrice Real Estate"
-                  width={1254}
-                  height={1254}
+                  src={logo}
+                  alt="Logo Matrice Real Estate"
+                  width={2522}
+                  height={2278}
                   loading="lazy"
-                  className="size-28 shrink-0 rounded-full border border-white/15 object-cover"
+                  className="size-28 shrink-0 object-contain"
                 />
                 <p className="mt-6 font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-flame">
                   Iscrizione al ruolo
@@ -691,6 +725,60 @@ function Index() {
           </ScrollReveal>
 
           <ScrollReveal className="lg:col-span-6" delay={100}>
+          {/* A invio riuscito il modulo lascia il posto alla conferma: i campi
+              vuoti non servono piu' e lasciarli fa dubitare che sia partito. */}
+          {stato === "ok" ? (
+            <div
+              role="status"
+              className="border-t border-white/15 bg-card p-6 sm:p-10 lg:p-12"
+            >
+              <span className="flex size-14 items-center justify-center rounded-full bg-flame text-flame-foreground">
+                <Check className="size-7" aria-hidden="true" />
+              </span>
+
+              <h3 className="mt-7 font-display text-3xl leading-tight tracking-tight lg:text-4xl">
+                Grazie{inviato?.nome ? `, ${inviato.nome.split(" ")[0]}` : ""}.
+              </h3>
+
+              <p className="mt-5 text-base font-light leading-relaxed text-foreground/75">
+                Abbiamo ricevuto la tua richiesta
+                {inviato?.oggetto ? (
+                  <>
+                    {" "}
+                    su <span className="text-foreground">{inviato.oggetto}</span>
+                  </>
+                ) : null}
+                . Ti abbiamo mandato una conferma via email: se non la trovi,
+                controlla anche la posta indesiderata.
+              </p>
+
+              <p className="mt-4 text-base font-light leading-relaxed text-foreground/75">
+                Un referente del team ti ricontatta al piu' presto, di norma
+                entro un giorno lavorativo.
+              </p>
+
+              <div className="mt-9 flex flex-wrap gap-4 border-t border-white/10 pt-7">
+                <a
+                  href="https://wa.me/393457603610"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-foreground px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                >
+                  Scrivici su WhatsApp <ArrowUpRight className="size-4" />
+                </a>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setInviato(null);
+                    setStato("idle");
+                  }}
+                  className="rounded-full border border-white/25 px-8 py-4 font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-foreground transition-colors hover:border-flame hover:text-flame"
+                >
+                  Invia un'altra richiesta
+                </button>
+              </div>
+            </div>
+          ) : (
           <form
             className="border-t border-white/15 bg-card p-6 sm:p-10 lg:p-12"
             onSubmit={async (e) => {
@@ -698,6 +786,14 @@ function Index() {
               if (stato === "invio") return;
               const modulo = e.currentTarget;
               const dati = Object.fromEntries(new FormData(modulo).entries());
+
+              // Senza endpoint valido non si tenta nemmeno: meglio dirlo
+              // che mostrare un errore di invio che non e' un errore di invio.
+              if (!ENDPOINT_CONFIGURATO) {
+                setStato("non-configurato");
+                return;
+              }
+
               setStato("invio");
               try {
                 // text/plain evita il preflight CORS verso Apps Script.
@@ -708,6 +804,10 @@ function Index() {
                 });
                 const esito = await risposta.json();
                 if (!esito?.ok) throw new Error(esito?.errore ?? "invio_fallito");
+                setInviato({
+                  nome: String(dati["nome"] ?? "").trim(),
+                  oggetto: String(dati["oggetto"] ?? "").trim(),
+                });
                 setStato("ok");
                 modulo.reset();
               } catch {
@@ -785,12 +885,6 @@ function Index() {
                 {stato === "invio" ? "Invio in corso…" : "Invia richiesta →"}
               </button>
 
-              {stato === "ok" ? (
-                <p role="status" className="text-sm leading-relaxed text-flame">
-                  Richiesta inviata. Ti abbiamo mandato una conferma via email: un referente del
-                  team ti ricontatta a breve.
-                </p>
-              ) : null}
               {stato === "errore" ? (
                 <p role="alert" className="text-sm leading-relaxed text-muted-foreground">
                   Invio non riuscito. Riprova, oppure scrivici a{" "}
@@ -803,8 +897,30 @@ function Index() {
                   .
                 </p>
               ) : null}
+              {stato === "non-configurato" ? (
+                <p role="alert" className="text-sm leading-relaxed text-muted-foreground">
+                  Il modulo non è ancora collegato. Nel frattempo scrivici a{" "}
+                  <a
+                    href="mailto:info@matricerealestate.it"
+                    className="text-foreground underline transition-colors hover:text-flame"
+                  >
+                    info@matricerealestate.it
+                  </a>{" "}
+                  oppure su WhatsApp al{" "}
+                  <a
+                    href="https://wa.me/393457603610"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-foreground underline transition-colors hover:text-flame"
+                  >
+                    345 760 3610
+                  </a>
+                  .
+                </p>
+              ) : null}
             </div>
           </form>
+          )}
           </ScrollReveal>
         </div>
       </section>
@@ -824,7 +940,17 @@ function Index() {
               <p className="mt-9 font-display text-xl leading-snug text-foreground/85 lg:text-2xl">
                 Parliamo del tuo immobile.
               </p>
-              <ContactMenu className="mt-6 rounded-full border border-white/25 bg-transparent px-7 py-3.5 text-[11px] text-foreground hover:border-flame hover:bg-transparent hover:text-flame" />
+              {/* Due azioni distinte: la prima porta al modulo in pagina,
+                  la seconda apre i canali diretti (WhatsApp, email, SMS). */}
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href="#contatti"
+                  className="rounded-full bg-foreground px-7 py-3.5 font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-background transition-colors hover:bg-flame hover:text-flame-foreground"
+                >
+                  Invia richiesta →
+                </a>
+                <ContactMenu className="rounded-full border border-white/25 bg-transparent px-7 py-3.5 text-[11px] text-foreground hover:border-flame hover:bg-transparent hover:text-flame" />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-8 lg:col-span-6 lg:justify-items-end">
