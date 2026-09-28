@@ -61,7 +61,16 @@ jobs:
       # --- dati -------------------------------------------------------
       # Se mancano le credenziali FTP il passo viene saltato senza far
       # fallire il deploy: si pubblica quello che c'e' gia' in D1.
+      # Un problema sull'FTP non deve impedire la pubblicazione: in D1 ci
+      # sono gia' gli immobili dell'ultima sincronizzazione riuscita. Il
+      # passo segnala l'errore e prosegue, cosi' il sito esce comunque, al
+      # massimo con dati vecchi di un giorno.
+      #
+      # Serve soprattutto perche' non sappiamo ancora se idealista limita
+      # l'accesso per indirizzo IP: i runner di GitHub ne cambiano a ogni
+      # esecuzione, quindi un 530 qui e' uno scenario concreto.
       - name: Sincronizza il feed idealista
+        continue-on-error: true
         if: >-
           github.event_name != 'workflow_dispatch' ||
           inputs.sincronizza
