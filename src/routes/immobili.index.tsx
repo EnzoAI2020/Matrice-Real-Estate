@@ -3,6 +3,13 @@ import { ArrowUpRight, ImageOff } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { ScrollReveal } from "@/components/ScrollReveal";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { SiteHeader } from "@/components/SiteHeader";
 import { caricaElencoImmobili } from "@/lib/properties/queries";
 import {
@@ -117,8 +124,19 @@ function CardImmobile({ immobile }: { immobile: ImmobilePubblico }) {
 
 /* --------------------------------------------------------------- pagina */
 
-const SELECT =
-  "min-h-11 rounded-full border border-white/20 bg-white/[0.06] px-5 py-2.5 text-sm text-foreground backdrop-blur-sm transition-colors hover:border-white/35 focus:border-flame focus:outline-none";
+/**
+ * I filtri usano il Select di Radix, non il <select> nativo: il pannello
+ * nativo lo disegna il sistema operativo (fondo bianco, testo grigio) e
+ * sul tema scuro risultava illeggibile.
+ */
+const TRIGGER =
+  "h-11 w-full rounded-full border-white/20 bg-white/[0.06] px-5 font-mono text-[11px] uppercase tracking-[0.12em] text-foreground backdrop-blur-sm transition-colors hover:border-white/40 hover:bg-white/[0.1] focus:border-flame focus:ring-0 data-[state=open]:border-flame sm:w-auto sm:min-w-[13rem]";
+
+const PANNELLO =
+  "rounded-2xl border-white/15 bg-card/95 p-1.5 backdrop-blur-xl shadow-[0_18px_60px_rgba(0,0,0,0.5)]";
+
+const VOCE =
+  "rounded-xl px-3 py-2.5 font-mono text-[11px] uppercase tracking-[0.12em] text-foreground/75 transition-colors focus:bg-white/10 focus:text-foreground data-[state=checked]:text-flame";
 
 function ElencoImmobiliPagina() {
   const dati = Route.useLoaderData();
@@ -179,64 +197,63 @@ function ElencoImmobiliPagina() {
         ) : (
           <>
             <ScrollReveal delay={80}>
-              <div className="mt-10 flex flex-wrap items-center gap-3 border-y border-white/10 py-5">
-                <label className="sr-only" htmlFor="f-operazione">
-                  Operazione
-                </label>
-                <select
-                  id="f-operazione"
+              <div className="mt-10 flex flex-col gap-4 rounded-2xl border border-white/12 bg-white/[0.03] p-4 backdrop-blur-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:p-5">
+                <Select
                   value={operazione}
-                  onChange={(e) => setOperazione(e.target.value as Operazione | "TUTTE")}
-                  className={SELECT}
+                  onValueChange={(v) => setOperazione(v as Operazione | "TUTTE")}
                 >
-                  <option value="TUTTE">Tutte le operazioni</option>
-                  {dati.opzioni.operazioni.map((o) => (
-                    <option key={o} value={o}>
-                      {etichettaOperazione[o]}
-                    </option>
-                  ))}
-                </select>
+                  <SelectTrigger aria-label="Operazione" className={TRIGGER}>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className={PANNELLO}>
+                    <SelectItem value="TUTTE" className={VOCE}>
+                      Tutte le operazioni
+                    </SelectItem>
+                    {dati.opzioni.operazioni.map((o) => (
+                      <SelectItem key={o} value={o} className={VOCE}>
+                        {etichettaOperazione[o]}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-                <label className="sr-only" htmlFor="f-tipologia">
-                  Tipologia
-                </label>
-                <select
-                  id="f-tipologia"
-                  value={tipologia}
-                  onChange={(e) => setTipologia(e.target.value)}
-                  className={SELECT}
-                >
-                  <option value="TUTTE">Tutte le tipologie</option>
-                  {dati.opzioni.tipologie.map((t) => (
-                    <option key={t.valore} value={t.valore}>
-                      {t.etichetta}
-                    </option>
-                  ))}
-                </select>
+                <Select value={tipologia} onValueChange={setTipologia}>
+                  <SelectTrigger aria-label="Tipologia" className={TRIGGER}>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className={PANNELLO}>
+                    <SelectItem value="TUTTE" className={VOCE}>
+                      Tutte le tipologie
+                    </SelectItem>
+                    {dati.opzioni.tipologie.map((t) => (
+                      <SelectItem key={t.valore} value={t.valore} className={VOCE}>
+                        {t.etichetta}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
                 {dati.opzioni.comuni.length > 1 ? (
-                  <>
-                    <label className="sr-only" htmlFor="f-comune">
-                      Comune
-                    </label>
-                    <select
-                      id="f-comune"
-                      value={comune}
-                      onChange={(e) => setComune(e.target.value)}
-                      className={SELECT}
-                    >
-                      <option value="TUTTI">Tutti i comuni</option>
+                  <Select value={comune} onValueChange={setComune}>
+                    <SelectTrigger aria-label="Comune" className={TRIGGER}>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className={PANNELLO}>
+                      <SelectItem value="TUTTI" className={VOCE}>
+                        Tutti i comuni
+                      </SelectItem>
                       {dati.opzioni.comuni.map((c) => (
-                        <option key={c} value={c}>
+                        <SelectItem key={c} value={c} className={VOCE}>
                           {c}
-                        </option>
+                        </SelectItem>
                       ))}
-                    </select>
-                  </>
+                    </SelectContent>
+                  </Select>
                 ) : null}
 
-                <span className="ml-auto font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/50">
-                  {risultati.length} {risultati.length === 1 ? "immobile" : "immobili"}
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground/55 sm:ml-auto">
+                  <span className="text-foreground">{risultati.length}</span>{" "}
+                  {risultati.length === 1 ? "immobile" : "immobili"}
                 </span>
               </div>
             </ScrollReveal>

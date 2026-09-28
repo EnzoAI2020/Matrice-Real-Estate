@@ -84,6 +84,7 @@ function leggiArgomenti(argv) {
       case "max-photos": o.maxFoto = Number(v); break;
       case "trigger": o.trigger = v; break;
       case "dry-run": o.dryRun = true; break;
+      case "to": o.dumpTo = v; break;
       case "keep-raw": o.conservaGrezzo = true; break;
       case "no-deactivate": o.noDeactivate = true; break;
       case "help": o.help = true; break;
@@ -105,6 +106,7 @@ Comandi
   migrate            applica scripts/idealista/migrations/*.sql
   sync               importa il feed
   status             mostra le ultime sincronizzazioni
+  dump               copia D1 in un file SQLite locale (per il build statico)
 
 Opzioni
   --file=PERCORSO    legge un XML locale invece dell'FTP
@@ -184,6 +186,59 @@ async function comandoStatus(o, log, env) {
   console.log("Immobili:", attivi.map((a) => `${a.status}=${a.n}`).join(" ") || "nessuno");
   console.log();
   await db.close();
+}
+
+/* --------------------------------------------------------------- dump */
+
+/**
+ * Copia il contenuto di D1 in un file SQLite locale.
+ *
+ * Serve al build statico: la generazione delle pagine gira in Node, dove
+ * il binding D1 non esiste. Invece di insegnare al sito a parlare con
+ * l'API REST, gli si mette accanto lo stesso database in locale: il
+ * repository lo trova da solo tramite IDEALISTA_DB_FILE.
+ */
+async function comandoDump(o, log, env) {
+  const destinazione = resolve(RADICE, o.dumpTo ?? ".data/build.sqlite");
+  await mkdir(dirname(destinazione), { recursive: true });
+  await rm(destinazione, { force: true });
+
+  const sorgente = await creaDriver({}, env); // D1
+  const locale = await creaDriver({ driver: "sqlite", file: destinazione }, env);
+
+  const schema = await readFile(join(QUI, "migrations", "0001_idealista.sql"), "utf8");
+  await locale.exec(schema);
+
+  let totale = 0;
+  for (const tabella of ["properties", "property_images", "idealista_syncs"]) {
+    const righe = await sorgente.query(`SELECT * FROM ${tabella}`);
+    if (righe.length === 0) {
+      log.info(`  ${tabella}: 0 righe`);
+      continue;
+    }
+    const colonne = Object.keys(righe[0]);
+    const segnaposto = colonne.map(() => "?").join(", ");
+    const sql = `INSERT INTO ${tabella} (${colonne.join(", ")}) VALUES (${segnaposto})`;
+
+    // A lotti: SQLite locale non ha il limite di D1, ma restare sotto i 100
+    // parametri per statement mantiene il codice uguale ovunque.
+    const perLotto = Math.max(1, Math.floor(90 / colonne.length));
+    for (let i = 0; i < righe.length; i += perLotto) {
+      await locale.batch(
+        righe.slice(i, i + perLotto).map((r) => ({ sql, params: colonne.map((c) => r[c]) })),
+      );
+    }
+    log.info(`  ${tabella}: ${righe.length} righe copiate`);
+    totale += righe.length;
+  }
+
+  await locale.close();
+  await sorgente.close();
+
+  log.info("Dump completato", { file: destinazione, righe: totale });
+  console.log(`
+  IDEALISTA_DB_FILE=${destinazione}
+`);
 }
 
 /* --------------------------------------------------------------- sync */
@@ -360,6 +415,7 @@ async function main() {
   switch (o.comando) {
     case "migrate": return comandoMigrate(o, log, env);
     case "status": return comandoStatus(o, log, env);
+    case "dump": return comandoDump(o, log, env);
     case "sync": return comandoSync(o, log, env);
     default:
       console.log(AIUTO);

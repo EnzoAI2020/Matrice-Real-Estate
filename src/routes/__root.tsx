@@ -111,11 +111,125 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Chiave in sessionStorage: una posizione per percorso. */
+const CHIAVE_POSIZIONE = "matrice:scroll:";
+
+/**
+ * Dopo un ricaricamento riporta esattamente dove si era.
+ *
+ * Due casi, in ordine di precedenza:
+ *   1. l'URL ha un'ancora (#contatti)  -> si va a quella sezione
+ *   2. nessuna ancora                  -> si riprende la posizione salvata
+ *
+ * Perche' non basta il browser: la pagina e' resa lato server e quando il
+ * browser prova a ripristinare, il contenuto non e' ancora idratato e le
+ * immagini non sono cariche. La pagina e' corta, il ripristino finisce
+ * fuori bersaglio e poi il contenuto cresce sotto. Per questo si disattiva
+ * il ripristino nativo e si rifa a mano, riprovando finche' l'altezza della
+ * pagina si stabilizza.
+ *
+ * L'offset sotto l'header fisso e' gia' in CSS:
+ * `section[id] { scroll-margin-top: 5.5rem }`.
+ */
+function RipristinaPosizione() {
+  useEffect(() => {
+    // Il ripristino nativo lavorerebbe contro il nostro: meglio spegnerlo.
+    const precedente = history.scrollRestoration;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+    const chiave = CHIAVE_POSIZIONE + window.location.pathname;
+    let annullato = false;
+
+    /* --- salvataggio continuo della posizione, a basso costo --- */
+    let inAttesa = false;
+    const salva = () => {
+      if (inAttesa) return;
+      inAttesa = true;
+      requestAnimationFrame(() => {
+        inAttesa = false;
+        try {
+          sessionStorage.setItem(chiave, String(window.scrollY));
+        } catch {
+          /* sessionStorage puo' essere negato: non e' un motivo per rompere */
+        }
+      });
+    };
+    window.addEventListener("scroll", salva, { passive: true });
+    window.addEventListener("pagehide", salva);
+
+    /* --- ripristino --- */
+    const ancora = window.location.hash;
+    const id = ancora.length > 1 ? decodeURIComponent(ancora.slice(1)) : null;
+
+    let obiettivo: number | null = null;
+    if (!id) {
+      try {
+        const salvata = sessionStorage.getItem(chiave);
+        if (salvata !== null) obiettivo = Number(salvata);
+      } catch {
+        obiettivo = null;
+      }
+    }
+    // Niente da ripristinare: si resta in cima, come e' giusto.
+    if (!id && (obiettivo === null || !Number.isFinite(obiettivo) || obiettivo <= 0)) {
+      return () => {
+        window.removeEventListener("scroll", salva);
+        window.removeEventListener("pagehide", salva);
+        if ("scrollRestoration" in history) history.scrollRestoration = precedente;
+      };
+    }
+
+    const vaiAPosto = () => {
+      if (id) {
+        const elemento = document.getElementById(id);
+        if (!elemento) return false;
+        // "auto" e non "smooth": a un reload si deve essere gia' li'.
+        elemento.scrollIntoView({ block: "start", behavior: "auto" });
+        return true;
+      }
+      // La posizione e' raggiungibile solo se la pagina e' cresciuta abbastanza.
+      const massimo = document.documentElement.scrollHeight - window.innerHeight;
+      if (massimo < obiettivo!) return false;
+      window.scrollTo({ top: obiettivo!, behavior: "auto" });
+      return true;
+    };
+
+    const scadenza = Date.now() + 3000;
+    const riprova = () => {
+      if (annullato) return;
+      if (vaiAPosto()) {
+        // Le immagini che finiscono di caricare spostano il layout: una
+        // seconda passata rimette a posto.
+        window.addEventListener(
+          "load",
+          () => {
+            if (!annullato) vaiAPosto();
+          },
+          { once: true },
+        );
+        return;
+      }
+      if (Date.now() < scadenza) requestAnimationFrame(riprova);
+    };
+    requestAnimationFrame(riprova);
+
+    return () => {
+      annullato = true;
+      window.removeEventListener("scroll", salva);
+      window.removeEventListener("pagehide", salva);
+      if ("scrollRestoration" in history) history.scrollRestoration = precedente;
+    };
+  }, []);
+
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      <RipristinaPosizione />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <CookieBanner />
