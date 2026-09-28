@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { SiteHeader } from "@/components/SiteHeader";
 import { caricaElencoImmobili } from "@/lib/properties/queries";
+import { caricaElencoDalBrowser } from "@/lib/properties/fetch-client";
 import {
   luogoBreve,
   sintesi,
@@ -20,7 +21,13 @@ import {
 } from "@/lib/properties/types";
 
 export const Route = createFileRoute("/immobili/")({
-  loader: async () => caricaElencoImmobili({ data: {} }),
+  // Sul server (render e generazione statica) si legge il database.
+  // Nel browser no: il sito pubblicato e' statico e non ha un server a cui
+  // rivolgersi, quindi si legge il file generato dall'export.
+  loader: async () =>
+    typeof window === "undefined"
+      ? caricaElencoImmobili({ data: {} })
+      : caricaElencoDalBrowser(),
   component: ElencoImmobiliPagina,
   head: () => ({
     meta: [

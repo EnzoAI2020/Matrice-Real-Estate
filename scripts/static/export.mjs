@@ -190,7 +190,11 @@ async function main() {
     const api = await (await fetch(`${origine}/api/properties`)).text();
     await mkdir(join(CARTELLA, "api/properties"), { recursive: true });
     await writeFile(join(CARTELLA, "api/properties/index.json"), api, "utf8");
-    log("api/properties/index.json salvato");
+    // Anche come file piatto: su hosting statico /api/properties non
+    // risolve (cerca un index.html), mentre /api/properties.json si'.
+    // E' questo che i loader chiamano dal browser.
+    await writeFile(join(CARTELLA, "api/properties.json"), api, "utf8");
+    log("api/properties.json salvato");
 
     // 6. 404 di cortesia: GitHub Pages lo serve per le rotte sconosciute.
     const notFound = await fetch(`${origine}/rotta-inesistente-per-404`);

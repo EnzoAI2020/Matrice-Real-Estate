@@ -5,13 +5,22 @@ import { useState } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SiteHeader } from "@/components/SiteHeader";
 import { caricaImmobile } from "@/lib/properties/queries";
+import { caricaElencoDalBrowser } from "@/lib/properties/fetch-client";
 import { luogoBreve, type ImmobilePubblico } from "@/lib/properties/types";
 
 export const Route = createFileRoute("/immobili/$slug")({
   // Uno slug sconosciuto (o un immobile uscito dal feed) deve rispondere 404,
   // non 200 con "non disponibile": un soft 404 resta nell'indice di Google.
+  // Come per l'elenco: database sul server, file statico nel browser.
+  // La scheda si ricava dall'elenco gia' pubblicato, senza un file per
+  // ogni immobile.
   loader: async ({ params }) => {
-    const immobile = await caricaImmobile({ data: params.slug });
+    const immobile =
+      typeof window === "undefined"
+        ? await caricaImmobile({ data: params.slug })
+        : ((await caricaElencoDalBrowser()).immobili.find(
+            (i) => i.slug === params.slug,
+          ) ?? null);
     if (!immobile) throw notFound();
     return immobile;
   },
