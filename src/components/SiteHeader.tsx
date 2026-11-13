@@ -13,9 +13,10 @@ import logo from "@/assets/logo-matrice-monogram.webp";
  */
 
 const navLinks = [
-  { href: "/#chi-siamo", label: "Chi siamo", interno: false },
-  { href: "/#servizi", label: "Servizi", interno: false },
+  // Stesso ordine delle sezioni nella home.
   { href: "/immobili", label: "Immobili", interno: true },
+  { href: "/#servizi", label: "Servizi", interno: false },
+  { href: "/#chi-siamo", label: "Chi siamo", interno: false },
   { href: "/#team", label: "Team", interno: false },
   { href: "/#contatti", label: "Contatti", interno: false },
 ];

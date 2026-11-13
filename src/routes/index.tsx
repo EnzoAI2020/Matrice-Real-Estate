@@ -168,9 +168,10 @@ type StatoInvio = "idle" | "invio" | "ok" | "errore" | "non-configurato";
 const ENDPOINT_CONFIGURATO = /^https?:\/\//i.test(CONTACT_ENDPOINT);
 
 const navLinks = [
-  { href: "#chi-siamo", label: "Chi siamo" },
-  { href: "#servizi", label: "Servizi" },
+  // Stesso ordine delle sezioni nella pagina.
   { href: "#immobili", label: "Immobili" },
+  { href: "#servizi", label: "Servizi" },
+  { href: "#chi-siamo", label: "Chi siamo" },
   { href: "#team", label: "Team" },
   { href: "#contatti", label: "Contatti" },
 ];
@@ -591,9 +592,14 @@ function Index() {
           </span>
         </ScrollReveal>
 
-        <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-5">
+        {/* Flex e non grid: l'ultima riga incompleta resta centrata. */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
           {team.map((m, index) => (
-            <ScrollReveal key={m.name} delay={(index % 5) * 65}>
+            <ScrollReveal
+              key={m.name}
+              delay={(index % 5) * 65}
+              className="w-[calc((100%-1rem)/2)] sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-5rem)/5)]"
+            >
             <figure className="group relative overflow-hidden border-t border-white/15 bg-card transition-all duration-500 ease-out hover:z-10 hover:-translate-y-2 hover:border-white/30 hover:shadow-2xl hover:shadow-black/60">
               <div className="overflow-hidden">
                 <img
@@ -930,12 +936,23 @@ function Index() {
         <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 lg:px-12 lg:py-24">
           {/* marchio, invito e navigazione */}
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-6">
+            {/* Ingresso del footer: il blocco sale con ScrollReveal e le
+                lettere di MATRICE emergono una alla volta dalla loro maschera,
+                pilotate dal data-visible che ScrollReveal imposta. */}
+            <ScrollReveal className="group/footer lg:col-span-6">
               <span
                 aria-hidden="true"
-                className="block select-none font-sans text-[3rem] font-bold leading-none tracking-tight sm:text-7xl lg:text-[6.5rem]"
+                className="flex select-none overflow-hidden font-sans text-[3rem] font-bold leading-none tracking-tight sm:text-7xl lg:text-[6.5rem]"
               >
-                MATRICE
+                {"MATRICE".split("").map((lettera, i) => (
+                  <span
+                    key={i}
+                    style={{ transitionDelay: `${150 + i * 70}ms` }}
+                    className="inline-block translate-y-full opacity-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-data-[visible=true]/footer:translate-y-0 group-data-[visible=true]/footer:opacity-100 motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none"
+                  >
+                    {lettera}
+                  </span>
+                ))}
               </span>
               <p className="mt-9 font-display text-xl leading-snug text-foreground/85 lg:text-2xl">
                 Parliamo del tuo immobile.
@@ -951,9 +968,9 @@ function Index() {
                 </a>
                 <ContactMenu className="rounded-full border border-white/25 bg-transparent px-7 py-3.5 text-[11px] text-foreground hover:border-flame hover:bg-transparent hover:text-flame" />
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-2 gap-8 lg:col-span-6 lg:justify-items-end">
+            <ScrollReveal delay={150} className="grid grid-cols-2 gap-8 lg:col-span-6 lg:justify-items-end">
               <nav className="flex flex-col text-sm text-muted-foreground">
                 {navLinks.map((l) => (
                   <a key={l.href} href={l.href} className="py-2 transition-colors hover:text-foreground">
@@ -982,11 +999,14 @@ function Index() {
                   +39 345 760 3610
                 </a>
               </nav>
-            </div>
+            </ScrollReveal>
           </div>
 
           {/* sede e note legali */}
-          <div className="mt-20 grid gap-6 text-sm text-muted-foreground lg:mt-28 lg:grid-cols-12 lg:items-end">
+          <ScrollReveal
+            delay={250}
+            className="mt-20 grid gap-6 text-sm text-muted-foreground lg:mt-28 lg:grid-cols-12 lg:items-end"
+          >
             <div className="flex flex-col gap-1 lg:col-span-6">
               <span>Via Toledo 265 — Napoli 80134</span>
               <span>C.C.I.A.A. Napoli — Ruolo Agenti di affari in mediazione n. 424903</span>
@@ -1006,7 +1026,7 @@ function Index() {
               </Link>
               <span>© 2026 Matrice Real Estate</span>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </footer>
     </div>

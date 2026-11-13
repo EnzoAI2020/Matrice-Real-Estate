@@ -105,6 +105,8 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        {/* Subito dopo il contenuto e prima del bundle: vedi SCRIPT_POSIZIONE. */}
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_POSIZIONE }} />
         <Scripts />
       </body>
     </html>
@@ -113,6 +115,25 @@ function RootShell({ children }: { children: ReactNode }) {
 
 /** Chiave in sessionStorage: una posizione per percorso. */
 const CHIAVE_POSIZIONE = "matrice:scroll:";
+
+/**
+ * Primo ripristino, prima che la pagina venga mostrata.
+ *
+ * L'HTML e' gia' completo (prerender), ma RipristinaPosizione gira solo dopo
+ * che il bundle e' scaricato e idratato. Nel frattempo il browser dipinge la
+ * pagina in cima: al ricaricamento si vedeva la prima sezione e poi il salto
+ * indietro. Questo script inline gira mentre il parser arriva in fondo al
+ * body, quando le sezioni esistono gia', e porta subito alla posizione
+ * salvata. RipristinaPosizione resta per correggere dopo immagini e idratazione.
+ *
+ * Stessa regola di precedenza: senza posizione salvata non fa nulla e
+ * l'eventuale ancora la gestisce il browser.
+ */
+const SCRIPT_POSIZIONE = `(function(){try{
+if("scrollRestoration" in history)history.scrollRestoration="manual";
+var y=Number(sessionStorage.getItem(${JSON.stringify(CHIAVE_POSIZIONE)}+location.pathname));
+if(isFinite(y)&&y>0)window.scrollTo({top:y,behavior:"instant"});
+}catch(e){}})();`;
 
 /**
  * Dopo un ricaricamento riporta esattamente dove si era.
@@ -195,14 +216,15 @@ function RipristinaPosizione() {
       if (id) {
         const elemento = document.getElementById(id);
         if (!elemento) return false;
-        // "auto" e non "smooth": a un reload si deve essere gia' li'.
-        elemento.scrollIntoView({ block: "start", behavior: "auto" });
+        // "instant", non "auto": con `html { scroll-behavior: smooth }` in
+        // styles.css, "auto" diventa un'animazione che parte dalla cima.
+        elemento.scrollIntoView({ block: "start", behavior: "instant" });
         return true;
       }
       // La posizione e' raggiungibile solo se la pagina e' cresciuta abbastanza.
       const massimo = document.documentElement.scrollHeight - window.innerHeight;
       if (massimo < obiettivo!) return false;
-      window.scrollTo({ top: obiettivo!, behavior: "auto" });
+      window.scrollTo({ top: obiettivo!, behavior: "instant" });
       return true;
     };
 
